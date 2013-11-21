@@ -17,7 +17,7 @@ function json_to_puzzle(json_url) {
             });
         });
     });
-    var str = '[[{"number":3,"color":{"r":0,"g":0,"b":0}},null,{"number":3,"color":{"r":0,"g":0,"b":0}},null,null],[null,null,null,{"number":1,"color":{"r":0,"g":0,"b":0}},null],[null,null,{"number":5,"color":{"r":0,"g":0,"b":0}},{"number":2,"color":{"r":0,"g":0,"b":0}},null],[null,null,null,{"number":2,"color":{"r":0,"g":0,"b":0}},null],[{"number":5,"color":{"r":0,"g":0,"b":0}},null,null,null,null]] ';
+    var str = '[[{"number":"2","color":{"r":0,"g":0,"b":0}},{"number":"","color":{"r":0,"g":0,"b":0}}],[{"number":"1","color":{"r":0,"g":0,"b":0}},{"number":"","color":{"r":0,"g":0,"b":0}}]] ';
     return JSON.parse(str);
 };
 

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Linkapix Test</title>
+
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/linkapix.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="navbar navbar-default" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Linkapix</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="./">Hello </a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <h1>Linkapix</h1>
+      <p>Simple level editor.</p>
+      <p>Rows: <input type="number" id="puzzle_rows" value="10"></p>
+      <p>Cols: <input type="number" id="puzzle_cols" value="10"></p>
+      <p>
+        <button id="launch_editor" class="btn btn-lg btn-primary">Launch editor!</button>
+      </p>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6 centered linkapix">
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="md-col-12">
+      <p>
+        <button id="generate_json" class="btn btn-lg btn-primary">Generate puzzle JSON!</button>
+      </p>
+    </div>
+  </div>
+
+    <div class="row">
+      <div class="md-col-12 puzzledata">
+        <script>
+        var Color = function(r, g, b) {
+          this.r = r;
+          this.g = g;
+          this.b = b;
+        };
+        var Block = function(number, color) {
+          this.number = typeof number !== 'undefined' ? number : 0;
+          this.color = typeof color !== 'undefined' ? color : new Color(0, 0, 0);
+        };
+        var puzzle = [
+        [new Block(3), null, new Block(3), null, null],
+        [null, null, null, new Block(1), null],
+        [null, null, new Block(5), new Block(2), null],
+        [null, null, null, new Block(2), null],
+        [new Block(5), null, null, null, null]
+        ];
+        document.write(JSON.stringify(puzzle));
+        </script>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <script src="http://codeorigin.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="js/editor.js"></script>
+</body>
+</html>
