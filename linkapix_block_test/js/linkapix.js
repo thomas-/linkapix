@@ -98,7 +98,7 @@ function register_game_events() {
 
     $('.linkapix').on('extendlink', function(event, block) {
         if (previous !== null) previous.html('');
-        if (block.hasClass('unfinished') || block.hasClass('linked') || block.hasClass('picking') || $('td.picking').length >= number) {
+        if (block.hasClass('unfinished') || block.hasClass('linked') || block.hasClass('picking') || $('td.picking').length >= number || block.data('number') != number) {
             picking = false;
             if ([block.data('x'), block.data('y')] != start) {
                 //console.log(block.data('x'), block.data('y'));
