@@ -22,3 +22,23 @@ td {
     height: 50px;
     width: 50px;
 }
+
+.linkapix .unfinished {
+    background-color: #999;
+}
+
+.linkapix .picking {
+    background-color: #990099;
+}
+
+.linkapix .link-end {
+    background-color: #bbb;
+}
+
+.linkapix .unfinished .link-end {
+    color: #999;
+}
+
+.linkapix .linked {
+    background-color: #000;
+}
