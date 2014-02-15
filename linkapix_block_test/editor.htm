@@ -41,9 +41,11 @@
     <!-- Main component for a primary marketing message or call to action -->
     <div class="jumbotron">
       <h1>Linkapix</h1>
-      <p>Game stuff.</p>
+      <p>Simple level editor.</p>
+      <p>Rows: <input type="number" id="puzzle_rows" value="10"></p>
+      <p>Cols: <input type="number" id="puzzle_cols" value="10"></p>
       <p>
-        <button id="launch_test" class="btn btn-lg btn-primary">Launch game!</button>
+        <button id="launch_editor" class="btn btn-lg btn-primary">Launch editor!</button>
       </p>
     </div>
 
@@ -56,6 +58,14 @@
 
     <div class="row">
       <div class="md-col-12">
+      <p>
+        <button id="generate_json" class="btn btn-lg btn-primary">Generate puzzle JSON!</button>
+      </p>
+    </div>
+  </div>
+
+    <div class="row">
+      <div class="md-col-12 puzzledata">
         <script>
         var Color = function(r, g, b) {
           this.r = r;
@@ -73,7 +83,7 @@
         [null, null, null, new Block(2), null],
         [new Block(5), null, null, null, null]
         ];
-        //document.write(JSON.stringify(puzzle));
+        document.write(JSON.stringify(puzzle));
         </script>
       </div>
     </div>
@@ -84,6 +94,6 @@
 
   <script src="http://codeorigin.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-  <script src="js/linkapix.js"></script>
+  <script src="js/editor.js"></script>
 </body>
 </html>
