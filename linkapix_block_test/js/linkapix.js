@@ -34,9 +34,16 @@ function build_puzzle(puzzle) {
         var tr = $("<tr/>")
         var blocks = [];
         $.each(row, function(cid, block) {
-            number = block !== null ? block.number : "";
-            console.log('x');
-            blocks.push('<td data-number="'+number+'" data-x="'+cid+'" data-y="'+rid+'">' + number + "</td>");
+            if(block !== null) {
+                number = block.number;
+                blocks.push('<td class="static" data-number="'+number+'" data-x="'+cid+'" data-y="'+rid+'">' + number + "</td>");
+            } else {
+                number = '';
+                blocks.push('<td data-number="'+number+'" data-x="'+cid+'" data-y="'+rid+'">' + number + "</td>");
+            }
+            //number = block !== null ? block.number : "";
+            //console.log('x');
+            //blocks.push('<td data-number="'+number+'" data-x="'+cid+'" data-y="'+rid+'">' + number + "</td>");
         });
         tr.append(blocks);
         table.append(tr)
@@ -98,7 +105,7 @@ function register_game_events() {
 
     $('.linkapix').on('extendlink', function(event, block) {
         if (previous !== null) previous.html('');
-        if (block.hasClass('unfinished') || block.hasClass('linked') || block.hasClass('picking') || $('td.picking').length >= number || block.data('number') != number) {
+        if (block.hasClass('unfinished') || block.hasClass('linked') || block.hasClass('picking') || $('td.picking').length >= number || (block.hasClass('static') && block.data('number') != number)) {
             picking = false;
             if ([block.data('x'), block.data('y')] != start) {
                 //console.log(block.data('x'), block.data('y'));
@@ -125,7 +132,7 @@ function register_game_events() {
         }
     });
 
-    $('.linkapix').on('stoplink', function(event, block) {
+$('.linkapix').on('stoplink', function(event, block) {
             //console_log($("td.picking").length);
             previous = null;
             if (block.data('number') == '') {
@@ -146,15 +153,15 @@ function register_game_events() {
             }
             $("td.picking").css('background-color', '#fff').removeClass('picking');
             picking = false;
-    });
-
-    $('.linkapix').on('editlink', function(event, block) {
-        block.html('');
-        block.removeClass('link-end');
-        $.each(block.data('links'), function(key, val) {
-            val.removeClass('unfinished');
         });
+
+$('.linkapix').on('editlink', function(event, block) {
+    block.html('');
+    block.removeClass('link-end');
+    $.each(block.data('links'), function(key, val) {
+        val.removeClass('unfinished');
     });
+});
 };
 
 $("#launch_test").trigger('click');
