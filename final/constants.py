@@ -1,0 +1,14 @@
+X = 0
+Y = 1
+VALUE = 2
+TYPE = 3
+START_ID = 4
+END_ID = 5
+
+EMPTY = 0
+END = 1
+PATH = 2
+
+XSIZE = 1
+YSIZE = 2
+FILENAME = 3
