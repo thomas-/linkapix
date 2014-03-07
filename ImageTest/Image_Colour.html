@@ -1,329 +1,200 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <link rel="stylesheet" type="text/css" href="https://code.cs.nott.ac.uk/media/idf/css/yui.css" />
-  <link rel="stylesheet" type="text/css" href="https://code.cs.nott.ac.uk/media/idf/css/style.css" />
-  <!--[if lt IE 7]>
-  <link rel="stylesheet" type="text/css" href="https://code.cs.nott.ac.uk/media/idf/css/ie6.css" />
-  <![endif]-->
-  <link rel="stylesheet" type="text/css" href="https://code.cs.nott.ac.uk/media/idf/css/prettify.css" />
-  <title>ImageTest/Image_Colour.html - gp13-jaa Svn Source Tree - A number puzzle generator capable of creating Link-a-Pix puzzles with unique solutions, solvable by a single player.</title>
-</head>
+<!DOCTYPE html>
+<html>
 <body>
-<div id="doc3" class="yui-t1">
-  <div id="hd">
-<h1 class="project-title">gp13-jaa</h1>
-    <p class="top"><a href="#title" accesskey="2"></a>
-Welcome, <strong><a class="userw" href="/dashboard/">Thomas Mees</a></strong>. <a href="/logout/">Sign Out</a>
- | <a href="/">Project List</a>
-
-| <a href="/help/" title="Help and accessibility features">Help</a>
-    </p>
-<div id="header">
-<div id="main-tabs">
-
-  <a accesskey="1" href="/p/gp13-jaa/">Project Home</a> 
-  <a href="/p/gp13-jaa/downloads/">Downloads</a> 
-  <a href="/p/gp13-jaa/doc/">Documentation</a> 
- <a href="/p/gp13-jaa/issues/">Issues</a>
- <a href="/p/gp13-jaa/source/tree/HEAD/" class="active">Source</a>
- <a href="/p/gp13-jaa/review/">Code Review</a>
-
-  <a href="/p/gp13-jaa/admin/">Project Management</a>
-</div>
-
-
-<div id="sub-tabs">
-<a class="active" href="/p/gp13-jaa/source/tree/HEAD/">Source Tree</a> |
-<a href="/p/gp13-jaa/source/changes/HEAD/">Change Log</a>
- |
-<a href="/p/gp13-jaa/source/help/">How To Get The Code</a>
-</div>
-
-</div>
-
-	  <h1 class="title" id="title">gp13-jaa Svn Source Tree</h1>
-
-  </div>
-  <div id="bd">
-    <div id="yui-main"> 
-      <div class="yui-b">
-	<div class="yui-g"> 
-          
-	  <div class="content">
-<h2 class="top"><a href="/p/gp13-jaa/source/tree/HEAD/">Root</a><span class="sep">/</span><span class="breadcrumb"><a href="/p/gp13-jaa/source/tree/HEAD/ImageTest">ImageTest</a><span class="sep">/</span><a href="/p/gp13-jaa/source/tree/HEAD/ImageTest/Image_Colour.html">Image_Colour.html</a></span></h2>
-
-<table class="code" summary=" ">
-
-   
-  <tfoot>
-    
-    
-    <tr><th colspan="2">Source at commit <a class="mono" href="/p/gp13-jaa/source/commit/HEAD/">HEAD</a> created 8 days 20 hours  ago.<br />
-        <span class="smaller">By hxw03u, Code for converting colour images</span>
-    </th></tr>
-    
-  </tfoot>
-  
-<tbody>
-<tr class="c-line"><td class="code-lc" id="L1"><a href="#L1">1</a></td><td class="code mono prettyprint">&lt;!DOCTYPE html&gt;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L2"><a href="#L2">2</a></td><td class="code mono prettyprint">&lt;html&gt;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L3"><a href="#L3">3</a></td><td class="code mono prettyprint">&lt;body&gt;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L4"><a href="#L4">4</a></td><td class="code mono prettyprint"></td></tr>
-<tr class="c-line"><td class="code-lc" id="L5"><a href="#L5">5</a></td><td class="code mono prettyprint"></td></tr>
-<tr class="c-line"><td class="code-lc" id="L6"><a href="#L6">6</a></td><td class="code mono prettyprint"></td></tr>
-<tr class="c-line"><td class="code-lc" id="L7"><a href="#L7">7</a></td><td class="code mono prettyprint">&lt;canvas id=&quot;myCanvas&quot; width=&quot;320&quot; height=&quot;294&quot;&gt;&lt;/canvas&gt;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L8"><a href="#L8">8</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&lt;script&gt;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L9"><a href="#L9">9</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var canvas = document.getElementById('myCanvas');</td></tr>
-<tr class="c-line"><td class="code-lc" id="L10"><a href="#L10">10</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var ctx = canvas.getContext('2d');</td></tr>
-<tr class="c-line"><td class="code-lc" id="L11"><a href="#L11">11</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var imageObj = new Image();</td></tr>
-<tr class="c-line"><td class="code-lc" id="L12"><a href="#L12">12</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imageObj.src = 'test_colour.jpg';</td></tr>
-<tr class="c-line"><td class="code-lc" id="L13"><a href="#L13">13</a></td><td class="code mono prettyprint"></td></tr>
-<tr class="c-line"><td class="code-lc" id="L14"><a href="#L14">14</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imageObj.onload = function() {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L15"><a href="#L15">15</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx.drawImage(imageObj, 0, 0);</td></tr>
-<tr class="c-line"><td class="code-lc" id="L16"><a href="#L16">16</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L17"><a href="#L17">17</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var width = 15; // User specified</td></tr>
-<tr class="c-line"><td class="code-lc" id="L18"><a href="#L18">18</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var height = 14; // User specified</td></tr>
-<tr class="c-line"><td class="code-lc" id="L19"><a href="#L19">19</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L20"><a href="#L20">20</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var blockWidth = Math.round(canvas.width / width);</td></tr>
-<tr class="c-line"><td class="code-lc" id="L21"><a href="#L21">21</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var blockHeight = Math.round(canvas.height / height);</td></tr>
-<tr class="c-line"><td class="code-lc" id="L22"><a href="#L22">22</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L23"><a href="#L23">23</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var pixArray = new Array(height);</td></tr>
-<tr class="c-line"><td class="code-lc" id="L24"><a href="#L24">24</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (var m = 0; m &lt; pixArray.length; m++) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L25"><a href="#L25">25</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pixArray[m] = new Array(width);</td></tr>
-<tr class="c-line"><td class="code-lc" id="L26"><a href="#L26">26</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L27"><a href="#L27">27</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L28"><a href="#L28">28</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (i = 0; i &lt; height; i++) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L29"><a href="#L29">29</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (j = 0; j &lt; width; j++) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L30"><a href="#L30">30</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var imgData = ctx.getImageData(j * blockWidth + blockWidth / 2, i * blockHeight + blockHeight / 2, 1, 1);</td></tr>
-<tr class="c-line"><td class="code-lc" id="L31"><a href="#L31">31</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* divide the RGB space into 64 small cubes */</td></tr>
-<tr class="c-line"><td class="code-lc" id="L32"><a href="#L32">32</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var rBlock = Math.floor(imgData.data[0] / 64);</td></tr>
-<tr class="c-line"><td class="code-lc" id="L33"><a href="#L33">33</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var gBlock = Math.floor(imgData.data[1] / 64);</td></tr>
-<tr class="c-line"><td class="code-lc" id="L34"><a href="#L34">34</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var bBlock = Math.floor(imgData.data[2] / 64);</td></tr>
-<tr class="c-line"><td class="code-lc" id="L35"><a href="#L35">35</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L36"><a href="#L36">36</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// group each pixel into the corresponding 'cube'</td></tr>
-<tr class="c-line"><td class="code-lc" id="L37"><a href="#L37">37</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// use the values 0 ~ 63 to represent which cube the pixel is in</td></tr>
-<tr class="c-line"><td class="code-lc" id="L38"><a href="#L38">38</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Use the value of vertex(centre?) of the cube as the colour of this group of pixels</td></tr>
-<tr class="c-line"><td class="code-lc" id="L39"><a href="#L39">39</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (rBlock) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L40"><a href="#L40">40</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 0:</td></tr>
-<tr class="c-line"><td class="code-lc" id="L41"><a href="#L41">41</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (gBlock) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L42"><a href="#L42">42</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 0:</td></tr>
-<tr class="c-line"><td class="code-lc" id="L43"><a href="#L43">43</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (bBlock) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L44"><a href="#L44">44</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 0: pixArray[i][j] = 63; break; // RGB = [31, 31, 31] (centre of the cube)</td></tr>
-<tr class="c-line"><td class="code-lc" id="L45"><a href="#L45">45</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1: pixArray[i][j] = 62; break; // [31, 31, 95]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L46"><a href="#L46">46</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2: pixArray[i][j] = 61; break; // [31, 31, 159]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L47"><a href="#L47">47</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3: pixArray[i][j] = 60; break; // [31, 31, 223]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L48"><a href="#L48">48</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L49"><a href="#L49">49</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L50"><a href="#L50">50</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1:</td></tr>
-<tr class="c-line"><td class="code-lc" id="L51"><a href="#L51">51</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (bBlock) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L52"><a href="#L52">52</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 0: pixArray[i][j] = 59; break; // [31, 95, 31]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L53"><a href="#L53">53</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1: pixArray[i][j] = 58; break; // [31, 95, 95]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L54"><a href="#L54">54</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2: pixArray[i][j] = 57; break; // [31, 95, 159]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L55"><a href="#L55">55</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3: pixArray[i][j] = 56; break; // [31, 95, 223]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L56"><a href="#L56">56</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L57"><a href="#L57">57</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L58"><a href="#L58">58</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2:</td></tr>
-<tr class="c-line"><td class="code-lc" id="L59"><a href="#L59">59</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (bBlock) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L60"><a href="#L60">60</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 0: pixArray[i][j] = 55; break; // [31, 159, 31]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L61"><a href="#L61">61</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1: pixArray[i][j] = 54; break; // [31, 159, 95]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L62"><a href="#L62">62</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2: pixArray[i][j] = 53; break; // [31, 159, 159]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L63"><a href="#L63">63</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3: pixArray[i][j] = 52; break; // [31, 159, 223]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L64"><a href="#L64">64</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L65"><a href="#L65">65</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L66"><a href="#L66">66</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3:</td></tr>
-<tr class="c-line"><td class="code-lc" id="L67"><a href="#L67">67</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (bBlock) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L68"><a href="#L68">68</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 0: pixArray[i][j] = 51; break; // [31, 223, 31]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L69"><a href="#L69">69</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1: pixArray[i][j] = 50; break; // [31, 223, 95]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L70"><a href="#L70">70</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2: pixArray[i][j] = 49; break; // [31, 223, 159]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L71"><a href="#L71">71</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3: pixArray[i][j] = 48; break; // [31, 223, 223]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L72"><a href="#L72">72</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L73"><a href="#L73">73</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L74"><a href="#L74">74</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L75"><a href="#L75">75</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L76"><a href="#L76">76</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1:</td></tr>
-<tr class="c-line"><td class="code-lc" id="L77"><a href="#L77">77</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (gBlock) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L78"><a href="#L78">78</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 0:</td></tr>
-<tr class="c-line"><td class="code-lc" id="L79"><a href="#L79">79</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (bBlock) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L80"><a href="#L80">80</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 0: pixArray[i][j] = 47; break; // [95, 31, 31]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L81"><a href="#L81">81</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1: pixArray[i][j] = 46; break; // [95, 31, 95]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L82"><a href="#L82">82</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2: pixArray[i][j] = 45; break; // [95, 31, 159]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L83"><a href="#L83">83</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3: pixArray[i][j] = 44; break; // [95, 31, 223]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L84"><a href="#L84">84</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L85"><a href="#L85">85</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L86"><a href="#L86">86</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1:</td></tr>
-<tr class="c-line"><td class="code-lc" id="L87"><a href="#L87">87</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (bBlock) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L88"><a href="#L88">88</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 0: pixArray[i][j] = 43; break; // [95, 95, 31]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L89"><a href="#L89">89</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1: pixArray[i][j] = 42; break; // [95, 95, 95]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L90"><a href="#L90">90</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2: pixArray[i][j] = 41; break; // [95, 95, 159]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L91"><a href="#L91">91</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3: pixArray[i][j] = 40; break; // [95, 95, 223]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L92"><a href="#L92">92</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L93"><a href="#L93">93</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L94"><a href="#L94">94</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2:</td></tr>
-<tr class="c-line"><td class="code-lc" id="L95"><a href="#L95">95</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (bBlock) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L96"><a href="#L96">96</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 0: pixArray[i][j] = 39; break; // [95, 159, 31]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L97"><a href="#L97">97</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1: pixArray[i][j] = 38; break; // [95, 159, 95]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L98"><a href="#L98">98</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2: pixArray[i][j] = 37; break; // [95, 159, 159]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L99"><a href="#L99">99</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3: pixArray[i][j] = 36; break; // [95, 159, 223]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L100"><a href="#L100">100</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L101"><a href="#L101">101</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L102"><a href="#L102">102</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3:</td></tr>
-<tr class="c-line"><td class="code-lc" id="L103"><a href="#L103">103</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (bBlock) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L104"><a href="#L104">104</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 0: pixArray[i][j] = 35; break; // [95, 223, 31]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L105"><a href="#L105">105</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1: pixArray[i][j] = 34; break; // [95, 223, 95]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L106"><a href="#L106">106</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2: pixArray[i][j] = 33; break; // [95, 223, 159]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L107"><a href="#L107">107</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3: pixArray[i][j] = 32; break; // [95, 223, 223]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L108"><a href="#L108">108</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L109"><a href="#L109">109</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L110"><a href="#L110">110</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L111"><a href="#L111">111</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L112"><a href="#L112">112</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2:</td></tr>
-<tr class="c-line"><td class="code-lc" id="L113"><a href="#L113">113</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (gBlock) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L114"><a href="#L114">114</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 0:</td></tr>
-<tr class="c-line"><td class="code-lc" id="L115"><a href="#L115">115</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (bBlock) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L116"><a href="#L116">116</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 0: pixArray[i][j] = 31; break; // [159, 31, 31]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L117"><a href="#L117">117</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1: pixArray[i][j] = 30; break; // [159, 31, 95]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L118"><a href="#L118">118</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2: pixArray[i][j] = 29; break; // [159, 31, 159]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L119"><a href="#L119">119</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3: pixArray[i][j] = 28; break; // [159, 31, 223]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L120"><a href="#L120">120</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L121"><a href="#L121">121</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L122"><a href="#L122">122</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1:</td></tr>
-<tr class="c-line"><td class="code-lc" id="L123"><a href="#L123">123</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (bBlock) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L124"><a href="#L124">124</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 0: pixArray[i][j] = 27; break; // [159, 95, 31]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L125"><a href="#L125">125</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1: pixArray[i][j] = 26; break; // [159, 95, 95]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L126"><a href="#L126">126</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2: pixArray[i][j] = 25; break; // [159, 95, 159]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L127"><a href="#L127">127</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3: pixArray[i][j] = 24; break; // [159, 95, 223]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L128"><a href="#L128">128</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L129"><a href="#L129">129</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L130"><a href="#L130">130</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2:</td></tr>
-<tr class="c-line"><td class="code-lc" id="L131"><a href="#L131">131</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (bBlock) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L132"><a href="#L132">132</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 0: pixArray[i][j] = 23; break; // [159, 159, 31]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L133"><a href="#L133">133</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1: pixArray[i][j] = 22; break; // [159, 159, 95]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L134"><a href="#L134">134</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2: pixArray[i][j] = 21; break; // [159, 159, 159]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L135"><a href="#L135">135</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3: pixArray[i][j] = 20; break; // [159, 159, 223]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L136"><a href="#L136">136</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L137"><a href="#L137">137</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L138"><a href="#L138">138</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3:</td></tr>
-<tr class="c-line"><td class="code-lc" id="L139"><a href="#L139">139</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (bBlock) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L140"><a href="#L140">140</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 0: pixArray[i][j] = 19; break; // [159, 223, 31]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L141"><a href="#L141">141</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1: pixArray[i][j] = 18; break; // [159, 223, 95]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L142"><a href="#L142">142</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2: pixArray[i][j] = 17; break; // [159, 223, 159]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L143"><a href="#L143">143</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3: pixArray[i][j] = 16; break; // [159, 223, 223]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L144"><a href="#L144">144</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L145"><a href="#L145">145</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L146"><a href="#L146">146</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L147"><a href="#L147">147</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L148"><a href="#L148">148</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3:</td></tr>
-<tr class="c-line"><td class="code-lc" id="L149"><a href="#L149">149</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (gBlock) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L150"><a href="#L150">150</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 0:</td></tr>
-<tr class="c-line"><td class="code-lc" id="L151"><a href="#L151">151</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (bBlock) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L152"><a href="#L152">152</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 0: pixArray[i][j] = 15; break; // [223, 31, 31] </td></tr>
-<tr class="c-line"><td class="code-lc" id="L153"><a href="#L153">153</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1: pixArray[i][j] = 14; break; // [223, 31, 95]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L154"><a href="#L154">154</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2: pixArray[i][j] = 13; break; // [223, 31, 159]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L155"><a href="#L155">155</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3: pixArray[i][j] = 12; break; // [223, 31, 223]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L156"><a href="#L156">156</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L157"><a href="#L157">157</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L158"><a href="#L158">158</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1:</td></tr>
-<tr class="c-line"><td class="code-lc" id="L159"><a href="#L159">159</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (bBlock) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L160"><a href="#L160">160</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 0: pixArray[i][j] = 11; break; // [223, 95, 31]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L161"><a href="#L161">161</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1: pixArray[i][j] = 10; break; // [223, 95, 95]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L162"><a href="#L162">162</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2: pixArray[i][j] = 9; break; // [223, 95, 159]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L163"><a href="#L163">163</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3: pixArray[i][j] = 8; break; // [223, 95, 223]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L164"><a href="#L164">164</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L165"><a href="#L165">165</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L166"><a href="#L166">166</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2:</td></tr>
-<tr class="c-line"><td class="code-lc" id="L167"><a href="#L167">167</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (bBlock) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L168"><a href="#L168">168</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 0: pixArray[i][j] = 7; break; // [223, 159, 31]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L169"><a href="#L169">169</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1:    pixArray[i][j] = 6; break; // [223, 159, 95]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L170"><a href="#L170">170</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2:    pixArray[i][j] = 5; break; // [223, 159, 159]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L171"><a href="#L171">171</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3: pixArray[i][j] = 4; break; // [223, 159, 223]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L172"><a href="#L172">172</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L173"><a href="#L173">173</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L174"><a href="#L174">174</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3:</td></tr>
-<tr class="c-line"><td class="code-lc" id="L175"><a href="#L175">175</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (bBlock) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L176"><a href="#L176">176</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 0: pixArray[i][j] = 3; break; // [223, 223, 31]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L177"><a href="#L177">177</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1:    pixArray[i][j] = 2; break; // [223, 223, 95]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L178"><a href="#L178">178</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2:    pixArray[i][j] = 1; break; // [223, 223, 159]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L179"><a href="#L179">179</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3:    pixArray[i][j] = 0; break; // [223, 223, 223]</td></tr>
-<tr class="c-line"><td class="code-lc" id="L180"><a href="#L180">180</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L181"><a href="#L181">181</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L182"><a href="#L182">182</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L183"><a href="#L183">183</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L184"><a href="#L184">184</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L185"><a href="#L185">185</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L186"><a href="#L186">186</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L187"><a href="#L187">187</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L188"><a href="#L188">188</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (var a  = 0; a &lt; pixArray.length; a ++) {</td></tr>
-<tr class="c-line"><td class="code-lc" id="L189"><a href="#L189">189</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(pixArray[a]);</td></tr>
-<tr class="c-line"><td class="code-lc" id="L190"><a href="#L190">190</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr class="c-line"><td class="code-lc" id="L191"><a href="#L191">191</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</td></tr>
-<tr class="c-line"><td class="code-lc" id="L192"><a href="#L192">192</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L193"><a href="#L193">193</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L194"><a href="#L194">194</a></td><td class="code mono prettyprint"></td></tr>
-<tr class="c-line"><td class="code-lc" id="L195"><a href="#L195">195</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L196"><a href="#L196">196</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L197"><a href="#L197">197</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L198"><a href="#L198">198</a></td><td class="code mono prettyprint">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/script&gt;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L199"><a href="#L199">199</a></td><td class="code mono prettyprint">&lt;/body&gt;</td></tr>
-<tr class="c-line"><td class="code-lc" id="L200"><a href="#L200">200</a></td><td class="code mono prettyprint">&lt;/html&gt;</td></tr>
-</tbody>
-</table>
-
-<p class="right soft"><a href="/p/gp13-jaa/source/file/HEAD/ImageTest/Image_Colour.html"><img style="vertical-align: text-bottom;" src="https://code.cs.nott.ac.uk/media/idf/img/package-grey.png" alt="Archive" align="bottom" /></a> <a href="/p/gp13-jaa/source/file/HEAD/ImageTest/Image_Colour.html">Download this file</a></p>
-
-</div>
-	</div>
-      </div>
-    </div>
-    <div class="yui-b context">
-<form class="star" action="/p/gp13-jaa/source/treerev/" method="get">
-<p><strong>Revision:</strong> HEAD</p>
-<p>
-    <input accesskey="4" type="text" value="HEAD" name="rev" size="5" />
-    <input type="hidden" name="sourcefile" value="Image_Colour.html"/>
-    <input type="submit" name="s" value="Go to revision" /></p>
-  </form>
-</div>
-  </div>
-  <div id="ft"></div>
-</div>
-<script type="text/javascript" src="https://code.cs.nott.ac.uk/media/idf/js/jquery-1.2.6.min.js"></script>
-<script type="text/javascript" src="https://code.cs.nott.ac.uk/media/idf/js/jquery.hotkeys.js"></script>
-<script type="text/javascript" charset="utf-8">
-// <!--
-jQuery.hotkeys.add('Shift+h',{disableInInput: true},function (){window.location.href='/help/';});
-
-jQuery.hotkeys.add('Shift+u',{disableInInput: true},function (){window.location.href='/p/gp13-jaa/timeline/';});
-jQuery.hotkeys.add('Shift+a',{disableInInput: true},function (){window.location.href='/p/gp13-jaa/issues/create/';});
-jQuery.hotkeys.add('Shift+i',{disableInInput: true},function (){window.location.href='/p/gp13-jaa/issues/';});
-jQuery.hotkeys.add('Shift+d',{disableInInput: true},function (){window.location.href='/p/gp13-jaa/downloads/';});
-jQuery.hotkeys.add('Shift+o',{disableInInput: true},function (){window.location.href='/p/gp13-jaa/doc/';});
-jQuery.hotkeys.add('Shift+s',{disableInInput: true},function (){window.location.href='/p/gp13-jaa/source/tree/HEAD/';});
-
-jQuery.hotkeys.add('Shift+m',{disableInInput: true},function (){window.location.href='/p/gp13-jaa/issues/my/submit/';});
-jQuery.hotkeys.add('Shift+w',{disableInInput: true},function (){window.location.href='/p/gp13-jaa/issues/my/owner/';});
- //-->
-</script>
 
 
 
-<script type="text/javascript" src="https://code.cs.nott.ac.uk/media/idf/js/prettify.js"></script>
-<script type="text/javascript">prettyPrint();</script>
+<canvas id="myCanvas" width="320" height="294"></canvas>
+    <script>
+		var canvas = document.getElementById('myCanvas');
+		var ctx = canvas.getContext('2d');
+		var imageObj = new Image();
+		imageObj.src = 'test_colour.jpg';
 
+		imageObj.onload = function() {
+			ctx.drawImage(imageObj, 0, 0);
+			
+			var width = 15; // User specified
+			var height = 14; // User specified
+			
+			var blockWidth = Math.round(canvas.width / width);
+			var blockHeight = Math.round(canvas.height / height);
+	  
+			var pixArray = new Array(height);
+			for (var m = 0; m < pixArray.length; m++) {
+				pixArray[m] = new Array(width);
+			}
+			
+			for (i = 0; i < height; i++) {
+				for (j = 0; j < width; j++) {
+					var imgData = ctx.getImageData(j * blockWidth + blockWidth / 2, i * blockHeight + blockHeight / 2, 1, 1);
+					/* divide the RGB space into 64 small cubes */
+					var rBlock = Math.floor(imgData.data[0] / 64);
+					var gBlock = Math.floor(imgData.data[1] / 64);
+					var bBlock = Math.floor(imgData.data[2] / 64);
+					
+					// group each pixel into the corresponding 'cube'
+					// use the values 0 ~ 63 to represent which cube the pixel is in
+					// Use the value of vertex(centre?) of the cube as the colour of this group of pixels
+					switch (rBlock) {
+						case 0:
+							switch (gBlock) {
+								case 0:
+									switch (bBlock) {
+										case 0: pixArray[i][j] = 63; break; // RGB = [31, 31, 31] (centre of the cube)
+										case 1: pixArray[i][j] = 62; break; // [31, 31, 95]
+										case 2: pixArray[i][j] = 61; break; // [31, 31, 159]
+										case 3: pixArray[i][j] = 60; break; // [31, 31, 223]
+									}
+									break;
+								case 1:
+									switch (bBlock) {
+										case 0: pixArray[i][j] = 59; break; // [31, 95, 31]
+										case 1: pixArray[i][j] = 58; break; // [31, 95, 95]
+										case 2: pixArray[i][j] = 57; break; // [31, 95, 159]
+										case 3: pixArray[i][j] = 56; break; // [31, 95, 223]
+									}
+									break;
+								case 2:
+									switch (bBlock) {
+										case 0: pixArray[i][j] = 55; break; // [31, 159, 31]
+										case 1: pixArray[i][j] = 54; break; // [31, 159, 95]
+										case 2: pixArray[i][j] = 53; break; // [31, 159, 159]
+										case 3: pixArray[i][j] = 52; break; // [31, 159, 223]
+									}
+									break;
+								case 3:
+									switch (bBlock) {
+										case 0: pixArray[i][j] = 51; break; // [31, 223, 31]
+										case 1: pixArray[i][j] = 50; break; // [31, 223, 95]
+										case 2: pixArray[i][j] = 49; break; // [31, 223, 159]
+										case 3: pixArray[i][j] = 48; break; // [31, 223, 223]
+									}
+									break;
+							}
+							break;
+						case 1:
+							switch (gBlock) {
+								case 0:
+									switch (bBlock) {
+										case 0: pixArray[i][j] = 47; break; // [95, 31, 31]
+										case 1: pixArray[i][j] = 46; break; // [95, 31, 95]
+										case 2: pixArray[i][j] = 45; break; // [95, 31, 159]
+										case 3: pixArray[i][j] = 44; break; // [95, 31, 223]
+									}
+									break;
+								case 1:
+									switch (bBlock) {
+										case 0: pixArray[i][j] = 43; break; // [95, 95, 31]
+										case 1: pixArray[i][j] = 42; break; // [95, 95, 95]
+										case 2: pixArray[i][j] = 41; break; // [95, 95, 159]
+										case 3: pixArray[i][j] = 40; break; // [95, 95, 223]
+									}
+									break;
+								case 2:
+									switch (bBlock) {
+										case 0: pixArray[i][j] = 39; break; // [95, 159, 31]
+										case 1: pixArray[i][j] = 38; break; // [95, 159, 95]
+										case 2: pixArray[i][j] = 37; break; // [95, 159, 159]
+										case 3: pixArray[i][j] = 36; break; // [95, 159, 223]
+									}
+									break;
+								case 3:
+									switch (bBlock) {
+										case 0: pixArray[i][j] = 35; break; // [95, 223, 31]
+										case 1: pixArray[i][j] = 34; break; // [95, 223, 95]
+										case 2: pixArray[i][j] = 33; break; // [95, 223, 159]
+										case 3: pixArray[i][j] = 32; break; // [95, 223, 223]
+									}
+									break;
+							}
+							break;
+						case 2:
+							switch (gBlock) {
+								case 0:
+									switch (bBlock) {
+										case 0: pixArray[i][j] = 31; break; // [159, 31, 31]
+										case 1: pixArray[i][j] = 30; break; // [159, 31, 95]
+										case 2: pixArray[i][j] = 29; break; // [159, 31, 159]
+										case 3: pixArray[i][j] = 28; break; // [159, 31, 223]
+									}
+									break;
+								case 1:
+									switch (bBlock) {
+										case 0: pixArray[i][j] = 27; break; // [159, 95, 31]
+										case 1: pixArray[i][j] = 26; break; // [159, 95, 95]
+										case 2: pixArray[i][j] = 25; break; // [159, 95, 159]
+										case 3: pixArray[i][j] = 24; break; // [159, 95, 223]
+									}
+									break;
+								case 2:
+									switch (bBlock) {
+										case 0: pixArray[i][j] = 23; break; // [159, 159, 31]
+										case 1: pixArray[i][j] = 22; break; // [159, 159, 95]
+										case 2: pixArray[i][j] = 21; break; // [159, 159, 159]
+										case 3: pixArray[i][j] = 20; break; // [159, 159, 223]
+									}
+									break;
+								case 3:
+									switch (bBlock) {
+										case 0: pixArray[i][j] = 19; break; // [159, 223, 31]
+										case 1: pixArray[i][j] = 18; break; // [159, 223, 95]
+										case 2: pixArray[i][j] = 17; break; // [159, 223, 159]
+										case 3: pixArray[i][j] = 16; break; // [159, 223, 223]
+									}
+									break;
+							}
+							break;
+						case 3:
+							switch (gBlock) {
+								case 0:
+									switch (bBlock) {
+										case 0: pixArray[i][j] = 15; break; // [223, 31, 31] 
+										case 1: pixArray[i][j] = 14; break; // [223, 31, 95]
+										case 2: pixArray[i][j] = 13; break; // [223, 31, 159]
+										case 3: pixArray[i][j] = 12; break; // [223, 31, 223]
+									}
+									break;
+								case 1:
+									switch (bBlock) {
+										case 0: pixArray[i][j] = 11; break; // [223, 95, 31]
+										case 1: pixArray[i][j] = 10; break; // [223, 95, 95]
+										case 2: pixArray[i][j] = 9; break; // [223, 95, 159]
+										case 3: pixArray[i][j] = 8; break; // [223, 95, 223]
+									}
+									break;
+								case 2:
+									switch (bBlock) {
+										case 0: pixArray[i][j] = 7; break; // [223, 159, 31]
+										case 1:	pixArray[i][j] = 6; break; // [223, 159, 95]
+										case 2:	pixArray[i][j] = 5; break; // [223, 159, 159]
+										case 3: pixArray[i][j] = 4; break; // [223, 159, 223]
+									}
+									break;
+								case 3:
+									switch (bBlock) {
+										case 0: pixArray[i][j] = 3; break; // [223, 223, 31]
+										case 1:	pixArray[i][j] = 2; break; // [223, 223, 95]
+										case 2:	pixArray[i][j] = 1; break; // [223, 223, 159]
+										case 3:	pixArray[i][j] = 0; break; // [223, 223, 223]
+									}
+									break;
+							}
+							break;
+					}
+				}
+			}
+			
+			for (var a  = 0; a < pixArray.length; a ++) {
+				console.log(pixArray[a]);
+			}
+		};
+		
+		
 
-<script type="text/javascript" charset="utf-8">
-//<![CDATA[
-$(document).ready(function(){
-	var frag = location.hash;
-	if ($('#preview').length) {
-		location.hash = '#preview';
-	}
-	else if (frag.length > 3 && frag.substring(0, 3) == '#ic') {
-		$(frag).addClass("issue-comment-focus");
-	}
-});
-//]]>
-</script>
+		
+		
+		
+	</script>
 </body>
 </html>

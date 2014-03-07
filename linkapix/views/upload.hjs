@@ -3,29 +3,35 @@
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <body>
 
-<input class="joint upld" type='file' id="imgInp" />
+    <input class="joint upld" type='file' id="imgInp" />
+    Width: <input type="number" name="width" id="width" value="10">
+    Height: <input type="number" name="height" id="height" value="7">
 
-	<button class="submit">Submit!</button>
+    <button class="submit">Submit!</button>
 
 
-<canvas id="myCanvas" width="576" height="432"></canvas>
+    <canvas id="myCanvas" width="576" height="432"></canvas>
     <script>
 
-    function analyse_puzzle(src) {
-		var canvas = document.getElementById('myCanvas');
-		var ctx = canvas.getContext('2d');
-		var imageObj = new Image();
-		imageObj.src = src;
+    var data;
 
-		imageObj.onload = function() {
-			ctx.drawImage(imageObj, 0, 0);
-			
-			var width = 10; // User specified
-			var height = 7; // User specified
+    function analyse_puzzle(src, callback) {
+      var canvas = document.getElementById('myCanvas');
+      var ctx = canvas.getContext('2d');
+      var imageObj = new Image();
+      imageObj.src = src;
+
+      imageObj.onload = function() {
+         ctx.drawImage(imageObj, 0, 0);
+
+         console.log(parseInt($('#width').val()));
+
+			var width = parseInt($('#width').val()); // User specified
+			var height = parseInt($('#height').val()); // User specified
 			
 			var blockWidth = Math.round(canvas.width / width);
 			var blockHeight = Math.round(canvas.height / height);
-	  
+
 			var pixArray = new Array(height);
 			for (var m = 0; m < pixArray.length; m++) {
 				pixArray[m] = new Array(width);
@@ -50,23 +56,35 @@
 				}
 			}
 			console.log(pixArray);
-			return pixArray;
-		};
-	};
-		
-		
+            callback(pixArray);
+        };
+        return data;
+    };
 
-function readURL(input) {
 
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
 
-        reader.onload = function (e) {
-            data = analyse_puzzle(e.target.result);
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                analyse_puzzle(e.target.result, function(pixArray) {
+                    $('<form class="hidden-form" action="/upload" method="post" style="display: none;">' +
+                        '<textarea name="data"></textarea>' +
+                        '<input name="width" value="'+parseInt($('#width').val())+'">' +
+                        '<input name="height" value="'+parseInt($('#height').val())+'"></form>').appendTo('body');
+            //console.log(JSON.stringify(analysed));
+            console.log(pixArray);
+            $('[name="data"]').val(JSON.stringify(pixArray));
+        });
+            /*console.log(data);
             $('<form class="hidden-form" action="/upload" method="post" style="display: none;"><textarea name="data"></textarea></form>').appendTo('body');
-      		$('[name="data"]').val(JSON.stringify(data));
+            //console.log(JSON.stringify(analysed));
+            console.log(data);
+            console.log(analysed);
+            $('[name="data"]').val(JSON.stringify(analysed));*/
         }
-
         reader.readAsDataURL(input.files[0]);
     }
 }
@@ -79,12 +97,12 @@ $(".upld").change(function () {
 
 $('button').on('click', function() {
 	console.log('wat');
-      $('.hidden-form').submit();
- });
-		
-		
-		
-	</script>
+    $('.hidden-form').submit();
+});
+
+
+
+</script>
 
 </body>
 </html>

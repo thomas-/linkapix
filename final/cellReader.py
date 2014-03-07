@@ -101,8 +101,12 @@ class JsonCellReader( CellReader ):
 			for col in range( len( data[row] )):
 				xPos = col #i%self.dimensions[X]
 				yPos = row #i/self.dimensions[Y]
-				value = data[row][col]["number"]
-				type = data[row][col]["type"] if "type" in data[row][col] else END
+				try:
+					value = data[row][col]["number"]
+					type = data[row][col]["type"] if "type" in data[row][col] else END
+				except Exception as e:
+					value = data[row][col]
+					type = END
 				startId = None
 				endId = None
 				if value: cellInfo.append( [xPos, yPos, value, type, startId, endId] )
