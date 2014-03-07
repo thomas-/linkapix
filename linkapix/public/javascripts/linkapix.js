@@ -6,28 +6,27 @@ var previous = null;
 var links = [];
 
 function destroy_puzzle() {
+    picking = false;
+    start = [0,0];
+    startblock = null;
+    number = 0
+    previous = null;
+    links = []
     $(".linkapix").html("");
 }
 
 function json_to_puzzle(json_url) {
     console.log('build!' + json_url);
-    var data = $.getJSON(json_url, function(data) {
-        console.log(data);
-        return data;
-        $.each(data, function(key, val) {
-            console.log(val);
-            $.each(val, function(key, block) {
-                console.log(key);
-                console.log(block.number);
-            });
-        });
+    $.getJSON(json_url, function(data) {
+        //console.log(data);
+        build_puzzle(data);
     });
-    //var str = '[[{"number":3,"color":{"r":0,"g":0,"b":0}},null,{"number":3,"color":{"r":0,"g":0,"b":0}},null,null],[null,null,null,{"number":1,"color":{"r":0,"g":0,"b":0}},null],[null,null,{"number":5,"color":{"r":0,"g":0,"b":0}},{"number":2,"color":{"r":0,"g":0,"b":0}},null],[null,null,null,{"number":2,"color":{"r":0,"g":0,"b":0}},null],[{"number":5,"color":{"r":0,"g":0,"b":0}},null,null,null,null]]';
-    console.log(data);
-    return data;
-    return JSON.parse(str);
 };
 
+function string_to_puzzle(json) {
+    var data = JSON.parse(json);
+    return data;
+};
 
 function build_puzzle(puzzle) {
     var table = $("<table></table>");
@@ -38,12 +37,20 @@ function build_puzzle(puzzle) {
         var blocks = [];
         $.each(row, function(cid, block) {
             if(block !== null) {
-                number = block.number;
-                blocks.push('<td class="static" data-number="'+number+'" data-x="'+cid+'" data-y="'+rid+'">' + number + "</td>");
+                if(block.number != 0) {
+                    number = block.number;
+                } else {
+                    number = '';
+                }
             } else {
                 number = '';
+            }
+            if(number != '') {
+                blocks.push('<td class="static" data-number="'+number+'" data-x="'+cid+'" data-y="'+rid+'">' + number + "</td>");
+            } else {
                 blocks.push('<td data-number="'+number+'" data-x="'+cid+'" data-y="'+rid+'">' + number + "</td>");
             }
+
             //number = block !== null ? block.number : "";
             //console.log('x');
             //blocks.push('<td data-number="'+number+'" data-x="'+cid+'" data-y="'+rid+'">' + number + "</td>");
@@ -58,8 +65,13 @@ function build_puzzle(puzzle) {
 
 $("#launch_test").click(function() {
     destroy_puzzle();
-    puzzle = json_to_puzzle('puzzles/5x5test.json');
-    build_puzzle(puzzle);
+    json_to_puzzle('puzzles/5x5test.json');
+    //build_puzzle(puzzle);
+});
+
+$("#launch_gentest").click(function() {
+    destroy_puzzle();
+    json_to_puzzle('puzzles/gentest_gen.json');
 });
 
 
@@ -107,6 +119,7 @@ function register_game_events() {
     });
 
     $('.linkapix').on('extendlink', function(event, block) {
+        //console.log(block);
         if (previous !== null) previous.html('');
         if (block.hasClass('unfinished') || block.hasClass('linked') || block.hasClass('picking') || $('td.picking').length >= number || (block.hasClass('static') && block.data('number') != number)) {
             picking = false;
@@ -127,8 +140,8 @@ function register_game_events() {
             block.addClass('picking');
             links.push(block);
             block.html($('td.picking').length);
-            console.log(block != startblock);
-            console.log([block.data('x'), block.data('y')] != start)
+            //console.log(block != startblock);
+            //console.log([block.data('x'), block.data('y')] != start)
             if (block != startblock) {
                 previous = block;
             }
@@ -167,4 +180,4 @@ $('.linkapix').on('editlink', function(event, block) {
 });
 };
 
-$("#launch_test").trigger('click');
+$("#launch_gentest").trigger('click');

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+
+<canvas id="myCanvas" width="576" height="432"></canvas>
+    <script>
+		var canvas = document.getElementById('myCanvas');
+		var ctx = canvas.getContext('2d');
+		var imageObj = new Image();
+		imageObj.src = 'test.jpg';
+
+		imageObj.onload = function() {
+			ctx.drawImage(imageObj, 0, 0);
+			
+			var width = 10; // User specified
+			var height = 7; // User specified
+			
+			var blockWidth = Math.round(canvas.width / width);
+			var blockHeight = Math.round(canvas.height / height);
+	  
+			var pixArray = new Array(height);
+			for (var m = 0; m < pixArray.length; m++) {
+				pixArray[m] = new Array(width);
+			}
+			
+			var white = [255, 255, 255];
+			var black = [0, 0, 0];
+
+			for (i = 0; i < height; i++) {
+				for (j = 0; j < width; j++) {
+					var imgData = ctx.getImageData(j * blockWidth + blockWidth / 2, i * blockHeight + blockHeight / 2, 1, 1);
+					
+					disWhite = (white[0] - imgData.data[0]) + (white[1] - imgData.data[1]) + (white[2] - imgData.data[2]);
+					disBlack = (imgData.data[0] - black[0]) + (imgData.data[1] - black[1]) + (imgData.data[2] - black[2]);
+					if (disWhite < 10) {
+						pixArray[i][j] = 0;
+					} else if (disBlack < 10) {
+						pixArray[i][j] = 1;
+					} else {
+						pixArray[i][j] = 2;
+					}
+				}
+			}
+			console.log(pixArray);
+		};
+		
+		
+
+		
+		
+		
+	</script>
+</body>
+</html>
