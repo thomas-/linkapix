@@ -40,11 +40,12 @@
     <!-- Main component for a primary marketing message or call to action -->
     <div class="jumbotron">
       <h1>Linkapix</h1>
-      <p>
+      <p class="uploader">
     Width: <input type="number" name="width" id="width" value="10">
     Height: <input type="number" name="height" id="height" value="7">
     <input class="joint upld" type='file' id="imgInp" />
 </p>
+    <a href="/" type="button" class="btn btn-lg btn-primary new_puzzle" style="display: none;">New Puzzle</a>
       <!--
       <p>
       <button id="launch_test" class="btn btn-lg btn-primary">Launch game!</button>
@@ -170,6 +171,8 @@
                             console.log(result.puzzledata);
                             puzzle = string_to_puzzle(result.puzzledata);
                             build_puzzle(puzzle);
+                            $('.uploader').hide(400)
+                            $('.new_puzzle').show(400);
                         }
                     })
                 });
