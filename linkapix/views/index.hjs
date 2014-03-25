@@ -139,7 +139,7 @@
                     } else if (disBlack < 10) {
                         pixArray[i][j] = 1;
                     } else {
-                        pixArray[i][j] = 2;
+                        pixArray[i][j] = 1;
                     }
                 }
             }
