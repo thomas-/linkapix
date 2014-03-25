@@ -1,7 +1,86 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  background-color: #fff;
 }
-a {
-  color: #00b7ff;
+.style1 {
+  color: #3cad96;
+  font-size: 12px;
+  font-family: tahoma;
+  font-weight: bold;
+}
+.style2 {
+  color: #666;
+  font-size: 11px;
+  font-family: tahoma;
+}
+.style3 {
+  color: #3b3a3a;
+  font-size: 11px;
+  font-family: tahoma;
+}
+.style4 {
+  color: #5b5a5a;
+  font-size: 11px;
+  font-family: tahoma;
+  font-weight: bold;
+}
+.style5 {
+  color: #3cad96;
+  font-size: 11px;
+  font-family: tahoma;
+  font-weight: bold;
+}
+.style6 {
+  color: #719f04;
+  font-size: 12px;
+  font-family: tahoma;
+  font-weight: bold;
+}
+.style7 {
+  color: #707572;
+  font-size: 11px;
+  font-family: tahoma;
+}
+.style8 {
+  color: #e93b02;
+  font-size: 12px;
+  font-family: tahoma;
+  font-weight: bold;
+}
+.style9 {
+  color: #ff8400;
+  font-size: 12px;
+  font-family: tahoma;
+  font-weight: bold;
+}
+.style10 {
+  color: #979696;
+  font-size: 11px;
+  font-family: tahoma;
+  font-weight: bold;
+}
+.style11 {
+  color: #d01e38;
+  font-size: 12px;
+  font-family: tahoma;
+  font-weight: bold;
+}
+.style12 {
+  color: #3a3a3a;
+  font-size: 11px;
+  font-family: tahoma;
+  font-weight: bold;
+}
+.style13 {
+  color: #3a3a3a;
+  font-size: 11px;
+  font-family: tahoma;
+}
+.style14 {
+  color: #e93b02;
+  font-size: 11px;
+  font-family: tahoma;
 }

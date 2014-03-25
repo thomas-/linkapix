@@ -14,6 +14,12 @@ exports.show_upload = function(req, res) {
 	res.render('upload');
 };
 
+exports.play = function(req, res) {
+    console.log(req.param('puzzle'));
+    puzzle = fs.readFileSync('./public/puzzles/batman.json', 'utf8');
+    res.render('play', {puzzledata: puzzle});
+};
+
 exports.generate = function(req, res) {
     var puzzle;
     console.log(req.body);

@@ -32,6 +32,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/play/:puzzle?', routes.play);
 app.get('/upload', routes.show_upload);
 app.post('/upload', routes.process_upload);
 app.post('/generate', routes.generate);
