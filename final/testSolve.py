@@ -210,6 +210,7 @@ class Grid:
 			cell.setValue( info[VALUE] )
 			cell.setType( info[TYPE] )
 			cell.setPathIds( info[START_ID], info[END_ID] )
+			cell.setColour( info[COLOUR] )
 			
 	def getCellInfo( self ):
 		return [cell.getInfo() for cell in self.cellList]	
@@ -275,11 +276,11 @@ class Grid:
 		
 	def getReachable( self, pos ):
 		"""Cell[] getReachable( int[] pos )
-			Returns a list of all cells that are reachable from the Cell at the given position, that also share the same value
+			Returns a list of all cells that are reachable from the Cell at the given position, that also share the same value and colour
 		"""
 		
 		cell = self.getCellAt( pos )
-		valid = [c for c in self.getCellType( END ) if c.getValue() == cell.getValue() and c.cid != cell.cid and self.isReachable( pos, c.getPosition() )]
+		valid = [c for c in self.getCellType( END ) if c.getValue() == cell.getValue() and c.cid != cell.cid and c.colour == cell.colour and self.isReachable( pos, c.getPosition() )]
 		return filter( lambda c : len(self.getConnections( pos, c.getPosition() )) > 0, valid )
 		
 	def getCellType( self, cType ):
@@ -333,6 +334,7 @@ class Grid:
 			cell.setValue( startCell.getValue() )
 			cell.startId = startCell.cid
 			cell.endId = endCell.cid
+			cell.colour = startCell.colour
 			
 	def connect( self, startPos, endPos, path ):
 		oldGrid = self.getCellInfo()

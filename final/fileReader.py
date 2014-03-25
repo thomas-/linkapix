@@ -38,8 +38,10 @@ class CsvReader( FileReader ):
 		return data
 
 	def writeFile( self, name, data ):
-		#To be implemented
-		pass
+		filepath = self.directory + name + self.fileType
+		with open( filepath, 'w') as outfile:
+			writer = csv.writer( outfile )
+			writer.writerows( data )
 		
 		
 class JsonReader( FileReader ):

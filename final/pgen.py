@@ -7,7 +7,7 @@ from copy import deepcopy
 import sys
 
 PID = 4
-LIMIT = 8
+LIMIT = 10
 
 class Grid( object ):
 	def __init__( self, x, y, rand=False ):
@@ -18,7 +18,7 @@ class Grid( object ):
 		self.pathList = PathContainer()
 		self.grid = []
 		self.symbols = {(0,0):0,(1,1):1,(1,2):"*"}
-		self.initValue = [0,0,0,EMPTY,0]
+		self.initValue = [0,0,0,EMPTY,0,0,WHITE]
 		self.unknown = ' '
 		self.pids = 1
 		
@@ -40,8 +40,9 @@ class Grid( object ):
 		for j in range(len(self.grid)):
 			for i in range(len(self.grid[j])):
 				c = self.grid[j][i]
+				#print c
 				cells.append( Cell( [c[X],c[Y]] ))
-				cells[-1].setInfo( c[PID], c[VALUE], c[TYPE] )
+				cells[-1].setInfo( c[PID], c[VALUE], c[TYPE], colour = c[COLOUR] )
 				if c[TYPE] != END: cells[-1].setInfo( c[PID], 0, EMPTY )
 		return cells
 	
@@ -54,9 +55,9 @@ class Grid( object ):
 	
 	def setCellInfo( self, cellInfo ): # cellInfo: [[xpos,ypos,value,type,startId,endId],...]
 		for info in cellInfo:
-			self.grid[info[Y]][info[X]] = [info[X],info[Y],info[VALUE],info[TYPE],self.pids]
+			self.grid[info[Y]][info[X]] = [info[X],info[Y],info[VALUE],info[TYPE],self.pids, self.pids, info[COLOUR]] #self.grid[info[Y]][info[X]] = [info[X],info[Y],info[VALUE],info[TYPE],self.pids]
 			self.pids += 1
-			#print info
+			#print self.grid[info[Y]][info[X]]
 		#print ""
 			
 	def printGrid( self, showAll=False ):
@@ -102,7 +103,7 @@ class Grid( object ):
 		if len( nodes ) < 2: return 1
 		
 		first = choice(nodes)
-		neighbors = filter( lambda x: 0 < x[VALUE] + first[VALUE] < limit and x[TYPE] == END, self.getNeighbors(first[:2]))
+		neighbors = filter( lambda x: 0 < x[VALUE] + first[VALUE] < limit and x[TYPE] == END and x[COLOUR] == first[COLOUR], self.getNeighbors(first[:2]))
 		if len( neighbors ) == 0: return -1
 		
 		second = choice(neighbors)
@@ -216,8 +217,17 @@ class Grid( object ):
 		self.printGrid(True)
 		
 	def multiMerge( self, n ):
+		inc = n/10
+		if n > 100: inc = n/100
+		cur = 0
+		
 		for i in range(n):
-			#print "Run ", i
+			cur += 1
+			if cur > inc: 
+				print ".",
+				sys.stdout.flush()
+				cur = 0
+				
 			if not self.runMerges(1): break
 		#self.printGrid()
 		
@@ -272,12 +282,13 @@ fname = raw_input( "Enter grid filename: " )
 ftype = raw_input( "Enter grid filetype (csv/json): " )
 '''
 
-g = Grid( int(sys.argv[XSIZE]), int(sys.argv[YSIZE]) )
+g = Grid( int(sys.argv[XSIZE]), int(sys.argv[YSIZE]) ) # python pgen.py x y name
 fname, ftype = sys.argv[FILENAME].split('.')
 #g = Grid( xsize, ysize )
 g.importGrid( fname, ftype )
-g.multiMerge(100)
-g.exportGrid( "temp", "json" )
+g.multiMerge(int(sys.argv[XSIZE])*int(sys.argv[YSIZE]))
+#print int(sys.argv[XSIZE])*int(sys.argv[YSIZE])
+g.exportGrid( "temp", "csv" )
 #g.exportGrid( fname + "_gen", "json" )
 #print "Generated file saved as '" + fname + "_gen.json'"
 
