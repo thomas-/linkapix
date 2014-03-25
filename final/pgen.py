@@ -288,7 +288,7 @@ fname, ftype = sys.argv[FILENAME].split('.')
 g.importGrid( fname, ftype )
 g.multiMerge(int(sys.argv[XSIZE])*int(sys.argv[YSIZE]))
 #print int(sys.argv[XSIZE])*int(sys.argv[YSIZE])
-g.exportGrid( "temp", "csv" )
+g.exportGrid( "temp", "json" )
 #g.exportGrid( fname + "_gen", "json" )
 #print "Generated file saved as '" + fname + "_gen.json'"
 

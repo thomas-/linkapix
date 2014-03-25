@@ -135,11 +135,11 @@
                     disWhite = (white[0] - imgData.data[0]) + (white[1] - imgData.data[1]) + (white[2] - imgData.data[2]);
                     disBlack = (imgData.data[0] - black[0]) + (imgData.data[1] - black[1]) + (imgData.data[2] - black[2]);
                     if (disWhite < 10) {
-                        pixArray[i][j] = 0;
+                        pixArray[i][j] = { number: 0, color: {r: 255, g: 255, b: 255} };
                     } else if (disBlack < 10) {
-                        pixArray[i][j] = 1;
+                        pixArray[i][j] = { number: 1, color: {r: 255, g: 255, b: 255} };
                     } else {
-                        pixArray[i][j] = 1;
+                        pixArray[i][j] = { number: 1, color: {r: 255, g: 255, b: 255} };
                     }
                 }
             }
