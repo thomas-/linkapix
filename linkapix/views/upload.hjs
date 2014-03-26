@@ -41,8 +41,8 @@
     <div class="jumbotron">
       <h1>Linkapix</h1>
       <p class="uploader">
-    Width: <input type="number" name="width" id="width" value="10">
-    Height: <input type="number" name="height" id="height" value="7">
+    Width: <input type="number" name="width" id="width" value="30">
+    Height: <input type="number" name="height" id="height" value="30">
     <input class="joint upld" type='file' id="imgInp" />
 </p>
     <a href="/" type="button" class="btn btn-lg btn-primary new_puzzle" style="display: none;">New Puzzle</a>
