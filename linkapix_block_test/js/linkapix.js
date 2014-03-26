@@ -104,6 +104,13 @@ function is_same_block(a, b) {
     return (a.data('x') == b.data('x') && a.data('y') == b.data('y'));
 };
 
+function refresh_game() {
+    $("td").each(function(index) {
+        $(this).html($(this).data('partial'));
+        $(this).html($(this).data('number'));
+    })
+}
+
 function register_game_events() {
     $("td").on('click', function() {
         if (current_block != null) {
@@ -120,11 +127,12 @@ function register_game_events() {
             } else if ($(this).hasClass('link-end')) {
                 $(".linkapix").trigger('editlink', [$(this)]);
             } else if ($(this).data('number') != '') {
-                console.log('startlink')
-                console.log($(this))
+                console.log('startlink');
+                console.log($(this));
                 $(".linkapix").trigger('startlink', [$(this)]);
             }
         }
+        refresh_game();
     });
     $("td").on('mouseover', function() {
         if (current_block != null) {
@@ -155,6 +163,7 @@ function register_game_events() {
     });
     $(".linkapix").on('endedit', function(event, block) {
         console.log('endedit');
+        block.data('partial', current_link.length);
         current_block = null;
         current_link = [];
         $("td").removeClass('picking');

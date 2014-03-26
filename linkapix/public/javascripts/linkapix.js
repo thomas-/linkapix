@@ -74,13 +74,27 @@ $("#launch_gentest").click(function() {
     json_to_puzzle('puzzles/gentest_gen.json');
 });
 
+function refresh_game() {
+    $("td").each(function(index) {
+        if ($(this).data('number') != 0) {
+            $(this).html($(this).data('number'));
+        } else {
+            $(this).html($(this).data('partial'));
+        }
+    })
+}
 
 function register_game_events() {
     $("td").mousedown(function() {
         if ($(this).hasClass('link-end')) {
             $(".linkapix").trigger('editlink', [$(this)]);
+            return
         }
-        if($(this).hasClass('linked') || $(this).hasClass('unfinished')) {
+        if($(this).hasClass('linked')) {
+            $(".linkapix").trigger('editlink', [$(this)]);
+            return
+        }
+        if($(this).hasClass('unfinished')) {
             return;
         } else {
             $(".linkapix").trigger('startlink', [$(this), $(this).data('x'), $(this).data('y')]);
@@ -155,28 +169,36 @@ $('.linkapix').on('stoplink', function(event, block) {
                 len = $("td.picking").length;
                 block.addClass('unfinished link-end');
                 block.html(len);
-                block.data('progress', $("td.picking").length);
+                block.data('partial', $("td.picking").length);
                 links.push(block);
                 block.data('links', links);
                 links = [];
                 $("td.picking").removeClass('picking').addClass('unfinished');
             } else if (block.data('number') == number && $("td.picking").length == number) {
                 $("td.picking").removeClass('picking');
+                links.push(block);
+                block.data('links', links);
+                startblock.data('links', links);
                 block.addClass('linked');
                 $.each(links, function(key, val) {
                     val.addClass('linked');
                 });
+                links = [];
             }
-            $("td.picking").css('background-color', '#fff').removeClass('picking');
+            $("td.picking").removeClass('picking');
             picking = false;
+            refresh_game();
         });
 
 $('.linkapix').on('editlink', function(event, block) {
     block.html('');
     block.removeClass('link-end');
     $.each(block.data('links'), function(key, val) {
+        val.data('partial', null);
         val.removeClass('unfinished');
+        val.removeClass('linked');
     });
+    refresh_game();
 });
 };
 
