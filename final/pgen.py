@@ -79,7 +79,7 @@ class GenerateGrid( Grid ):
 		if len( nodes ) < 2: return 1
 		
 		first = choice(nodes)
-		neighbors = filter( lambda x: 0 < x[VALUE] + first[VALUE] < limit and x[TYPE] == END and x[COLOUR] == first[COLOUR], self.getNeighbors(first[:2]))
+		neighbors = filter( lambda x: 0 < x[VALUE] + first[VALUE] <= limit and x[TYPE] == END and x[COLOUR] == first[COLOUR], self.getNeighbors(first[:2]))
 		if len( neighbors ) == 0: return -1
 		
 		second = choice(neighbors)
