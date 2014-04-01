@@ -169,7 +169,7 @@
                     postdata.data = JSON.stringify(pixArray);
                     console.log(postdata);
                     $('.progress').show(400);
-                    $('.progress-bar').animate({width: "100%"}, 20000);
+                    $('.progress-bar').animate({width: "90%"}, 20000);
                     $.ajax({
                         type: "POST",
                         url: '/generate',
