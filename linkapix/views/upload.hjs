@@ -40,17 +40,36 @@
     <!-- Main component for a primary marketing message or call to action -->
     <div class="jumbotron">
       <h1>Linkapix</h1>
+      <p class="load">
+        <button type="button" class="btn btn-lg btn-primary load_puzzle">Load Puzzle</button>
+      </p>
       <p class="uploader">
-    Width: <input type="number" name="width" id="width" value="30">
-    Height: <input type="number" name="height" id="height" value="30">
-    <input class="joint upld" type='file' id="imgInp" />
+    Width: <input type="number" name="width" id="width" value="30"><br>
+    Height: <input type="number" name="height" id="height" value="30"><br>
+    Difficulty: <select name="difficulty" id="difficulty">
+    <option value="5">Easy</option>
+    <option value="7">Medium</option>
+    <option value="10">Difficult</option>
+  </select>
+    <input class="joint upld" type='file' id="imgInp">
 </p>
     <a href="/" type="button" class="btn btn-lg btn-primary new_puzzle" style="display: none;">New Puzzle</a>
+
+
       <!--
       <p>
       <button id="launch_test" class="btn btn-lg btn-primary">Launch game!</button>
       </p>
     -->
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 centered">
+      <div class="progress progress-striped" style="display: hidden;">
+  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+  </div>
+</div>
+</div>
     </div>
 
     <div class="row">
@@ -62,25 +81,11 @@
 
     <div class="row">
       <div class="md-col-12">
-        <script>
-        var Color = function(r, g, b) {
-          this.r = r;
-          this.g = g;
-          this.b = b;
-        };
-        var Block = function(number, color) {
-          this.number = typeof number !== 'undefined' ? number : 0;
-          this.color = typeof color !== 'undefined' ? color : new Color(0, 0, 0);
-        };
-        var puzzle = [
-        [new Block(3), null, new Block(3), null, null],
-        [null, null, null, new Block(1), null],
-        [null, null, new Block(5), new Block(2), null],
-        [null, null, null, new Block(2), null],
-        [new Block(5), null, null, null, null]
-        ];
-        //document.write(JSON.stringify(puzzle));
-        </script>
+        <div class="jumbotron">
+            <button type="button" class="btn btn-lg btn-primary save_puzzle" style="display: none;">Save Puzzle</button>
+            <button type="button" class="btn btn-lg btn-primary solve_puzzle">Solve Puzzle</button>
+
+          </div>
       </div>
     </div>
 
@@ -160,8 +165,10 @@
                     var postdata = new Object;
                     postdata.width = $('#width').val();
                     postdata.height = $('#height').val();
+                    postdata.difficulty = $('#difficulty').val();
                     postdata.data = JSON.stringify(pixArray);
                     console.log(postdata);
+                    $('.progress').show(400);
                     $.ajax({
                         type: "POST",
                         url: '/generate',
@@ -173,6 +180,7 @@
                             build_puzzle(puzzle);
                             $('.uploader').hide(400)
                             $('.new_puzzle').show(400);
+                            $('.save_puzzle').show(400);
                         }
                     })
                 });
@@ -183,6 +191,47 @@
 
     $(".upld").change(function () {
         readFile(this);
+    });
+
+function saveGameState() {
+    localStorage["linkapix.test"] = $('.linkapix').html();
+    return true;
+}
+
+function loadGameState() {
+    $('.linkapix').html(localStorage["linkapix.test"]);
+    return true;
+}
+
+    $(".save_puzzle").on('click', function() {
+        saveGameState();
+        return false;
+    });
+
+    $(".load_puzzle").on('click', function() {
+        loadGameState();
+        register_game_events();
+        $('.save_puzzle').show(400)
+        return false;
+    });
+
+    $(".solve_puzzle").on('click', function() {
+      var postdata = new Object;
+      postdata.width = $('#width').val();
+      postdata.height = $('#height').val();
+      //postdata.difficulty = $('#difficulty').val();
+      //postdata.data = JSON.stringify(pixArray);
+      console.log(postdata);
+      $.ajax({
+          type: "POST",
+          url: '/solve',
+          data: postdata,
+          success: function(result) {
+                                        puzzle = string_to_puzzle(result.solved);
+                            build_puzzle(puzzle);
+              console.log(result.solved);
+          }
+      })
     });
 
     /*destroy_puzzle();

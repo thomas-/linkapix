@@ -7,7 +7,6 @@ from copy import deepcopy
 import sys
 
 PID = 4
-LIMIT = 10
 
 class Grid( object ):
 	def __init__( self, x, y, rand=False ):
@@ -134,7 +133,7 @@ class Grid( object ):
 		
 		return node
 
-	def merge( self, value=-1, limit=LIMIT, showStep=False ):
+	def merge( self, limit, value=-1, showStep=False ):
 		pair = self.getRandomPair( value, limit )
 		attempts = 5
 		while type(pair) is int or pair[0][PID] == pair[1][PID]:
@@ -162,12 +161,12 @@ class Grid( object ):
 		#if showStep: self.printGrid()
 		return ends
 		
-	def runMerges( self, n, showAll=False ):
+	def runMerges( self, n, limit, showAll=False ):
 		#if not showAll: self.printGrid()
 		temp = deepcopy( self.grid ) # FOR DEBUGGING ONLY!
 		
 		endList = []
-		for i in range(n): endList.append( self.merge( showStep=showAll ))
+		for i in range(n): endList.append( self.merge( limit, showStep=showAll ))
 		
 		#if not showAll: self.printGrid()
 		
@@ -216,7 +215,7 @@ class Grid( object ):
 		self.printGrid()
 		self.printGrid(True)
 		
-	def multiMerge( self, n ):
+	def multiMerge( self, n, limit ):
 		inc = n/10
 		if n > 100: inc = n/100
 		cur = 0
@@ -228,7 +227,7 @@ class Grid( object ):
 				sys.stdout.flush()
 				cur = 0
 				
-			if not self.runMerges(1): break
+			if not self.runMerges(1, limit ): break
 		#self.printGrid()
 		
 	#TO ADAPT FOR VALIDITY TESTING
@@ -282,11 +281,12 @@ fname = raw_input( "Enter grid filename: " )
 ftype = raw_input( "Enter grid filetype (csv/json): " )
 '''
 
+limit = int(sys.argv[4])
 g = Grid( int(sys.argv[XSIZE]), int(sys.argv[YSIZE]) ) # python pgen.py x y name
 fname, ftype = sys.argv[FILENAME].split('.')
 #g = Grid( xsize, ysize )
 g.importGrid( fname, ftype )
-g.multiMerge(int(sys.argv[XSIZE])*int(sys.argv[YSIZE]))
+g.multiMerge(int(sys.argv[XSIZE])*int(sys.argv[YSIZE]), limit)
 #print int(sys.argv[XSIZE])*int(sys.argv[YSIZE])
 g.exportGrid( "temp", "json" )
 #g.exportGrid( fname + "_gen", "json" )

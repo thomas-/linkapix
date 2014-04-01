@@ -36,6 +36,7 @@ app.get('/play/:puzzle?', routes.play);
 app.get('/upload', routes.show_upload);
 app.post('/upload', routes.process_upload);
 app.post('/generate', routes.generate);
+app.post('/solve', routes.solve);
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){

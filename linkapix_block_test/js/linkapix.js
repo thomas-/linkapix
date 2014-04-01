@@ -11,6 +11,14 @@ var current_link = [];
 var undo_list = [];
 var touched = [];
 
+function download_puzzle(filename) {
+    console.log(filename);
+    var sentFile = document.createElement('a');
+    sentFile.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent( $('#linkapix').html() ));
+    sentFile.setAttribute('save', filename );
+    sentFile.click();
+}
+
 function destroy_puzzle() {
     $(".linkapix").html("");
 }
