@@ -1,9 +1,22 @@
+"""
+	fileReader.py
+	~~~~~~~~~
+
+	This module implements a basic file I/O, creating a standard interface
+	for either json or csv files.
+
+	:Mandla Moyo, 2014.
+"""
+
 import json
 import csv
 import os
 
 
 class FileReader():
+	"""The base FileReader class simply controls directory
+	management and error handling
+	"""
 	def __init__( self, directory ):
 		if not os.path.isdir( directory ): raise IOError( "Directory '" + directory + "' does not exist" )
 		self.directory = directory
@@ -21,6 +34,9 @@ class FileReader():
 		
 		
 class CsvReader( FileReader ):
+	"""CSVReader simply reads from or writes to a specified csv file, without
+	any particular formatting or alteration of the handled data.
+	"""
 	def __init__( self, directory ):
 		FileReader.__init__( self, directory )
 		self.fileType = ".csv"
@@ -38,6 +54,9 @@ class CsvReader( FileReader ):
 		return data
 
 	def writeFile( self, name, data ):
+		"""Takes a filename, and a 2d array containing the rows
+		of data to be written.
+		"""
 		filepath = self.directory + name + self.fileType
 		with open( filepath, 'w') as outfile:
 			writer = csv.writer( outfile )
@@ -45,6 +64,9 @@ class CsvReader( FileReader ):
 		
 		
 class JsonReader( FileReader ):
+	"""JsonReader simply reads from or writes to a specified json file, without
+	any particular formatting or alteration of the handled data.
+	"""
 	def __init__( self, directory ):
 		FileReader.__init__( self, directory )
 		self.fileType = ".json"
@@ -59,6 +81,9 @@ class JsonReader( FileReader ):
 		return data
 		
 	def writeFile( self, name, data ):
+		"""Takes a filename, and a 2d array containing the rows
+		of data to be written.
+		"""
 		filepath = self.directory + name + self.fileType
 		with open( filepath, 'w' ) as outfile:
 			json.dump( data, outfile )

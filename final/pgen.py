@@ -1,92 +1,69 @@
-from cellReader import Cell, CsvCellReader, JsonCellReader
-from pathContainer import PathContainer, getRelativePos, getAbsolutePos
+"""
+	generate.py (RENAME)
+	~~~~~~~~~
+
+	Solver for G52GRP Link-A-Pix Project
+	
+	This module implements the puzzle generation functionality for a given image bitmap.
+	The program takes 3 arguments on the command line, and outputs a valid puzzle to a
+	temp file (of name and type specified in constants.py) in the specified puzzle directory.
+	
+	Command line interface:
+		$ python generate.py [PUZZLE_WIDTH] [PUZZLE_HEIGHT] [PUZZLE_NAME] [PUZZLE_DIFFICULTY (4-10)]
+		(PUZZLE_NAME is a type-specified name of a file located in the directory specified in constants.py)
+		
+	:Mandla Moyo, 2014.
+"""
+
+
 from math import pi, cos, sin
 from random import randint, choice
+from pattern import getRelativePos, getAbsolutePos, getRotations, getRelativePath
 from constants import *
+from grid import Grid
+from cellReader import Cell
 from copy import deepcopy
 import sys
 
-PID = 4
+# Remove redundancy..
 
-class Grid( object ):
-	def __init__( self, x, y, rand=False ):
-		self.x = x
-		self.y = y
-		self.dimensions = [x,y]
-		
-		self.pathList = PathContainer()
-		self.grid = []
-		self.symbols = {(0,0):0,(1,1):1,(1,2):"*"}
-		self.initValue = [0,0,0,EMPTY,0,0,WHITE]
-		self.unknown = ' '
+class GenerateGrid( Grid ):
+	def __init__( self, x, y ):
+		Grid.__init__( self, x, y )
+		#self.symbols = {(0,0):0,(1,1):1,(1,2):"*"}
 		self.pids = 1
+		self.build()
 		
-		self.readers = { "csv": CsvCellReader( self.dimensions ), "json": JsonCellReader( self.dimensions ) }
-		self.reset( rand )
-		
-	def build( self, x, y ):
-		return [[ self.initValue for c in range( x )] for r in range( y )]
-		
-	def randomBuild( self, x, y ):
-		return [[ randint( 0, len( self.symbols )-1 ) for c in range( x )] for r in range( y )]
-		
-	def reset( self, rand=False ):
-		if rand: self.grid = self.randomBuild( self.x, self.y )
-		else: self.grid = self.build( self.x, self.y )
+	def build( self ):
+		self.grid = [[ INIT_VALUE for c in range( self.dimensions[X] )] for r in range( self.dimensions[Y] )]
 	
 	def getCellList( self ):
 		cells = []
 		for j in range(len(self.grid)):
 			for i in range(len(self.grid[j])):
 				c = self.grid[j][i]
-				#print c
 				cells.append( Cell( [c[X],c[Y]] ))
 				cells[-1].setInfo( c[PID], c[VALUE], c[TYPE], colour = c[COLOUR] )
 				if c[TYPE] != END: cells[-1].setInfo( c[PID], 0, EMPTY )
 		return cells
 	
-	def exportGrid( self, name, fileType ):
-		self.readers[fileType].writeGrid( name, self.getCellList(), True )
-	
-	def importGrid( self, name, fileType ):
-		data = self.readers[fileType].readGrid( name )
-		self.setCellInfo( data )
-	
-	def setCellInfo( self, cellInfo ): # cellInfo: [[xpos,ypos,value,type,startId,endId],...]
+	def setCellInfo( self, cellInfo ):
 		for info in cellInfo:
-			self.grid[info[Y]][info[X]] = [info[X],info[Y],info[VALUE],info[TYPE],self.pids, self.pids, info[COLOUR]] #self.grid[info[Y]][info[X]] = [info[X],info[Y],info[VALUE],info[TYPE],self.pids]
+			self.grid[info[Y]][info[X]] = [info[X],info[Y],info[VALUE],info[TYPE],self.pids, self.pids, info[COLOUR]]
 			self.pids += 1
-			#print self.grid[info[Y]][info[X]]
-		#print ""
-			
-	def printGrid( self, showAll=False ):
-		for r in range( len( self.grid )):
-			for c in range( len( self.grid[r] )):
-				if not showAll and self.grid[r][c][TYPE] != END: print ' ',
-				else:
-					try: print self.symbols[tuple(self.grid[r][c][2:4])],
-					except: print self.grid[r][c][VALUE],
-			print ''
-		print ''
-	
+
+
 	def getNeighbors( self, pos ):
 		neighbors = []
 		
 		for y in range(-1,2):
 			for x in range(-1,2):
 				p = [pos[X] + x, pos[Y] + y]
-				if( self.isValid( p )) and abs(x) != abs(y):
+				if( self.isValidPos( p )) and abs(x) != abs(y):
 					neighbors.append( self.grid[p[Y]][p[X]] )
 		
 		return neighbors
-		
-	def isValid( self, pos ):
-		maxBounds = [self.x,self.y]
-		for i in range(len(pos)):
-			if( pos[i] < 0 or pos[i] >= maxBounds[i] ): return False
-			
-		return True
-
+	
 	def getEndNodes( self, value=-1 ):
 		nodes = []
 		for y in range(len(self.grid)):
@@ -106,14 +83,6 @@ class Grid( object ):
 		if len( neighbors ) == 0: return -1
 		
 		second = choice(neighbors)
-		
-		'''
-		self.grid[first[Y]][first[X]][TYPE] = 2
-		self.grid[second[Y]][second[X]][TYPE] = 2
-		g.printGrid()
-		self.grid[first[Y]][first[X]][TYPE] = 1
-		self.grid[second[Y]][second[X]][TYPE] = 1
-		'''
 
 		return [first,second]
 		
@@ -122,12 +91,13 @@ class Grid( object ):
 		
 	
 	def getConnected( self, node, value, oldId, newId ):
-		neighbors = sorted( self.getNeighbors(node[:2]), key=lambda x: (-x[TYPE], len(self.getConnectedNeighbors(x[:2],oldId)))) #start with PATH nodes, then move onto END nodes, to ensure correct traversal order (nodes with fewest neighbors go first)
-		#print node, value, oldId, newId, neighbors
+		# Start with PATH nodes, then move onto END nodes, to ensure correct traversal order (nodes with fewest neighbours go first)
+		neighbors = sorted( self.getNeighbors(node[:2]), key=lambda x: (-x[TYPE], len(self.getConnectedNeighbors(x[:2],oldId))))
 		
 		node[VALUE],node[PID] = value, newId
 		for neighbor in neighbors:
-			if neighbor[PID] == oldId: # a connected neighbor exists, current node is a path node
+			# A connected neighbour exists, current node is a path node
+			if neighbor[PID] == oldId: 
 				node[TYPE] = PATH
 				return self.getConnected( neighbor, value, oldId, newId )
 		
@@ -158,43 +128,14 @@ class Grid( object ):
 					self.grid = temp
 					return [ends,-1]
 				
-		#if showStep: self.printGrid()
 		return ends
 		
 	def runMerges( self, n, limit, showAll=False ):
-		#if not showAll: self.printGrid()
-		temp = deepcopy( self.grid ) # FOR DEBUGGING ONLY!
+		#temp = deepcopy( self.grid ) FOR DEBUGGING ONLY!
 		
 		endList = []
 		for i in range(n): endList.append( self.merge( limit, showStep=showAll ))
 		
-		#if not showAll: self.printGrid()
-		
-		'''
-		# FOR DEBUGGING #
-		for i in endList: 
-			if i: 
-				if i[1] == -1:
-					print "INVALID CONNECTION!"
-					i = i[0]
-					
-				print "Ends: ", i
-				print "Paths: (L", i[0][VALUE], ")"
-				for c in self.getConnections( i[0], i[1] ):
-					print "\t", c, " - ",
-					for p in c:
-						print (["EMPTY","END","PATH"][self.grid[i[0][Y]+p[Y]][i[0][X]+p[X]][TYPE]],self.grid[i[0][Y]+p[Y]][i[0][X]+p[X]][VALUE]),
-					print ""
-					
-				if i[0][TYPE] != 1 or i[1][TYPE] != 1: 
-					current = deepcopy( self.grid )
-					self.printGrids( temp, current )
-					self.grid = temp
-					#return False
-			else: print ".",
-		print ""
-		# FOR DEBUGGING #
-		'''
 		return True
 		
 	def isReachable( self, p1, p2 ):
@@ -227,15 +168,14 @@ class Grid( object ):
 				sys.stdout.flush()
 				cur = 0
 				
-			if not self.runMerges(1, limit ): break
-		#self.printGrid()
+			if not self.runMerges( 1, limit ): break
 		
 	#TO ADAPT FOR VALIDITY TESTING
 	def getConnections( self, startCell, endCell ):
 		# Error checking (should be unnecessary, only keep for testing..)
 		if startCell[VALUE] != endCell[VALUE]: return []
 		if startCell[TYPE] == PATH or endCell[TYPE] == PATH: return []
-		if not self.isReachable( startCell, endCell ): return [] #isReachable()
+		if not self.isReachable( startCell, endCell ): return []
 		
 		startPos = [startCell[X],startCell[Y]]
 		endPos = [endCell[X],endCell[Y]]
@@ -244,18 +184,17 @@ class Grid( object ):
 		valid = []
 		
 		for p in paths:
-			plist = self.pathList.getRotations( p )
+			plist = getRotations( p )
 			
 			# check whether to rotate p for proper orientation (start at start cell)..
 			for rp in plist:
 				if rp[-1] == getRelativePos( startPos, endPos ) or rp[-1] == getRelativePos( endPos, startPos ):
-					p = rp if rp[-1] == getRelativePos( startPos, endPos ) else self.pathList.reversePath( rp )
+					p = rp if rp[-1] == getRelativePos( startPos, endPos ) else getRelativePath( rp )
 					
 					isValid = True
 					for pos in p:
-						#print "pos: ", pos, " - StartPos: ", startPos
 						apos = getAbsolutePos( startPos, pos )
-						if not (0 <= apos[X] < self.x and 0 <= apos[Y] < self.y):
+						if not (0 <= apos[X] < self.dimensions[X] and 0 <= apos[Y] < self.dimensions[Y]):
 							isValid = False
 							break
 							
@@ -269,32 +208,10 @@ class Grid( object ):
 					if isValid and p not in valid: valid.append( p )
 						
 		return valid
-	
-def reset():
-	g = Grid(10,10)
-	g.importGrid("gentest","csv")
-	return g
-''' 
-xsize = int( raw_input( "Enter grid width: " ))
-ysize = int( raw_input( "Enter grid height: " ))
-fname = raw_input( "Enter grid filename: " )
-ftype = raw_input( "Enter grid filetype (csv/json): " )
-'''
-
-limit = int(sys.argv[4])
-g = Grid( int(sys.argv[XSIZE]), int(sys.argv[YSIZE]) ) # python pgen.py x y name
+		
+limit = int(sys.argv[LIMIT]) #LIMIT = 4
+g = GenerateGrid( int(sys.argv[XSIZE]), int(sys.argv[YSIZE]) ) # python pgen.py x y name limit
 fname, ftype = sys.argv[FILENAME].split('.')
-#g = Grid( xsize, ysize )
 g.importGrid( fname, ftype )
-g.multiMerge(int(sys.argv[XSIZE])*int(sys.argv[YSIZE]), limit)
-#print int(sys.argv[XSIZE])*int(sys.argv[YSIZE])
-g.exportGrid( "temp", "json" )
-#g.exportGrid( fname + "_gen", "json" )
-#print "Generated file saved as '" + fname + "_gen.json'"
-
-#g = Grid(10,10)
-#g.importGrid("gentest","csv")
-#print g.getRandomPair()
-#g.printGrid()
-#raw_input("Press Enter to Quit..")
-#print "Use g.multiMerge(n) to generate puzzle.."
+g.multiMerge(int(sys.argv[XSIZE])*int(sys.argv[YSIZE]), limit )
+g.exportGrid( OUTPUT_FILENAME_GENERATOR, OUTPUT_FILETYPE_GENERATOR )
