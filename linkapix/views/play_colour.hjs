@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Linkapix Test</title>
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/stylesheets/linkapix-colour.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="navbar navbar-default" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Linkapix</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="./">Hello </a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <h1>Linkapix</h1>
+    <a href="/" type="button" class="btn btn-lg btn-primary new_puzzle" style="display: none;">New Puzzle</a>
+      <!--
+      <p>
+      <button id="launch_test" class="btn btn-lg btn-primary">Launch game!</button>
+      </p>
+    -->
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-10 centered linkapix">
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <script src="http://codeorigin.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="/javascripts/linkapix-colour.js"></script>
+
+  <script>
+    destroy_puzzle();
+    puzzle = string_to_puzzle('{{{ puzzledata }}}');
+    build_puzzle(puzzle);
+  </script>
+</body>
+</html>

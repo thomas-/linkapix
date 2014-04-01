@@ -24,6 +24,12 @@ exports.play = function(req, res) {
     res.render('play', {puzzledata: puzzle});
 };
 
+exports.play_colour = function(req, res) {
+    console.log(req.param('puzzle'));
+    puzzle = fs.readFileSync('./public/puzzles/scooter.json', 'utf8');
+    res.render('play_colour', {puzzledata: puzzle});
+}
+
 exports.solve = function(req, res) {
     exec('python testSolve.py '+req.body.width+' '+req.body.height+' temp.json', {cwd: '../final/' }, function(error, stdout, stderr) {
         console.log('stdout: '+stdout);

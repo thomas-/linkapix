@@ -28,8 +28,8 @@ import sys
 # Remove redundancy..
 
 class GenerateGrid( Grid ):
-	def __init__( self, x, y ):
-		Grid.__init__( self, x, y )
+	def __init__( self, x, y, limit ):
+		Grid.__init__( self, x, y, limit )
 		#self.symbols = {(0,0):0,(1,1):1,(1,2):"*"}
 		self.pids = 1
 		self.build()
@@ -74,12 +74,12 @@ class GenerateGrid( Grid ):
 					
 		return nodes
 		
-	def getRandomPair( self, value=-1, limit=9999 ):
-		nodes = filter( lambda x: x[VALUE] < limit, self.getEndNodes( value ))
+	def getRandomPair( self, value=-1 ):
+		nodes = filter( lambda x: x[VALUE] < self.limit, self.getEndNodes( value ))
 		if len( nodes ) < 2: return 1
 		
 		first = choice(nodes)
-		neighbors = filter( lambda x: 0 < x[VALUE] + first[VALUE] <= limit and x[TYPE] == END and x[COLOUR] == first[COLOUR], self.getNeighbors(first[:2]))
+		neighbors = filter( lambda x: 0 < x[VALUE] + first[VALUE] <= self.limit and x[TYPE] == END and x[COLOUR] == first[COLOUR], self.getNeighbors(first[:2]))
 		if len( neighbors ) == 0: return -1
 		
 		second = choice(neighbors)
@@ -103,12 +103,12 @@ class GenerateGrid( Grid ):
 		
 		return node
 
-	def merge( self, limit, value=-1, showStep=False ):
-		pair = self.getRandomPair( value, limit )
+	def merge( self, value=-1, showStep=False ):
+		pair = self.getRandomPair( value )
 		attempts = 5
 		while type(pair) is int or pair[0][PID] == pair[1][PID]:
 			if (type(pair) is int and pair > 0) or attempts == 0: return False
-			pair = self.getRandomPair( value, limit )
+			pair = self.getRandomPair( value )
 			attempts -= 1
 			
 		newValue = pair[0][VALUE] + pair[1][VALUE]
@@ -130,11 +130,11 @@ class GenerateGrid( Grid ):
 				
 		return ends
 		
-	def runMerges( self, n, limit, showAll=False ):
+	def runMerges( self, n, showAll=False ):
 		#temp = deepcopy( self.grid ) FOR DEBUGGING ONLY!
 		
 		endList = []
-		for i in range(n): endList.append( self.merge( limit, showStep=showAll ))
+		for i in range(n): endList.append( self.merge( showStep=showAll ))
 		
 		return True
 		
@@ -156,7 +156,7 @@ class GenerateGrid( Grid ):
 		self.printGrid()
 		self.printGrid(True)
 		
-	def multiMerge( self, n, limit ):
+	def multiMerge( self, n ):
 		inc = n/10
 		if n > 100: inc = n/100
 		cur = 0
@@ -168,7 +168,7 @@ class GenerateGrid( Grid ):
 				sys.stdout.flush()
 				cur = 0
 				
-			if not self.runMerges( 1, limit ): break
+			if not self.runMerges( 1 ): break
 		
 	#TO ADAPT FOR VALIDITY TESTING
 	def getConnections( self, startCell, endCell ):
@@ -209,9 +209,8 @@ class GenerateGrid( Grid ):
 						
 		return valid
 		
-limit = int(sys.argv[LIMIT]) #LIMIT = 4
-g = GenerateGrid( int(sys.argv[XSIZE]), int(sys.argv[YSIZE]) ) # python pgen.py x y name limit
+g = GenerateGrid( int(sys.argv[XSIZE]), int(sys.argv[YSIZE]), int(sys.argv[LIMIT]) ) # python pgen.py x y name limit
 fname, ftype = sys.argv[FILENAME].split('.')
 g.importGrid( fname, ftype )
-g.multiMerge(int(sys.argv[XSIZE])*int(sys.argv[YSIZE]), limit )
+g.multiMerge(int(sys.argv[XSIZE])*int(sys.argv[YSIZE]))
 g.exportGrid( OUTPUT_FILENAME_GENERATOR, OUTPUT_FILETYPE_GENERATOR )

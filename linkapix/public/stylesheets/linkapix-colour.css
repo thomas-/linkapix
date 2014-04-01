@@ -1,0 +1,39 @@
+body {
+  padding: 100px;
+}
+.centered {
+  float: none;
+  margin: 0 auto;
+  text-align: center;
+}
+table {
+  border: 1px solid #222;
+}
+td {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  border: 1px solid #222;
+  height: 26px;
+  width: 26px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.linkapix .unfinished {
+  background-color: #999;
+}
+.linkapix .picking {
+  background-color: #909;
+}
+.linkapix .link-end {
+  background-color: #bbb;
+}
+.linkapix .unfinished .link-end {
+  color: #999;
+}
+.linkapix .linked {
+  background-color: #000;
+  color: #999;
+}

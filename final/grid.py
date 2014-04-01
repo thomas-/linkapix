@@ -17,13 +17,13 @@ class Grid( object ): # object? only for pgen at the mo..
 	""" The Grid class is used to contain and manipulate puzzle data as
 	specified by particular Cell configurations.
 	"""
-	def __init__( self, x, y, rand=False ):
+	def __init__( self, x, y, limit=MAX_LIMIT ):
 		self.grid = []
 		self.cellList = []
 		self.dimensions = [x,y]
-		self.pathList = PathContainer()
+		self.pathList = PathContainer( limit )
 		self.readers = { CSV: CsvCellReader( self.dimensions ), JSON: JsonCellReader( self.dimensions ) }
-	
+		self.limit = limit
 	
 	""" UTILITY FUNCTIONS
 	"""

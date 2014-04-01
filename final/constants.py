@@ -17,6 +17,7 @@ END_ID = 5
 COLOUR = 6
 
 LIMIT = 4
+MAX_LIMIT = 10
 PID = 4
 
 EMPTY = 0
