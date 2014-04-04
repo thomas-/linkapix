@@ -56,8 +56,11 @@ a img {
 	margin-left:160px;	
 	}
 
+.centered {
+    text-align: center;
+}
+
 .linkapix {
-    float: none;
     margin-left: auto;
     margin-right: auto;
     padding: 50px;
