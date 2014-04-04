@@ -1,0 +1,93 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-color: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+	}
+.searchinput{
+	border-right-width: 0px;
+	padding-left: 3px;
+	width: 168px;
+	float: left;
+	border-top-width: 0px;
+	border-bottom-width: 0px;
+	color: #636365;
+	margin-left: 4px;
+	font-size: 8pt;
+	vertical-align: middle;
+	border-left-width: 0px;
+	margin-right: 3px;
+	}
+.tab_search{
+	border-bottom: #cccccc 1px solid;
+	border-left: #cccccc 1px solid;
+	height: 25px;
+	border-top: #cccccc 1px solid;
+	border-right: #cccccc 1px solid;
+	}
+.searchaction{
+	width: 28px;
+	float: left;
+	height: 28px;
+	margin-right:1px;
+	}
+.clear{
+	clear: both; 
+	}
+#login-form{
+	height:250px;
+	background:url(/images/login-page-bg.jpg) top center no-repeat;
+	margin-top:10px;
+	}
+#login-form label{
+	width:65px;
+	text-align: right; 
+	float: left; 
+	margin: 0 10px 0 15px; 
+	padding: 9px 0 0 0; 
+	font-size: 16px; 
+	}
+#login{ 
+	width: 142px; 
+	display: block; 
+	padding: 4px; 
+	margin: 0 0 10px 0; 
+	font-size: 18px;
+	color: #3a3a3a; 
+	font-family: Georgia, serif;
+	}
+#password{ 
+	width: 142px; 
+	display: block; 
+	padding: 4px; 
+	margin: 0 0 10px 0; 
+	font-size: 18px;
+	color: #3a3a3a; 
+	font-family: Georgia, serif;
+	}		  
+.submitButton{
+	margin:0 0 0 100px;
+	background: url(/images/button-bg.png) repeat-x top center; 
+	border: 1px solid #999;
+	-moz-border-radius: 5px; 
+	padding: 5px; 
+	color: black; 
+	font-weight: bold;
+	-webkit-border-radius: 5px; 
+	font-size: 13px;  
+	width: 70px; 
+	}
+.submitButton:hover{ 
+	background: white; 
+	color: black; 
+	}
+#alert {
+	color:#F00;
+	margin-left:5%;
+	margin-right:5%;
+	text-align:center;
+	}

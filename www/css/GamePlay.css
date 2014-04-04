@@ -1,0 +1,53 @@
+@charset "utf-8";
+/* CSS Document */
+#sizetoolbar {
+	margin-bottom:15px;	
+	}
+#gameDisplay {
+	width:908px;
+	overflow:scroll;
+	border:1px solid;
+	}
+#gameButtons {
+	border:none;
+	}
+.gameButton {
+	margin-left:40px;
+	float:left;
+	}
+.functionButtons {
+	margin-top:30px;
+	height:80px;
+	}
+.btn-file {
+	position: relative;
+	display: inline-block;
+	width: 156px;
+	height: 43px;
+	background: #e4e4e4 url(../images/load-btn.jpg) no-repeat center top;
+	text-align: center;
+	line-height: 68px;
+	overflow: hidden;
+	}
+.btn-file:hover {
+	background-position: center -43px;
+	}
+
+.btn-file input {
+	position: absolute;
+	top: 15px;
+	left: -40px;
+	width: 156px;
+	height: 43px;
+	opacity: 0;
+	filter: alpha(opacity: 0);
+	cursor: pointer;
+	}
+.btn-load {
+	float:left;
+	margin-left:230px;	
+	}
+.btn-save {
+	float:left;
+	margin-left:160px;	
+	}

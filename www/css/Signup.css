@@ -1,0 +1,72 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-color: #FFFFFF;
+	}
+#content h1{
+	margin-left:20px;
+	padding:0;
+	font-size:100%;
+	font-weight:normal;
+	word-wrap:break-word;
+	display:block;
+	font-size:25px;
+	font-weight:bold;
+	color:#494949;
+	line-height:1.1;
+	}
+.sign-up-form{
+	margin-top:50px;	
+	}
+.sign-up-form .article label{
+	width:100px;
+	text-align: right; 
+	float: left; 
+	margin: 0 10px 0 150px; 
+	padding: 9px 0 0 0; 
+	font-size: 16px; 
+	color:#999;
+	}
+.sign-up-form .article .item input{
+	width: 200px; 
+	display: block; 
+	padding: 4px; 
+	margin: 0 0 10px 0; 
+	font-size: 18px;
+	color: #3a3a3a; 
+	font-family: Georgia, serif;
+	}
+.submitButton{
+	margin:0 0 0 300px;
+	background: url(/images/button-bg.png) repeat-x top center; 
+	border: 1px solid #999;
+	-moz-border-radius: 5px; 
+	padding: 5px; 
+	color: black; 
+	font-weight: bold;
+	-webkit-border-radius: 5px; 
+	font-size: 13px;  
+	width: 100px; 
+	height:35px;
+	}
+.submitButton:hover{ 
+	background: white; 
+	color: black; 
+	}
+.tips{
+	font-size: 14px;
+	color: #808080;
+	margin-left:220px; 
+	}
+.suggestion {
+	font-size: 16px;
+	margin-left:250px;
+	color:#F00;
+	}
+.sign-up-form .aside {
+	margin: 30px 0 0 240px;
+	}

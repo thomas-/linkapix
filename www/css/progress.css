@@ -1,0 +1,10 @@
+  #progressbar {
+      background-color: black;
+      padding: 3px;
+    }
+    
+    #progressbar > div {
+       background-color: lightblue;
+       width: 40%; /* Adjust with JavaScript */
+       height: 20px;
+    }
