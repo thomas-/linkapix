@@ -37,6 +37,7 @@ class Cell:
 		self.pos = pos
 		self.value = 0
 		self.cType = EMPTY
+		self.connected = False
 		
 	def setValue( self, value ):
 		self.value = value
@@ -66,8 +67,26 @@ class Cell:
 	def getPosition( self ):
 		return self.pos
 
+	def getColour( self ):
+		return self.colour
+		
 	def getInfo( self ):
 		return [self.pos[X], self.pos[Y], self.value, self.cType, self.startId, self.endId, self.colour]
+	
+	def setId( self, newId ):
+		self.cid = newId
+		
+	def setValue( self, newValue ):
+		self.value = newValue
+		
+	def setPosition( self, newPos ):
+		self.pos = newPos
+		
+	def setType( self, newType ):
+		self.cType = newType
+		
+	def setColour( self, newColour ):
+		self.colour = newColour
 	
 	def setInfo( self, cid, value, type, pos=None, sid=None, eid=None, colour=WHITE ):
 		self.cid = cid

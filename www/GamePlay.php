@@ -28,7 +28,7 @@ include("conn.php");
     <td>&nbsp;</td>
     <td width="950" align="left" valign="top">
     <div style="padding-left:0px; padding-top:39px">
-      <table width="100%" height="800" border="0" cellspacing="0" cellpadding="0">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td align="left" valign="top" bgcolor="#FFFFFF" style="border:1px solid #C5C5C5 ">
           <table height="785"  border="0" cellspacing="0" cellpadding="0">
@@ -53,11 +53,21 @@ include("conn.php");
               </td>
             </tr>
             <tr>
-            <!--        CONTENT!!!!!!!Here you can change height!!!       -->
-              <td height="1000" align="left" valign="top" background="images/back_4.jpg" style="border-top:12px solid #ffffff;background-repeat:no-repeat; background-position:bottom right; background-repeat:no-repeat">
+            
+              <td height="1042" align="left" valign="top" background="images/back_4.jpg" style="border-top:12px solid #ffffff;background-repeat:no-repeat; background-position:bottom right; background-repeat:no-repeat">
 <table width="100%" cellspacing="0" cellpadding="0">
   <tr>
     <td align="center">
+		<div align="left" style="margin-left:10px"><a href="    
+			<?php
+				if ($hasPuzzle == 1) {
+					echo "GeneralPuzzles.php";
+				} 
+				else {
+					echo "PICK-A-PIX.html";
+				}
+			?>
+		"><img src="images/back.png" alt="back"></a></div>
     	<div id="sizetoolbar"> 		
     		<label for="width">Width:</label> 
             <input type="number" name="width" id="width" value="30">
@@ -94,10 +104,10 @@ include("conn.php");
   <tr>
     <td align="center">
     <div class="functionButtons">
-    	<div class="btn-load" style="width:160px; height:45px;">
-    		<a class="btn-file"><input type="file" /></a>
+    	<div class="btn-load load_puzzle" style="width:160px; height:45px;">
+    		<a class="btn-file"></a>
         </div>
-        <a href="#" class="btn-save"><img src="images/save-btn.jpg" alt="save" title="Save" /></a>
+        <a href="#" class="btn-save save_puzzle"><img src="images/save-btn.jpg" alt="save" title="Save" /></a>
     </div>
     </td>
   </tr>
@@ -118,8 +128,6 @@ include("conn.php");
 </table>
 
 
-
-<?php var_dump($puzzledata); ?>
 
 <script src="js/jquery.js"></script>
 <script src="js/linkapix-colour.js"></script>

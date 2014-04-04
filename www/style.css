@@ -5,6 +5,10 @@ body {
 	margin-bottom: 0px;
 	background-color: #FFFFFF;
 }
+a img {
+	border:0;
+	outline:none;	
+	}
 .style1 {
 	color: #3cad96;
 	font-size: 12px;

@@ -175,6 +175,7 @@
                         url: '/generate',
                         data: postdata,
                         success: function(result) {
+                            console.log(result);
                             $('.progress-bar').stop();
                             $('.progress-bar').css({width: "100%"});
                             $('.progress').hide(400);

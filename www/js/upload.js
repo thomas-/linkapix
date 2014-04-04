@@ -1,3 +1,6 @@
+var puzzle = null;
+var imagefile = null;
+
 function analyse_puzzle(src, callback) {
     //var canvas = document.getElementById('myCanvas');
     //var ctx = canvas.getContext('2d');
@@ -41,9 +44,9 @@ function analyse_puzzle(src, callback) {
                 if (disWhite < 10) {
                     pixArray[i][j] = { number: 0, color: {r: 255, g: 255, b: 255} };
                 } else if (disBlack < 10) {
-                    pixArray[i][j] = { number: 1, color: {r: 255, g: 255, b: 255} };
+                    pixArray[i][j] = { number: 1, color: {r: 0, g: 0, b: 0} };
                 } else {
-                    pixArray[i][j] = { number: 1, color: {r: 255, g: 255, b: 255} };
+                    pixArray[i][j] = { number: 1, color: {r: 0, g: 0, b: 0} };
                 }
             }
         }
@@ -54,7 +57,6 @@ function analyse_puzzle(src, callback) {
 };
 
 function readFile(input) {
-    console.log('good!');
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
@@ -72,9 +74,11 @@ function readFile(input) {
                 $('.progress-bar').animate({width: "90%"}, 20000);
                 $.ajax({
                     type: "POST",
-                    url: 'http://dedi.tuomas.co.uk/generate',
+                    url: '/generate.php',
                     data: postdata,
                     success: function(result) {
+                        result = JSON.parse(result);
+                        console.log(result.cachefilename);
                         $('.progress-bar').stop();
                         $('.progress-bar').css({width: "100%"});
                         $('.progress').hide(400);
@@ -82,9 +86,9 @@ function readFile(input) {
                         console.log(result.puzzledata);
                         puzzle = string_to_puzzle(result.puzzledata);
                         build_puzzle(puzzle);
-                        $('.uploader').hide(400)
-                    $('.new_puzzle').show(400);
-                $('.save_puzzle').show(400);
+                        $('.uploader').hide(400);
+                        $('.new_puzzle').show(400);
+                        $('.save_puzzle').show(400);
                     }
                 })
             });
@@ -93,6 +97,28 @@ function readFile(input) {
     };
 };
 
-$(".upld").change(function () {
+$(".upld").change(function (event) {
     readFile(this);
+    imagefile = event.target.files;
+});
+
+$(".btn-save").on('click', function() {
+    var valid = false;
+    var puzzlename = prompt("Enter a name for the puzzle:");
+    if (puzzlename != null) {
+        postdata = new Object;
+        postdata.puzzlename = puzzlename;
+        postdata.puzzledata = JSON.stringify(puzzle);
+        $.ajax({
+            type: "POST",
+            url: '/save.php',
+            data: postdata,
+            success: function(result) {
+                console.log(result);
+                if (result == "OK") {
+                    console.log("saved");
+                }
+            }
+        });
+    }
 });

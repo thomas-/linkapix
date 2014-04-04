@@ -9,7 +9,7 @@
 	:Mandla Moyo, 2014.
 """
 
-from math import sin, cos, pi, ceil
+from math import sin, cos, pi, ceil, sqrt
 
 X = 0
 Y = 1
@@ -56,6 +56,14 @@ def getRelativePath( path ):
 	tempPath.reverse()
 	return [getRelativePos(tempPath[0],pos) for pos in tempPath]
 	
+def getManhattanDistance( p1, p2 ):
+	"""Returns the Manhattan distance of two points, which is the sum of
+	the absolute difference of the x and y coordinate values.
+	"""
+	return abs(p1[X] - p2[X]) + abs(p1[Y] - p2[Y])
+	
+def getEuclidianDistance( p1, p2 ):
+	return int( ceil( sqrt( abs(p1[X]-p2[X])**2 + abs(p1[Y]-p2[Y])**2 )))
 	
 def getPathExtensions( path ):
 	"""For a given path, returns all the valid, unique ways in which an
@@ -73,6 +81,16 @@ def getPathExtensions( path ):
 
 	return exts
 
+def addMirrors( pathList ):
+	newPathList = []
+	for path in pathList:
+		mPath = mirrorPath( path )
+		
+		if mPath == path: newPathList.append( path )
+		else: newPathList.extend( [path, mPath] )
+	
+	return newPathList
+	
 def remDups( plist ):
 	"""Removes all duplicates from a list of paths.
 	"""
@@ -95,7 +113,14 @@ def remDups( plist ):
 	print ""
 	return [pt.pattern for pt in uq]
 	
+def getDistanceMap( li ):
+	dmap = {}
+	for p in li:
+		d = getEuclidianDistance( p[0], p[-1] )
+		if d in dmap: dmap[d].append( p )
+		else: dmap[d] = [p]
 	
+	return dmap
 	
 def getUniquePaths( length ):
 	"""For the given length, returns a list of all unique possible paths
@@ -110,7 +135,8 @@ def getUniquePaths( length ):
 	print "Patterns extracted. Removing duplicates.."
 	nodups = remDups( pl )
 	print "Duplicates removed, operation complete"
-	return nodups
+	dmap = getDistanceMap( nodups )
+	return dmap
 	
 def printPath( path ):
 	size = len(path)

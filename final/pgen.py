@@ -18,7 +18,7 @@
 
 from math import pi, cos, sin
 from random import randint, choice
-from pattern import getRelativePos, getAbsolutePos, getRotations, getRelativePath
+from pattern import getRelativePos, getAbsolutePos, getRotations, getRelativePath, getEuclidianDistance, addMirrors
 from constants import *
 from grid import Grid
 from cellReader import Cell
@@ -27,16 +27,28 @@ import sys
 
 # Remove redundancy..
 
+
+
 class GenerateGrid( Grid ):
 	def __init__( self, x, y, limit ):
 		Grid.__init__( self, x, y, limit )
-		#self.symbols = {(0,0):0,(1,1):1,(1,2):"*"}
+		#self.symbols = {(0,0):' '}
 		self.pids = 1
+		self.runs = 0
 		self.build()
 		
 	def build( self ):
 		self.grid = [[ INIT_VALUE for c in range( self.dimensions[X] )] for r in range( self.dimensions[Y] )]
 	
+	def getAllCells( self ):
+		cells = []
+		for j in range(len(self.grid)):
+			for i in range(len(self.grid[j])):
+				c = self.grid[j][i]
+				cells.append(c)
+				
+		return cells
+		
 	def getCellList( self ):
 		cells = []
 		for j in range(len(self.grid)):
@@ -111,22 +123,40 @@ class GenerateGrid( Grid ):
 			pair = self.getRandomPair( value )
 			attempts -= 1
 			
-		newValue = pair[0][VALUE] + pair[1][VALUE]
+		newValue = pair[0][VALUE] + pair[1][VALUE] # new value
 		newId = self.pids
 		self.pids += 1
 		
+		# perform error check with new value
+		
 		ends = []
 		temp = deepcopy( self.grid )
+		fail = False
 		
 		for n in pair:
 			oldId = n[PID]
 			ends.append( self.getConnected( n, newValue, oldId, newId ))
 		
-		for path in self.getConnections( ends[0], ends[1] ):
-			for p in path:
-				if self.grid[ends[0][Y]+p[Y]][ends[0][X]+p[X]][TYPE] == EMPTY:
-					self.grid = temp
-					return [ends,-1]
+		allPaths = self.getConnections( ends[0], ends[1] )
+		if self.getReachable( ends[0] ) and self.getReachable( ends[1] ): fail = True
+		
+		if not fail:
+			for path in allPaths:
+				for p in path:
+					if self.grid[ends[0][Y]+p[Y]][ends[0][X]+p[X]][TYPE] == EMPTY:
+						fail = True
+
+		
+		#check if ends can both connect to more than one other node.
+		#if so, undo
+		#for e in ends:
+		if fail:
+			#print "generation error\n\n"
+			#self.printGrid()
+			self.grid = temp
+			#self.printGrid()
+			self.runs += randint(0,1)
+			return [ends,-1]
 				
 		return ends
 		
@@ -135,8 +165,11 @@ class GenerateGrid( Grid ):
 		
 		endList = []
 		for i in range(n): endList.append( self.merge( showStep=showAll ))
-		
+		#if not showAll: self.printGrid()
 		return True
+		
+	def getRuns( self, x, y, lim ):
+		return int( (x*y)/((LIMIT_CONSTANT/lim)*10) )
 		
 	def isReachable( self, p1, p2 ):
 		"""bool isReachable( int[] p1, int[] p2 )
@@ -148,6 +181,21 @@ class GenerateGrid( Grid ):
 
 		return res < v and res%2 != v%2
 		
+	def getReachable( self, cell ):
+		cells = self.getAllCells()
+		valid = [c for c in cells if c[TYPE] == END and c[VALUE] == cell[VALUE] and c[PID] != cell[PID] and c[COLOUR] == cell[COLOUR] and self.isReachable( cell, c )]
+		return filter( lambda c : len(self.getConnections( cell, c )) > 0, valid )
+		
+	def printGrid( self, showAll=False ):
+		for r in range( len( self.grid )):
+			for c in range( len( self.grid[r] )):
+				if not showAll and self.grid[r][c][TYPE] != END: print ' ',
+				else:
+					try: print self.symbols[tuple(self.grid[r][c][2:4])],
+					except: print self.grid[r][c][VALUE],
+			print ''
+		print '\n\n'
+		
 	def printGrids( self, first, second ):
 		self.grid = first
 		self.printGrid()
@@ -156,12 +204,15 @@ class GenerateGrid( Grid ):
 		self.printGrid()
 		self.printGrid(True)
 		
-	def multiMerge( self, n ):
-		inc = n/10
-		if n > 100: inc = n/100
+	def multiMerge( self, xsize, ysize, limit ):
+		self.runs = self.getRuns( xsize, ysize, limit )
+		inc = self.runs/10
+		if self.runs > 100: inc = self.runs/100
 		cur = 0
-		
-		for i in range(n):
+		print self.runs, xsize*ysize
+		#for i in range( runs ):
+		while self.runs > 0:
+			self.runs -= 1
 			cur += 1
 			if cur > inc: 
 				print ".",
@@ -180,7 +231,8 @@ class GenerateGrid( Grid ):
 		startPos = [startCell[X],startCell[Y]]
 		endPos = [endCell[X],endCell[Y]]
 		value = startCell[VALUE]
-		paths = self.pathList.paths[value]
+		distance = getEuclidianDistance( startPos, endPos )
+		paths = addMirrors( self.pathList.paths[value][distance] )
 		valid = []
 		
 		for p in paths:
@@ -209,8 +261,11 @@ class GenerateGrid( Grid ):
 						
 		return valid
 		
-g = GenerateGrid( int(sys.argv[XSIZE]), int(sys.argv[YSIZE]), int(sys.argv[LIMIT]) ) # python pgen.py x y name limit
-fname, ftype = sys.argv[FILENAME].split('.')
+
+xsize, ysize, filename, limit = int(sys.argv[XSIZE]), int(sys.argv[YSIZE]), sys.argv[FILENAME], int(sys.argv[LIMIT])
+
+g = GenerateGrid( xsize, ysize, limit ) # python pgen.py x y name limit
+fname, ftype = filename.split('.')
 g.importGrid( fname, ftype )
-g.multiMerge(int(sys.argv[XSIZE])*int(sys.argv[YSIZE]))
-g.exportGrid( OUTPUT_FILENAME_GENERATOR, OUTPUT_FILETYPE_GENERATOR )
+g.multiMerge( xsize, ysize, limit )
+g.exportGrid( fname, ftype )

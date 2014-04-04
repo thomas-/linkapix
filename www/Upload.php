@@ -61,9 +61,9 @@ include("conn.php");
         <div id="sizetoolbar">
             <p class="uploader">		
     		<label for="width">Width:</label> 
-            <input type="number" name="width" id="width" value="30">
+            <input type="number" name="width" id="width" value="5">
     		<label for="height" style="margin-left:30px">Height:</label> 
-            <input type="number" name="height" id="height" value="30">
+            <input type="number" name="height" id="height" value="5">
             <label for="difficulty">Difficulty:</label>
             <select name="difficulty" id="difficulty">
             <option value="5">Easy</option>
@@ -73,6 +73,10 @@ include("conn.php");
             </p>
         </div>
     	<div id="gameDisplayb">
+      <div class="progress progress-striped active" style="display: none;">
+  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 10%; transition:none;">
+  </div>
+</div>
             <div class="centered linkapix">
             </div>
         </div>

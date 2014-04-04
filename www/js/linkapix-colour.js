@@ -235,13 +235,15 @@ function loadGameState() {
 }
 
 $(".save_puzzle").on('click', function() {
+    console.log('saved progress');
     saveGameState();
     return false;
 });
 
 $(".load_puzzle").on('click', function() {
+    console.log('loaded progress');
     loadGameState();
-    register_game_events();
+    //register_game_events();
     $('.save_puzzle').show(400)
     return false;
 });
@@ -255,9 +257,10 @@ $(".solve_puzzle").on('click', function() {
     console.log(postdata);
     $.ajax({
         type: "POST",
-        url: '/solve',
+        url: '/solve.php',
         data: postdata,
         success: function(result) {
+            destroy_puzzle();
             puzzle = string_to_puzzle(result.solved);
             build_puzzle(puzzle);
             console.log(result.solved);

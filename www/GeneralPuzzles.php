@@ -135,7 +135,7 @@ if (isset($_POST['changePassword'])) {
 		$sql = mysql_query("select * from Puzzle where username ='admin'");
 	}
 	else {
-		$search = $_GET["q"].trim();
+		$search = trim($_GET["q"]);
 		$sql = mysql_query("select * from Puzzle where name like '%$search%' AND username ='admin'");
 	}
     $pagesize = 9; 

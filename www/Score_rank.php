@@ -43,7 +43,7 @@
                <div style="margin-top:20px">
 
 <table align="center" width="560px" style='font-family: Arial, Helvetica, sans-serif; font-size: 18px; color: #099;' cellpadding="8" cellspacing="0">
-	<tr>
+	<tr align="center">
 		<th>Rank</th>
 		<th>User</th>
 		<th>Time</th>

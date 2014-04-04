@@ -19,17 +19,23 @@
 from cellReader import Cell, CsvCellReader, JsonCellReader
 from pathContainer import PathContainer
 from math import pi, cos, sin
-from random import randint
+from random import randint, shuffle, choice
 from grid import Grid
-from pattern import getRotations, getRelativePos, getAbsolutePos, getRelativePath
+from pattern import getRotations, getRelativePos, getAbsolutePos, getRelativePath, getEuclidianDistance, addMirrors
 from constants import *
+from copy import deepcopy
 import sys
 
+GRID = 0
+FREE = 1
+CELLS = 2
 
 class SolveGrid( Grid ):
 	def __init__( self, x, y ):
 		Grid.__init__( self, x, y )
+		self.initEndCells = 0
 		self.build()
+		self.backTrackMap = {}
 		
 	def build( self ):
 		for j in range( self.dimensions[Y] ):
@@ -39,6 +45,7 @@ class SolveGrid( Grid ):
 				cells.append(cell)
 				self.cellList.append(cell)
 			self.grid.append( cells )
+	
 	
 	def setCellInfo( self, cellInfo ):
 		"""Takes the information from a file reader, and uses it to set the values of 
@@ -50,8 +57,9 @@ class SolveGrid( Grid ):
 			cell.setType( info[TYPE] )
 			cell.setPathIds( info[START_ID], info[END_ID] )
 			cell.setColour( info[COLOUR] )
-			
-	################################ PRINTING FUNCTIONS (DEBUGGING) ###############################
+	
+	
+	################################ PRINTING FUNCTIONS (DEBUGGING) ############################### pathList
 	
 	def printGrid( self, rnge=False ):
 		for j in range(len(self.grid)):
@@ -80,7 +88,7 @@ class SolveGrid( Grid ):
 		self.printGrid( pos )
 	
 	###############################################################################################
-	
+	'''
 	def getCellAt( self, pos ):
 		return self.grid[pos[Y]][pos[X]]
 	
@@ -91,7 +99,7 @@ class SolveGrid( Grid ):
 		v = self.getCellAt( p1 ).getValue()
 
 		return res < v and res%2 != v%2
-	
+	'''
 	def checkValid( self ):
 		"""Returns false if the board configuration violates any basic principles of complete-ability.
 			Tests to make sure:
@@ -110,7 +118,7 @@ class SolveGrid( Grid ):
 		
 		return True
 	
-		
+	'''	
 	def getReachable( self, pos ):
 		"""Returns a list of all cells that are reachable from the Cell at the given position, that also share the same value and colour.
 		"""
@@ -127,6 +135,10 @@ class SolveGrid( Grid ):
 		"""
 				
 		return [c for c in self.cellList if c.getType() == cellType]
+	'''	
+	def setInitEndCellCount( self ):
+		self.initEndCells = self.getConnectableEndCellCount()
+		#print self.initEndCells
 		
 	def numConnected( self ):
 		"""Returns the number of unique connected paths in the current puzzle configuration.
@@ -141,6 +153,13 @@ class SolveGrid( Grid ):
 		connectedCells = self.numConnected()
 		return connectedCells/float( len( self.getCellType( END )) + connectedCells )
 		
+	def getConnectableEndCellCount( self ):
+		return len( filter( lambda x: x.getValue() > 2, self.getCellType( END )))
+		
+	def getCompleteness( self ):
+		return ( self.initEndCells - self.getConnectableEndCellCount()) / float( self.initEndCells )
+		
+	'''	   
 	def getConnections( self, startPos, endPos ):
 		"""Returns the set of valid connection patterns for a given pair of endpoints.
 		"""
@@ -162,7 +181,8 @@ class SolveGrid( Grid ):
 		value = startCell.getValue()
 		
 		# Get the possible paths for the specified value.
-		paths = self.pathList.paths[value]
+		distance = getEuclidianDistance( startCell.getPosition(), endCell.getPosition() )
+		paths = addMirrors( self.pathList.paths[value][distance] )
 		
 		# Test whether each path is a valid connector of the two points:
 		#  For each of the possible paths,
@@ -192,7 +212,7 @@ class SolveGrid( Grid ):
 					if isValid and p not in valid: valid.append( p )
 						
 		return valid
-	
+	'''
 	def innerConnect( self, startPos, endPos, path ):
 		"""Helper function for self.connect.
 		Updates the values of all the cells in a newly connected path.
@@ -200,6 +220,9 @@ class SolveGrid( Grid ):
 		startCell = self.getCellAt( startPos )
 		endCell = self.getCellAt( endPos )
 	
+		startCell.connected = True
+		endCell.connected = True
+		
 		for pos in path:
 			cell = self.getCellAt( getAbsolutePos( startPos, pos ))
 			cell.setType( PATH )
@@ -218,6 +241,22 @@ class SolveGrid( Grid ):
 		return Grid( self.dimensions[X], self.dimensions[Y], newGrid )
 	
 	
+	def getPossibleConnections( self, maxPaths=-1 ):
+		# get end cells
+		cells = self.getCellType( END )
+		
+		# for each cell
+		for c in cells:
+		# sort by connection count
+		
+		# get unconnected end cells
+		# pick one with fewest connection possibilities
+			targets = self.getReachable( c.getPosition() )
+			
+		# pick a random connection (cell,path) - pair
+		
+		# maintain a map of cell ids, and tried connections as invalid cells
+		
 	def getSimple( self ):
 		"""Gets the list of unconnected end point cells that have only one possible connecting cell.
 		"""
@@ -245,12 +284,138 @@ class SolveGrid( Grid ):
 				target = self.getReachable( pos )[0].getPosition()
 				conns = self.getConnections( pos, target )
 				self.innerConnect( pos, target, conns[0] )
+				
 			simple = self.getSimple()
+			
+	
+	def backtrack( self ):
+		# Solve straightforward connections
+		self.solveSimple()
+		
+		# Run backtracking procedure
+		
+		# stack = [[grid,possible_connections],..]
+		#uniqueCells = []
+		
+		# Get cells with only one possible connecting cell.
+		#cells = filter( lambda cell: len( self.getReachable( cell.getPosition() )) == 1, self.cellList )
+		
+		# Remove matching cells (one cell per pair).
+		#for c in cells: uniqueCells.append( c ) if self.getReachable( c.getPosition() )[0] not in uniqueCells else None
+		#freeCells = { tuple(c.getPosition()) : self.getConnections( c.getPosition(), self.getReachable( c.getPosition() )[0].getPosition() ) for c in uniqueCells }
+		stack = []#[ deepcopy(self.grid), freeCells ]
+		moveStack = []
+		#print self.getCompleteness()
+		
+		while self.getCompleteness() < 1:
+			#if not backtrack:
+			#tempGrid = deepcopy( self.grid )# get Cell Possibilities
+			#tempList = deepcopy( self.cellList )
+			uniqueCells = []
+			cells = filter( lambda cell: len( self.getReachable( cell.getPosition() )) == 1, self.cellList )
+			for c in cells: uniqueCells.append( c ) if self.getReachable( c.getPosition() )[0] not in uniqueCells else None
+			freeCells = { tuple(c.getPosition()) : self.getConnections( c.getPosition(), self.getReachable( c.getPosition() )[0].getPosition() ) for c in uniqueCells }
+			
+			'''
+			print '--START--'
+			print 'STACK TOP'
+			if stack:
+				for c in stack[-1][FREE]: print c, stack[-1][FREE][c], len( self.getReachable( list( c )))
+			else: print '-empty-'
+			print '\nCurrent possibilities'
+			for c in freeCells: print c, freeCells[c], len( self.getReachable( list( c )))
+			print '---\n'
+			'''
+			if not freeCells:
+				return -1
+			"""
+			#backtrack = False
+			while not freeCells and self.getCompleteness() < 1:
+				
+				print 'BACKTRACKING...'
+				for i in range(len(stack)):
+					print i
+					self.grid = stack[i][GRID]
+					self.cellList = stack[i][CELLS]
+					for cl in stack[i][FREE]:
+						print cl, stack[i][FREE][cl], len( self.getReachable( list( cl )))
+					print '\n'
+				
+				#[pos,conn] = moveStack.pop()
+				frame = stack.pop()
+				self.grid = frame[GRID]
+				freeCells = frame[FREE]
+				self.cellList = frame[CELLS]
+				#freeCells[pos].remove(conn)
+				#if not freeCells[pos]: freeCells.pop( pos )
+				
+				#print 'Freecells', freeCells
+				
+				'''
+				for i in freeCells:
+					print i, freeCells[i]
+				print '\n\n'
+				
+				for i in range(len(stack)):
+					print i
+					for cl in stack[i][FREE]:
+						print cl, stack[i][FREE][cl]
+					print '\n'
+				'''
+				if freeCells:
+					print '--FINISHED BACKTRACKING--'
+					print 'STACK TOP'
+					if stack:
+						for c in stack[-1][FREE]: print c, stack[-1][FREE][c]
+					else: print '-empty-'
+					print '\nCurrent possibilities'
+					for c in freeCells: print c, freeCells[c], len( self.getReachable( list( c )))
+					print '---\n'
+					'''
+					print '\n\nFinished'
+					for i in freeCells:
+						print i, freeCells[i], len( self.getReachable( list( i )))
+					print '\n\n'#return -1
+					'''
+			"""	
+			#stack.append([ deepcopy( self.grid ), freeCells, deepcopy( self.cellList )])	
+			
+			
+			# select a move
+			pos = list( choice( freeCells.keys() ))
+			cell = self.getCellAt( pos )			
+			reachable = self.getReachable( pos )
 
-
+			
+			target = reachable[0].getPosition()
+			conns = freeCells[tuple(pos)]
+			
+			shuffle( conns )
+			conn = conns.pop()
+			#print 'Chosen: ', pos, conn, '\n'
+			#moveStack.append( [tuple(pos),conn] )
+			if not conns: freeCells.pop( tuple(pos) )
+			else: freeCells[tuple(pos)] = conns
+			'''
+			print 'Remaining..'
+			for c in freeCells: print c, freeCells[c], len( self.getReachable( list( c )))
+			print '\n\n'
+			'''
+			#if freeCells:
+				# save frame to stack
+			
+			
+			self.innerConnect( cell.getPosition(), target, conn )
+			#print self.getConnectedness(), "**************"
+			#else:
+			#	backtrack = True
+			
+		
+	
 g = SolveGrid( int(sys.argv[XSIZE]), int(sys.argv[YSIZE]) )
 fname, ftype = sys.argv[FILENAME].split('.')
 
 g.importGrid( fname, ftype )
-g.solveSimple()
-g.exportGrid( OUTPUT_FILENAME_SOLVER, OUTPUT_FILETYPE_SOLVER )
+g.setInitEndCellCount()
+g.backtrack()
+g.exportGrid( fname, ftype )

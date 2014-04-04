@@ -1,0 +1,25 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-color: #FFFFFF;
+	}
+a img {
+	border:0;
+	outline:none;	
+	}
+#content h1{
+	margin-left:20px;
+	padding:0;
+	font-size:100%;
+	font-weight:normal;
+	word-wrap:break-word;
+	display:block;
+	font-size:35px;
+	font-weight:bold;
+	color:#494949;
+	line-height:1.1;
+	}
