@@ -11,8 +11,8 @@ The most notable and in production:
 * /www contains production website code and is written in PHP
 * /final contains the puzzle generator & solver and is written in Python
 
-However *we still have early development prototypes* in the repo, which can
-probably be *disregarded*:
+However **we still have early development prototypes** in the repo, which can
+probably be **disregarded**:
 
 * /linkapix contains the first prototype written in nodejs
 * /ImageTest contains the prototype image analyser written in JavaScript
