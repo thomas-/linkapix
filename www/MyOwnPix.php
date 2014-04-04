@@ -1,5 +1,12 @@
 <?php 
+// if doesn't log in , jump to main puzzle store
+// deal with login
 session_start();
+if (isset($_SESSION['username'])) {
+		echo "<script type='text/javascript'>
+		window.location.href ='GeneralPuzzles.php'
+		</script>";  
+	}
 if (isset($_POST['submit'])) {
 	include("conn.php");
 	$email = $_POST['login'];
@@ -31,6 +38,8 @@ if (isset($_POST['submit'])) {
 <script type="text/javascript" src="js/MyOwnPix.js"></script>
 </head>
 <body>
+
+<!-- header -->
 <table width="100%" height="100%"  border="0" cellpadding="0" cellspacing="0" background="images/rep_1.jpg">
   <tr>
     <td>&nbsp;</td>
@@ -86,6 +95,8 @@ if (isset($_POST['submit'])) {
                   <div>
 	<table border="0" cellspacing="0" cellpadding="0">
     <tr align="center">
+	
+<!-- Load Puzzle information -->
 <?php
    	include("conn.php");
 	if(empty($_GET["q"])){
@@ -194,6 +205,8 @@ if (isset($_POST['submit'])) {
 
 <div align="center" style="padding-top:5px"><?php echo $key; ?></div>
 </td>
+
+<!-- User System -->
 <td width="262" height="100%">
 <div style=" background:url(images/window.png) no-repeat;height:130px">
 <br />

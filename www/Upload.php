@@ -31,7 +31,7 @@ include("conn.php");
       <table width="100%" height="800" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td align="left" valign="top" bgcolor="#FFFFFF" style="border:1px solid #C5C5C5 ">
-          <table height="785"  border="0" cellspacing="0" cellpadding="0">
+          <table  border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td height="199" align="left" valign="top"><table width="100%" height="199"  border="0" cellpadding="0" cellspacing="0">
                 <tr align="left" valign="top">
@@ -53,11 +53,19 @@ include("conn.php");
               </td>
             </tr>
             <tr>
-            <!--        CONTENT!!!!!!!Here you can change height!!!       -->
-              <td height="1000" align="left" valign="top" background="images/back_4.jpg" style="border-top:12px solid #ffffff;background-repeat:no-repeat; background-position:bottom right; background-repeat:no-repeat">
+              <td height="1042" align="left" valign="top" background="images/back_4.jpg" style="border-top:12px solid #ffffff;background-repeat:no-repeat; background-position:bottom right; background-repeat:no-repeat">
 <table width="100%" cellspacing="0" cellpadding="0">
   <tr>
     <td align="center">
+    	<div align="left" style="margin-left:10px"><a href="    <?php
+		if ($hasPuzzle == 1) {
+			echo "GeneralPuzzles.php";
+		} 
+		else {
+			echo "PICK-A-PIX.html";
+		}
+	?>
+"><img src="images/back.png" alt="back"></a></div>
         <div id="sizetoolbar">
             <p class="uploader">		
     		<label for="width">Width:</label> 
@@ -90,7 +98,7 @@ include("conn.php");
     <a href="#"><img src="images/restart.png" width="32" height="32" alt="Restart" title="Restart"></a>
     </td>
     <td>
-    <a href="#"><img src="images/solution.png" width="32" height="32" alt="Show Solution" title="Show Solution"></a>
+    <a href="#" class="show_upload_solution"><img src="images/solution.png" width="32" height="32" alt="Show Solution" title="Show Solution"></a>
     </td>
     <td>
     <a href="<?php if ($hasPuzzle==1) echo "Score_rank.php?puzzle={$_GET['puzzle']}" ?>"><img src="images/highscore.png" width="32" height="32" alt="High Scores" title="View High Scores"></a>

@@ -6,6 +6,8 @@
 <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+
+<!-- header -->
 <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" background="images/rep_1.jpg">
   <tr>
     <td></td>
@@ -42,6 +44,7 @@
                 
                <div style="margin-top:20px">
 
+<!-- Score rank -->
 <table align="center" width="560px" style='font-family: Arial, Helvetica, sans-serif; font-size: 18px; color: #099;' cellpadding="8" cellspacing="0">
 	<tr align="center">
 		<th>Rank</th>

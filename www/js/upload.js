@@ -1,13 +1,29 @@
+/*
+ * File reader and image analyser
+ */
+
+
 var puzzle = null;
+var solution = null;
 var imagefile = null;
 
 function analyse_puzzle(src, callback) {
-    //var canvas = document.getElementById('myCanvas');
-    //var ctx = canvas.getContext('2d');
+
+    // function that takes an image source and a calback,
+    //
+    // we analyse the image source by splitting it into a user determined
+    // amount of blocks and then deciding what the most dominant colour is in
+    // each block. this gives us an array of an arbitrary size that tells you
+    // which square is which colour
+    //
+    // when this is done call the callback with the array as an argument to do
+    // something with the data
+
     var imageObj = new Image();
     imageObj.src = src;
 
     imageObj.onload = function() {
+        // create a canvas element but hide it from the user
         $('<canvas>').attr({
             id: 'myCanvas',
             width: this.width,
@@ -203,35 +219,48 @@ function analyse_puzzle(src, callback) {
 };
 
 function readFile(input) {
+    // a function called when a file is selected so that we can get information
+    // about it and send it to be analysed
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
+            // have to hook reader.onload like this to properly get image data
             var image = new Image();
             image.src = e.target.result;
+            // send data to be analysed and pass callback
             analyse_puzzle(e.target.result, function(pixArray) {
+                // callback for puzzle analyser
+                //
+                // we want to create an object to be sent in POST to our
+                // generator script
                 var postdata = new Object;
                 postdata.width = $('#width').val();
                 postdata.height = $('#height').val();
                 postdata.difficulty = $('#difficulty').val();
                 postdata.data = JSON.stringify(pixArray);
                 console.log(postdata);
+                // this might take a while so we draw a progress bar and
+                // animate it
                 $('.progress').show(400);
                 $('.progress-bar').animate({width: "90%"}, 20000);
+                // send POST request asynchronously to generate script
                 $.ajax({
                     type: "POST",
                     url: '/generate.php',
                     data: postdata,
                     success: function(result) {
                         result = JSON.parse(result);
-                        console.log(result.cachefilename);
+                        // when we're done, we can remove the progress bar
                         $('.progress-bar').stop();
                         $('.progress-bar').css({width: "100%"});
                         $('.progress').hide(400);
+                        // and create the puzzle from the returned data
                         destroy_puzzle();
-                        console.log(result.puzzledata);
                         puzzle = string_to_puzzle(result.puzzledata);
                         build_puzzle(puzzle);
+                        solution = string_to_puzzle(result.solutiondata);
+                        // hide stuff we dont need anymore
                         $('.uploader').hide(400);
                         $('.new_puzzle').show(400);
                         $('.save_puzzle').show(400);
@@ -244,18 +273,39 @@ function readFile(input) {
 };
 
 $(".upld").change(function (event) {
+    // monitors the user selecting an image
     readFile(this);
     imagefile = event.target.files;
 });
 
+$(".show_upload_solution").on('click', function (event) {
+    // when we generate a puzzle we generate a solution,
+    // which is stored globally as solution
+    // we can use this to build a solved puzzle when user clicks show solution
+    destroy_puzzle();
+    build_puzzle(solution);
+    // we want to make it pretty so loop through the table making every square
+    // the proper colour but keep the numbers white
+    $(".linkapix td").each(function(index) {
+        if ($(this).data('number') != 0) {
+            $(this).addClass('linked');
+            $(this).css("background-color", $(this).css("color"));
+            $(this).css("color", "white");
+        } else {
+            $(this).html($(this).data('partial'));
+        }
+    })
+});
+
 $(".btn-save").on('click', function() {
-    var valid = false;
+    // function to save generated puzzle to users library
     var puzzlename = prompt("Enter a name for the puzzle:");
     if (puzzlename != null) {
         postdata = new Object;
         postdata.puzzlename = puzzlename;
         postdata.puzzledata = JSON.stringify(puzzle);
         $.ajax({
+            // we send the data to our save script
             type: "POST",
             url: '/save.php',
             data: postdata,

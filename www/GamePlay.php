@@ -1,4 +1,5 @@
-<?php 
+<?php
+// start session and load relevant puzzle 
 session_start();
 include("conn.php");
 	if (empty($_GET['puzzle'])) {
@@ -23,6 +24,7 @@ include("conn.php");
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+<!-- header -->
 <table width="100%" height="100%"  border="0" cellpadding="0" cellspacing="0" background="images/rep_1.jpg">
   <tr>
     <td>&nbsp;</td>
@@ -55,19 +57,11 @@ include("conn.php");
             <tr>
             
               <td height="1042" align="left" valign="top" background="images/back_4.jpg" style="border-top:12px solid #ffffff;background-repeat:no-repeat; background-position:bottom right; background-repeat:no-repeat">
+<!-- Conetent --><!-- Game Window -->
 <table width="100%" cellspacing="0" cellpadding="0">
   <tr>
     <td align="center">
-		<div align="left" style="margin-left:10px"><a href="    
-			<?php
-				if ($hasPuzzle == 1) {
-					echo "GeneralPuzzles.php";
-				} 
-				else {
-					echo "PICK-A-PIX.html";
-				}
-			?>
-		"><img src="images/back.png" alt="back"></a></div>
+		<div align="left" style="margin-left:10px"><a href="PICK-A-PIX.html"><img src="images/back.png" alt="back"></a></div>
     	<div id="sizetoolbar"> 		
     		<label for="width">Width:</label> 
             <input type="number" name="width" id="width" value="30">
@@ -82,7 +76,7 @@ include("conn.php");
         
         
         
-        
+<!-- Game Buttons -->
         <table id="gameButtons" width="301" border="0" cellspacing="20" cellpadding="0" align="center">
   <tr>
     <td>
@@ -102,6 +96,7 @@ include("conn.php");
     </td>
   </tr>
   <tr>
+<!-- Functional Buttons -->
     <td align="center">
     <div class="functionButtons">
     	<div class="btn-load load_puzzle" style="width:160px; height:45px;">

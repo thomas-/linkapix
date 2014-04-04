@@ -8,6 +8,7 @@
 	:Mandla Moyo, 2014.
 """
 
+#Indices
 X = 0
 Y = 1
 VALUE = 2
@@ -15,10 +16,6 @@ TYPE = 3
 START_ID = 4
 END_ID = 5
 COLOUR = 6
-
-LIMIT = 4
-MAX_LIMIT = 10
-LIMIT_CONSTANT = 1.25
 PID = 4
 
 EMPTY = 0
@@ -29,13 +26,28 @@ XSIZE = 1
 YSIZE = 2
 FILENAME = 3
 
-BLACK = hash( (0,0,0) )
-WHITE = hash( (255,255,255) )
-RED = hash( (255,0,0) )
-GREEN = hash( (0,255,0) )
-BLUE = hash( (0,0,255) )
-YELLOW = hash( (255,255,0) )
+FIRST = 0
+SECOND = 1
 
+#Tags
+MINIMUM_NODECOUNT = 2
+ANY_VALUE = -1
+EMPTY_LIST = []
+LIMIT = 4
+MAX_LIMIT = 10
+LIMIT_CONSTANT = 1.25
+MAX_ATTEMPTS = 5
+
+#Colours
+BLACK = [0,0,0]
+WHITE = [255,255,255]
+
+#Error Flags
+UNDERPOPULATION_ERROR = 1
+NO_MATCH_ERROR = -1
+MERGE_ERROR = -1
+
+#File Settings
 CSV = "csv"
 JSON = "json"
 

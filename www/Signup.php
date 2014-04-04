@@ -7,6 +7,7 @@
 <script type="text/javascript" src="js/Signup.js"></script>
 </head>
 <body>
+<!-- header -->
 <table width="100%" height="100%"  border="0" cellpadding="0" cellspacing="0" background="images/rep_1.jpg">
   <tr>
     <td>&nbsp;</td>
@@ -38,6 +39,8 @@
             </tr>
             <tr>
               <td height="586" align="left" valign="top" background="images/back_4.jpg" style="border-top:12px solid #ffffff;background-repeat:no-repeat; background-position:bottom right; background-repeat:no-repeat">
+
+<!-- Sign up form  -->
 <div id="content">
 	<h1>Welcome to LINK-A-PIX</h1>
     

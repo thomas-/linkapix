@@ -1,4 +1,6 @@
-<?php session_start(); 
+<?php
+// if doesn't log in or log off , jump to main puzzle store 
+session_start(); 
 	if (!isset($_SESSION['username'])) {
 		echo "<script type='text/javascript'>
 		window.location.href ='MyOwnPix.php'
@@ -20,6 +22,7 @@
 <script type="text/javascript" src="js/Popup.js"></script>
 </head>
 <body>
+<!-- deal with changing password -->
 <?php 
 if (isset($_POST['changePassword'])) {
 	echo "<script>
@@ -74,6 +77,8 @@ if (isset($_POST['changePassword'])) {
 	}	
 }
 ?>
+
+<!-- header -->
 <table width="100%" height="100%"  border="0" cellpadding="0" cellspacing="0" background="images/rep_1.jpg">
   <tr>
     <td>&nbsp;</td>
@@ -129,6 +134,8 @@ if (isset($_POST['changePassword'])) {
                   <div>
 	<table border="0" cellspacing="0" cellpadding="0">
     <tr align="center">
+	
+<!-- Load puzzle information -->
 <?php
    	include("conn.php");
 	if(empty($_GET["q"])){
@@ -238,6 +245,8 @@ if (isset($_POST['changePassword'])) {
 <div align="center" style="padding-top:5px"><?php echo $key; ?></div>
 </td>
 <td width="262" height="100%">
+
+<!-- User System -->
 <div style=" background:url(images/window.png) no-repeat;height:130px">
 <br />
 <br />

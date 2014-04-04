@@ -11,17 +11,6 @@
 
 from fileReader import CsvReader, JsonReader
 from constants import *
-
-# Map for writing cell colour's to json file
-COLOUR_MAP = { WHITE: [255,255,255], 
-			   BLACK: [0,0,0],
-			   RED: [255,0,0],
-			   GREEN: [0,255,0],
-			   BLUE: [0,0,255],
-			   YELLOW: [255,255,0] }
-
-# Map for reading cell colour info from csv file
-CSV_COLS = { 1:BLACK, 2:RED, 3:GREEN, 4:BLUE, 5:YELLOW, 6:BLACK, 7:BLACK, 8:BLACK, 9:BLACK }
 			   
 class Cell:
 	"""The Cell class describes the core link-a-pix data-type: a grid cell.
@@ -149,7 +138,7 @@ class CsvCellReader( CellReader ):
 		for j in range(len( data )):
 			for i in range( len( data[j] )):
 				if data[j][i]:
-					cellInfo.append( [i, j, data[j][i], 1, None, None, CSV_COLS[data[j][i]]] )
+					cellInfo.append( [i, j, data[j][i], 1, None, None, BLACK] )
 					
 		return cellInfo
 		
@@ -187,15 +176,15 @@ class JsonCellReader( CellReader ):
 		cellInfo = []
 		for row in range( len( data )):
 			for col in range( len( data[row] )):
-				xPos = col #i%self.dimensions[X]
-				yPos = row #i/self.dimensions[Y]
+				xPos = col
+				yPos = row
 				value = data[row][col]["number"]
 				type = data[row][col]["type"] if "type" in data[row][col] else END
 				startId = None
 				endId = None
 				
 				c = data[row][col]["color"]
-				colour = hash( (c["r"], c["g"], c["b"]) )
+				colour = [c["r"], c["g"], c["b"]]
 				
 				if value: cellInfo.append( [xPos, yPos, value, type, startId, endId, colour] )
 		return cellInfo
@@ -211,8 +200,7 @@ class JsonCellReader( CellReader ):
 		for i in range(len(cellList)):
 			cell = cellList[i]
 			v = cell.getValue()
-			#col = 0 if v else 255
-			r, g, b = COLOUR_MAP[cell.colour]
+			r,g,b = cell.colour
 			cellInfo = {"number": v, "color": {"r": r, "g": g, "b": b}}
 			
 			if full:
@@ -228,35 +216,3 @@ class JsonCellReader( CellReader ):
 				
 		self.reader.writeFile( name, data )
 	
-""" UNUSED
-class Converter:
-	def __init__( self, dimensions ):
-		self.dimensions = dimensions
-		self.csvReader = CsvCellReader( dimensions )
-		self.jsonReader = JsonCellReader( dimensions )
-		
-	def reset( dimensions ):
-		self.dimensions = dimensions
-		self.csvReader = CsvCellReader( dimensions )
-		self.jsonReader = JsonCellReader( dimensions )
-		
-	def getCellList( self, cellInfo ):
-		cellDi = {}
-		for j in range( self.dimensions[Y] ):
-			for i in range( self.dimensions[X] ):
-				cellDi[(i,j)] = Cell( [i,j] )
-				cellDi[(i,j)].setInfo( 0, 0, EMPTY )
-				
-		for info in cellInfo:
-			cellDi[(info[X],info[Y])].setInfo( 0, info[VALUE], info[TYPE] )
-
-		return cellDi.values()
-		
-	def jsonToCsv( self, fname ):
-		cellList = self.getCellList( self.jsonReader.readGrid( fname ))
-		self.csvReader.writeGrid( fname, cellList )
-	
-	def csvToJson( self, fname ):
-		cellList = self.getCellList( self.csvReader.readGrid( fname ))
-		self.jsonReader.writeGrid( fname, cellList )
-"""
