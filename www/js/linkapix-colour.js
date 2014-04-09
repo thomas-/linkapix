@@ -11,6 +11,7 @@ var number = 0;
 var color = null;
 var previous = null;
 var links = [];
+var restartPuzzle = null;
 
 function destroy_puzzle() {
     // (re)start with a clean state, reset all state variables
@@ -61,7 +62,7 @@ function build_puzzle(puzzle) {
             // it and append it to the row
             if(number != '') {
                 var colorstring = 'rgb('+block.color.r+','+block.color.g+','+block.color.b+')';
-                    blocks.push('<td class="static" data-number="'+number+'" data-x="'+cid+'" data-y="'+rid+'" style="color: '+colorstring+';">' + number + "</td>");
+                    blocks.push('<td class="static" data-color="'+colorstring+'" data-number="'+number+'" data-r="'+block.color.r+'" data-g="'+block.color.g+'" data-b="'+block.color.b+'" data-x="'+cid+'" data-y="'+rid+'" style="color: '+colorstring+';">' + number + "</td>");
             } else {
                 // else we append a blank string as colour information not
                 // needed
@@ -74,7 +75,7 @@ function build_puzzle(puzzle) {
         table.append(tr)
     });
     // register the game events when we've built the puzzle
-    register_game_events();
+    //register_game_events();
 
 };
 
@@ -95,6 +96,9 @@ function refresh_game() {
     color = null;
     previous = null;
     links = [];
+    
+    // check for end of game
+    if (!$(".static:not(.linked)")[0]) alert("success!");
 }
 
 function check_valid_link(start, end) {
@@ -122,6 +126,7 @@ function register_game_events() {
             return
         }
         if($(this).hasClass('unfinished')) {
+            $(".linkapix").trigger('editlink', [$(this)]);
             return;
         } else {
             // else we just want to start making a link
@@ -156,6 +161,7 @@ function register_game_events() {
             block.addClass('linked');
             block.css("background-color", block.css("color"));
             block.css("color", "white");
+            refresh_game();
         }
         else {
             // everything else however we need to enter picking state and store
@@ -213,6 +219,9 @@ function register_game_events() {
             block.data('partial', $("td.picking").length);
             links.push(block);
             block.data('links', links);
+            $.each(links, function(key, val) {
+                val.data("links", links);
+            });
             links = [];
             // by removing all the picking states from the squares and making
             // them unfinished
@@ -235,6 +244,8 @@ function register_game_events() {
                 val.addClass('linked');
                 val.css("background-color", color);
                 val.css("color", "white");
+                val.data("links", links);
+                val.data("solved", number);
             });
             links = [];
         }
@@ -245,12 +256,18 @@ function register_game_events() {
 
     $('.linkapix').on('editlink', function(event, block) {
         // undo completed links incase of error or mistake etc
+        link = block.data('links');
         block.html('');
         block.removeClass('link-end');
-        $.each(block.data('links'), function(key, val) {
+        $.each(link, function(key, val) {
             val.data('partial', null);
+            val.removeAttr('style');
+            val.css('color', val.data('color'));
             val.removeClass('unfinished');
             val.removeClass('linked');
+            val.removeClass('link-end');
+            val.removeData('links');
+            val.removeData('solved');
         });
         refresh_game();
     });
@@ -287,6 +304,56 @@ $(".load_puzzle").on('click', function() {
     return false;
 });
 
+$(".clear_incorrect").on('click', function (event) {
+    $(".linkapix td").each(function(index, val) {
+        if ($(this).data('solved') !== undefined) {
+            x = $(this).data('x');
+            y = $(this).data('y');
+            if ($(this).data('solved') != solution[y][x].number) {
+                link = $(this).data('links');
+                $(this).html('');
+                $.each(link, function(key, val) {
+                    val.data('partial', null);
+                    val.removeAttr('style');
+                    val.css('color', val.data('color'));
+                    val.removeClass('unfinished');
+                    val.removeClass('linked');
+                    val.removeClass('link-end');
+                    val.removeData('links');
+                    val.removeData('solved');
+                });
+            }
+        };
+    });
+    refresh_game();
+});
+
+$(".show_solution").on('click', function (event) {
+    // when we generate a puzzle we generate a solution,
+    // which is stored globally as solution
+    // we can use this to build a solved puzzle when user clicks show solution
+    destroy_puzzle();
+    build_puzzle(solution);
+    // we want to make it pretty so loop through the table making every square
+    // the proper colour but keep the numbers white
+    $(".linkapix td").each(function(index) {
+        if ($(this).data('number') != 0) {
+            $(this).addClass('linked');
+            $(this).css("background-color", $(this).css("color"));
+            $(this).css("color", "white");
+        } else {
+            $(this).html($(this).data('partial'));
+        }
+    })
+});
+
+$(".restart_game").on('click', function() {
+    destroy_puzzle();
+    build_puzzle(puzzle);
+    saveGameState();
+});
+
+
 $(".solve_puzzle").on('click', function() {
     // to solve puzzles we call the solveendpoint with the puzzle data
     var postdata = new Object;
@@ -304,6 +371,7 @@ $(".solve_puzzle").on('click', function() {
             // the solved version
             destroy_puzzle();
             puzzle = string_to_puzzle(result.solved);
+			restartPuzzle = puzzle;
             build_puzzle(puzzle);
             console.log(result.solved);
         }

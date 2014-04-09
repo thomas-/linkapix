@@ -1,17 +1,18 @@
 <?php
 // start session and load relevant puzzle 
 session_start();
-include("conn.php");
-	if (empty($_GET['puzzle'])) {
-		$hasPuzzle = 0;	
-    }
-	else {
-        $hasPuzzle = 1;
-        $puzzle = mysql_real_escape_string($_GET['puzzle']);
-		$rs = mysql_query("SELECT * FROM Puzzle WHERE name = '$puzzle'");
+	if (!empty($_GET['puzzleId'])) {
+		$hasPuzzle = 1;
+		include("conn.php");
+        $puzzleId = mysql_real_escape_string($_GET['puzzleId']);
+		$rs = mysql_query("SELECT * FROM Puzzle WHERE id = '$puzzleId'");
 		$result = mysql_fetch_assoc($rs);
 		$puzzledata = $result['data']; 
+        $solutiondata = $result['solution'];
 		mysql_close();
+	}
+	else {
+		$hasPuzzle=0;	
 	}
 ?>
 <html>
@@ -19,6 +20,7 @@ include("conn.php");
 <title>LINK-A-PIX</title>
 <meta http-equiv="Content-Style-Type" content="text/css">
 <link rel="shortcut icon" type="image/x-icon" href="images/puzzle.ico" media="screen" />
+<LINK HREF="style.css" TYPE="text/css" REL="stylesheet">
 <link href="css/GamePlay.css" rel="stylesheet" type="text/css" />
 <link href="css/linkapix-colour.css" rel="stylesheet" type="text/css" />
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -43,11 +45,11 @@ include("conn.php");
                   </div></td>
                   <td width="231"><table width="198" border="0" cellspacing="0" cellpadding="0" >
                     <tr align="left" valign="top">
-                      <td width="49"><a href="#"><img src="images/main_2.jpg" width="47" height="182" border="0"></a></td>
-                      <td width="48"><a href="#"><img src="images/about_2.jpg" width="46" height="182" border="0"></a></td>
-                      <td width="46"><a href="#"><img src="images/portfolio_2.jpg" width="44" height="182" border="0"></a></td>
-                      <td width="46"><a href="#"><img src="images/services_2.jpg" width="44" height="182" border="0"></a></td>
-                      <td><a href="#"><img src="images/contacts_2.jpg" width="44" height="182" border="0"></a></td>
+                      <td width="49"><img src="images/main_2.jpg" width="47" height="182" border="0"></td>
+                      <td width="48"><img src="images/about_2.jpg" width="46" height="182" border="0"></td>
+                      <td width="46"><img src="images/portfolio_2.jpg" width="44" height="182" border="0"></td>
+                      <td width="46"><img src="images/services_2.jpg" width="44" height="182" border="0"></td>
+                      <td><img src="images/contacts_2.jpg" width="44" height="182" border="0"></td>
                     </tr>
                   </table></td>
                 </tr>
@@ -61,15 +63,9 @@ include("conn.php");
 <table width="100%" cellspacing="0" cellpadding="0">
   <tr>
     <td align="center">
-		<div align="left" style="margin-left:10px"><a href="PICK-A-PIX.html"><img src="images/back.png" alt="back"></a></div>
-    	<div id="sizetoolbar"> 		
-    		<label for="width">Width:</label> 
-            <input type="number" name="width" id="width" value="30">
-    		<label for="height" style="margin-left:30px">Height:</label> 
-    		<input type="number" name="height" id="height" value="30">
-        </div>
+		<div align="left" style="margin-left:10px"><a href="PICK-A-PIX.html" class="buttonEffect"><img src="images/back.png" alt="back"></a></div>
     	<div id="gameDisplayb">
-            <div class="centered linkapix">
+            <div class="centered linkapix" >
             </div>
         </div>
         <div>
@@ -79,16 +75,17 @@ include("conn.php");
 <!-- Game Buttons -->
         <table id="gameButtons" width="301" border="0" cellspacing="20" cellpadding="0" align="center">
   <tr>
-    <td>
-    <a href="#"><img src="images/restart.png" width="32" height="32" alt="Restart" title="Restart"></a>
+    <td align="center">
+    <a <?php if ($hasPuzzle==1) echo "href='GamePlay.php?puzzleId={$_GET['puzzleId']}'"; ?> class="buttonEffect restart_game"><img src="images/restart.png" width="32" height="32" alt="Restart" title="Restart"></a>
     </td>
-    <td>
-    <a href="#"><img src="images/solution.png" width="32" height="32" alt="Show Solution" title="Show Solution"></a>
+    <td align="center">
+    <a class="buttonEffect clear_incorrect"><img src="images/check_links.png" width="32" height="32" alt="Clear Incorrect Links" title="Clear Incorrect Links"></a>
     </td>
-    <td>
-    <a href="<?php if ($hasPuzzle==1) echo "Score_rank.php?puzzle={$_GET['puzzle']}" ?>"><img src="images/highscore.png" width="32" height="32" alt="High Scores" title="View High Scores"></a>
+    <td align="center">
+    <a class="buttonEffect show_solution"><img src="images/solution.png" width="32" height="32" alt="Show Solution" title="Show Solution"></a>
     </td>
-    <td><a href="#" onClick="newWindow()"><img src="images/new-window.png" width="32" height="32" alt="New Window" title="Open New Window"></a>
+    <td align="center">
+    <a href="<?php if ($hasPuzzle==1) echo "Score_rank.php?puzzleId={$_GET['puzzleId']}" ?>" class="buttonEffect"><img src="images/highscore.png" width="32" height="32" alt="High Scores" title="View High Scores"></a>
     </td>
   </tr>
 		</table>
@@ -100,9 +97,9 @@ include("conn.php");
     <td align="center">
     <div class="functionButtons">
     	<div class="btn-load load_puzzle" style="width:160px; height:45px;">
-    		<a class="btn-file"></a>
+    		<img src="images/load-disabled.jpg" alt="load" title="Go to 'Play A Pix' to upload your favourite" />
         </div>
-        <a href="#" class="btn-save save_puzzle"><img src="images/save-btn.jpg" alt="save" title="Save" /></a>
+       		<img src="images/save-disabled.jpg" alt="save" title="Go to 'Play A Pix' to save your favourite" style="float:left;margin-left:160px;" />
     </div>
     </td>
   </tr>
@@ -129,8 +126,10 @@ include("conn.php");
 
   <script>
     destroy_puzzle();
-    puzzle = string_to_puzzle('<?=$puzzledata?>');
+    var puzzle = string_to_puzzle('<?=$puzzledata?>');
     build_puzzle(puzzle);
+    var solution = string_to_puzzle('<?=$solutiondata?>');
+    register_game_events();
   </script>
 
 </body>

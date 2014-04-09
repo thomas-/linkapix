@@ -1,6 +1,7 @@
 <?php 
 // if doesn't log in , jump to main puzzle store
 // deal with login
+session_set_cookie_params(360000,"/");
 session_start();
 if (isset($_SESSION['username'])) {
 		echo "<script type='text/javascript'>
@@ -9,8 +10,8 @@ if (isset($_SESSION['username'])) {
 	}
 if (isset($_POST['submit'])) {
 	include("conn.php");
-	$email = $_POST['login'];
-	$password = $_POST['password'];
+	$email = mysql_real_escape_string($_POST['login']);
+	$password = mysql_real_escape_string($_POST['password']);
 	
 	$rs = mysql_query("SELECT * FROM Users WHERE email = '$email' AND  password = '$password'");
 	$sum = mysql_num_rows($rs);
@@ -25,7 +26,18 @@ if (isset($_POST['submit'])) {
 		$_SESSION['username'] = $name;
 		echo "<script type='text/javascript'>
 		window.location.href ='GeneralPuzzles.php'
-		</script>";  
+		</script>";
+	}
+	else {
+		mysql_close();
+		unset($_POST['login']);
+		unset($_POST['password']);
+		
+		// invalid user or password
+		echo "<script type='text/javascript'>	window.onload=function() {
+			document.getElementById('alert').innerHTML='* Invalid Email or Password!';	
+		}
+			</script>";
 	}
 }
 ?>
@@ -34,6 +46,7 @@ if (isset($_POST['submit'])) {
 <title>LINK-A-PIX</title>
 <meta http-equiv="Content-Style-Type" content="text/css">
 <link rel="shortcut icon" type="image/x-icon" href="images/puzzle.ico" media="screen" />
+<LINK HREF="style.css" TYPE="text/css" REL="stylesheet">
 <link href="css/MyOwnPix.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/MyOwnPix.js"></script>
 </head>
@@ -74,11 +87,11 @@ if (isset($_POST['submit'])) {
                   </td>
                   <td><table width="198" border="0" cellspacing="0" cellpadding="0" >
                     <tr align="left" valign="top">
-                      <td width="41"><a href="#"><img src="images/main_2.jpg" width="39" height="182" border="0"></a></td>
-                      <td width="40"><a href="#"><img src="images/about_2.jpg" width="38" height="182" border="0"></a></td>
-                      <td width="39"><a href="#"><img src="images/portfolio_2.jpg" width="37" height="182" border="0"></a></td>
-                      <td width="40"><a href="#"><img src="images/services_2.jpg" width="38" height="182" border="0"></a></td>
-                      <td><a href="#"><img src="images/contacts_2.jpg" width="38" height="182" border="0"></a></td>
+                      <td width="41"><img src="images/main_2.jpg" width="39" height="182" border="0"></td>
+                      <td width="40"><img src="images/about_2.jpg" width="38" height="182" border="0"></td>
+                      <td width="39"><img src="images/portfolio_2.jpg" width="37" height="182" border="0"></td>
+                      <td width="40"><img src="images/services_2.jpg" width="38" height="182" border="0"></td>
+                      <td><img src="images/contacts_2.jpg" width="38" height="182" border="0"></td>
                     </tr>
                   </table></td>
                 </tr>
@@ -121,10 +134,10 @@ if (isset($_POST['submit'])) {
     $off = ($page-1)*$pagesize; 
 	
 	if(empty($_GET["q"])){
-		$content = mysql_query("select name,position from Puzzle where username ='admin' limit $off,$pagesize");
+		$content = mysql_query("select name,position,id from Puzzle where username ='admin' limit $off,$pagesize");
 	}
 	else {
-		$content = mysql_query("select name,position from Puzzle where name like '%$search%' AND username ='admin' limit $off,$pagesize");
+		$content = mysql_query("select name,position,id from Puzzle where name like '%$search%' AND username ='admin' limit $off,$pagesize");
 	}
     
 	for ($i=0;$i<9;$i++) {
@@ -134,8 +147,8 @@ if (isset($_POST['submit'])) {
 			}
 ?>	
 
-<td width="146" height="166" style="overflow:hidden">
-<div style="height:130px; width:146px; margin-bottom:5px;"><a href="GamePlay.php?puzzle=<?php echo $result[0] ?>"><img height="130" width="140" src="<?php echo $result[1]?>" alt="thumbnail"/></a></div>
+<td width="146" height="166" align="center" style="overflow:hidden">
+<div style="height:130px; width:146px; margin:0 auto 5px auto;"><a href="GamePlay.php?puzzleId=<?php echo $result[2] ?>" class="buttonEffect"><img height="130" width="140" src="<?php echo $result[1]?>" alt="thumbnail"/></a></div>
 <?php echo $result[0] ?></td>	
 
 <?php				
@@ -255,13 +268,14 @@ if (isset($_POST['submit'])) {
           </table></td>
         </tr>
       </table>
-    </div>      </td>
+    </div>
+    <div style="border: 1px solid #C5C5C5; margin-top:3px; padding-left:40%">
+    	<img src="images/footer.png" alt="Link A Pix" style="margin-top:2px;margin-left:30px" />
+    	<br />
+   		<a href="About.html">Find out more about us</a>
+    </div>      
+  </td>
     <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td height="100%">&nbsp;</td>
-    <td width="558" height="100%" align="center" valign="top"><div style="padding-left:153px; padding-top:20px"></div></td>
-    <td height="100%">&nbsp;</td>
   </tr>
 </table>
 </body>

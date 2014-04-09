@@ -13,14 +13,46 @@ session_start();
 			window.location.href ='MyOwnPix.php'
 			</script>";	
 	}
+	if (isset($_POST['deleteId'])) {
+		$deletedPuzzle = $_POST['deleteId'];
+		include("conn.php");
+		$resultSet = mysql_query("select position from Puzzle where id = '{$deletedPuzzle}'");
+		$deleteFile = mysql_fetch_row($resultSet);
+		$filename = $deleteFile[0];
+		unlink($filename);
+		$delete = mysql_query("delete from Puzzle where id='{$deletedPuzzle}'");
+		$deleteShared = mysql_query("delete from Share where puzzleId='{$deletedPuzzle}'");
+		$deleteVotes = mysql_query("delete from Votes where puzzleId='{$deletedPuzzle}'");
+		mysql_close();
+		unset($_POST['deleteId']);
+	}
+	if (isset($_POST['shareId'])) {
+		$sharedPuzzle = $_POST['shareId'];
+		include("conn.php");
+		$search = mysql_query("select name,username,position from Puzzle where id ='{$sharedPuzzle}'");
+		$shareInfo = mysql_fetch_row($search);
+		$insertShare = mysql_query("insert into Share(puzzleId,name,username,position) values('{$sharedPuzzle}','{$shareInfo[0]}','{$shareInfo[1]}','{$shareInfo[2]}')");	
+		$insertVotes = mysql_query("insert into Votes(puzzleId,username) values('{$sharedPuzzle}','{$shareInfo[1]}')");
+		mysql_close();
+		unset($_POST['shareId']);
+	}
+	if (isset($_POST['stopShareId'])) {
+		$stopSharePuzzle = $_POST['stopShareId'];
+		include("conn.php");
+		$stopShare = mysql_query("delete from Share where puzzleId = '{$stopSharePuzzle}'");		
+		mysql_close();
+		unset($_POST['stopShareId']);
+	}
 ?>
 <html>
 <head>
 <title>LINK-A-PIX</title>
 <meta http-equiv="Content-Style-Type" content="text/css">
 <link rel="shortcut icon" type="image/x-icon" href="images/puzzle.ico" media="screen" />
+<LINK HREF="style.css" TYPE="text/css" REL="stylesheet">
 <link href="css/PrivatePuzzles.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/Popup.js"></script>
+<script src="js/jquery.js" ></script>
 </head>
 <body>
 <!-- deal with changing password function -->
@@ -114,11 +146,11 @@ if (isset($_POST['changePassword'])) {
                   </td>
                   <td><table width="198" border="0" cellspacing="0" cellpadding="0" >
                     <tr align="left" valign="top">
-                      <td width="41"><a href="#"><img src="images/main_2.jpg" width="39" height="182" border="0"></a></td>
-                      <td width="40"><a href="#"><img src="images/about_2.jpg" width="38" height="182" border="0"></a></td>
-                      <td width="39"><a href="#"><img src="images/portfolio_2.jpg" width="37" height="182" border="0"></a></td>
-                      <td width="40"><a href="#"><img src="images/services_2.jpg" width="38" height="182" border="0"></a></td>
-                      <td><a href="#"><img src="images/contacts_2.jpg" width="38" height="182" border="0"></a></td>
+                      <td width="41"><img src="images/main_2.jpg" width="39" height="182" border="0"></td>
+                      <td width="40"><img src="images/about_2.jpg" width="38" height="182" border="0"></td>
+                      <td width="39"><img src="images/portfolio_2.jpg" width="37" height="182" border="0"></td>
+                      <td width="40"><img src="images/services_2.jpg" width="38" height="182" border="0"></td>
+                      <td><img src="images/contacts_2.jpg" width="38" height="182" border="0"></td>
                     </tr>
                   </table></td>
                 </tr>
@@ -161,10 +193,10 @@ if (isset($_POST['changePassword'])) {
     $off = ($page-1)*$pagesize; 
 	
 	if(empty($_GET["q"])){
-		$content = mysql_query("select name,position from Puzzle where username ='{$_SESSION['username']}' limit $off,$pagesize");
+		$content = mysql_query("select name,position,id from Puzzle where username ='{$_SESSION['username']}' order by id limit $off,$pagesize");
 	}
 	else {
-		$content = mysql_query("select name,position from Puzzle where name like '%$search%' AND username ='{$_SESSION['username']}' limit $off,$pagesize");
+		$content = mysql_query("select name,position,id from Puzzle where name like '%$search%' AND username ='{$_SESSION['username']}' order by id limit $off,$pagesize");
 	}
 	
 	for ($i=0;$i<9;$i++) {
@@ -174,9 +206,53 @@ if (isset($_POST['changePassword'])) {
 			}
 ?>	
 
-<td width="146" height="166" style="overflow:hidden">
-<div style="height:130px; width:146px;margin-bottom:5px;"><a href="GamePlay.php?puzzle=<?php echo $result[0] ?>"><img height="130" width="140" src="<?php echo $result[1]?>" alt="thumbnail"/></a></div>
-<?php echo $result[0] ?></td>	
+<td width="146" height="166" align="center" style="overflow:hidden">
+<div style='position:relative ; margin:0 auto 5px auto;height:130px;width:146px; overflow:hidden' onMouseOver="appear('#up<?php echo $result[2] ?>')" onMouseOut="disappear('#up<?php echo $result[2] ?>')" >
+
+<div style="position:absolute;top:0px;height:130px; width:146px;"><a href="GamePlay.php?puzzleId=<?php echo $result[2] ?>" class="buttonEffect"><img height="130" width="140" src="<?php echo $result[1]?>" alt="thumbnail" /></a>
+</div>
+
+<div class="toolbar" align="right" id="up<?php echo $result[2] ?>">
+
+<form method="post" id="delete<?php echo "{$result[2]}" ?>" style=" position:absolute; bottom:-14px ; right:15px">
+<input type="hidden" value="<?php echo $result[2]; ?>" name="deleteId" />
+<a href="###" onClick="deletePuzzle('delete<?php echo "{$result[2]}" ?>')"><img src="images/delete.png" alt="delete" title="delete" /></a>
+</form>
+
+<?php 
+$rs = mysql_query("select * from Share where puzzleID = '$result[2]'");
+$num = mysql_num_rows($rs);
+if ($num <= 0) {
+?>
+<form method="post" id="share<?php echo "{$result[2]}" ?>" style=" position:absolute; bottom:-14px ; right:60px">
+<input type="hidden" value="<?php echo $result[2]; ?>" name="shareId" />
+<a href="###" onClick="sharePuzzle('share<?php echo "{$result[2]}" ?>')"><img src="images/share.png" alt="share" title="share" /></a>
+</form>
+<?php
+}
+else {
+?>
+<form method="post" id="stopShare<?php echo "{$result[2]}" ?>" style=" position:absolute; bottom:-14px ; right:60px">
+<input type="hidden" value="<?php echo $result[2]; ?>" name="stopShareId" />
+<a href="###" onClick="stopShare('stopShare<?php echo "{$result[2]}" ?>')"><img src="images/stop_share.png" alt="stop_share" title="stop sharing" /></a>
+</form>
+<?php 
+}
+$voteCount = mysql_query("select * from Votes where puzzleId = '{$result[2]}'");
+$totalVote = mysql_num_rows($voteCount);
+if ($totalVote > 0) {
+	$totalVote = $totalVote -1;
+}
+?>
+
+<div style="position:absolute; bottom:3px ; right:120px">
+<img src="images/vote.png" title="votes" /></div>
+<div style=" color:#000; position:absolute; bottom:2px; right:<?php if ($totalVote < 10) echo "95px"; else if ($totalVote < 100) echo "88px"; else echo "81px"; ?>"><?php if ($totalVote < 100) echo "(".$totalVote.")"; else echo "(99+)"; ?></div>
+</div>
+
+</div>
+<?php echo $result[0] ?>
+</td>		
 
 <?php				
 		}
@@ -266,18 +342,18 @@ Log In to Find More !<br />
 <table width="100%" height="200px">
 	<tr>
 		<td align="center">
-			<a href="GeneralPuzzles.php"><img src="images/SystemPuzzles.png" alt="general" title="General Puzzles" align="top" ></a>			
+			<a href="GeneralPuzzles.php" class="buttonEffect"><img src="images/SystemPuzzles.png" alt="general" title="General Puzzles" align="top" ></a>			
 		</td>
         <td align="center">
-			<a href="UserUploadedPuzzles.php"><img src="images/UserUploadedPuzzles.png" alt="UserUploadedPuzzles" title="Uploaded Puzzles" align="top" ></a>
+			<a href="UserUploadedPuzzles.php" class="buttonEffect"><img src="images/UserUploadedPuzzles.png" alt="UserUploadedPuzzles" title="Uploaded Puzzles" align="top" ></a>
         </td>
 	</tr>
     <tr>
     	<td align="center">
-        	<a href="Scoreboard.php"><img src="images/scoreboard.png" alt="scores" title="Scores" align="top" ></a>
+        	<a href="Scoreboard.php" class="buttonEffect"><img src="images/scoreboard.png" alt="scores" title="Scores" align="top" ></a>
         </td>
         <td align="center">
-        	<a href="#" onClick="topDiv();return false"><img src="images/lock.png" alt="password" title="Change Password" align="top" ></a>    
+        	<a href="#" onClick="topDiv();return false" class="buttonEffect"><img src="images/lock.png" alt="password" title="Change Password" align="top" ></a>    
         </td>
     </tr>
     <tr>
@@ -297,14 +373,45 @@ Log In to Find More !<br />
           </table></td>
         </tr>
       </table>
-    </div>      </td>
+    </div>
+    <div style="border: 1px solid #C5C5C5; margin-top:3px; padding-left:40%">
+    	<img src="images/footer.png" alt="Link A Pix" style="margin-top:2px;margin-left:30px" />
+    	<br />
+   		<a href="About.html">Find out more about us</a>
+    </div>      
+  </td>
     <td>&nbsp;</td>
   </tr>
-  <tr>
-    <td height="100%">&nbsp;</td>
-    <td width="558" height="100%" align="center" valign="top"><div style="padding-left:153px; padding-top:20px"></div></td>
-    <td height="100%">&nbsp;</td>
-  </tr>
 </table>
+
+<script type="text/javascript">
+function deletePuzzle(id){
+	var flag = confirm("Do you want to delete this puzzle ?");
+ 	if(flag){
+		document.getElementById(id).submit();
+ 	}
+}
+function sharePuzzle(id){
+	var flag = confirm("Do you want to share this puzzle ?");
+ 	if(flag){
+		document.getElementById(id).submit();
+ 	}
+}
+function stopShare(id){
+	var flag = confirm("Do you want to stop sharing this puzzle ?");
+ 	if(flag){
+		document.getElementById(id).submit(); 	
+	}
+}
+</script>
+
+<script>
+function appear(id) {
+	$(id).animate({top:110},{queue: false, duration: 250});
+	}
+function disappear(id) {
+	$(id).animate({top:130},{queue: false, duration: 250});
+	}
+</script>
 </body>
 </html>

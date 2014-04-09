@@ -18,6 +18,7 @@ session_start();
 <title>LINK-A-PIX</title>
 <meta http-equiv="Content-Style-Type" content="text/css">
 <link rel="shortcut icon" type="image/x-icon" href="images/puzzle.ico" media="screen" />
+<LINK HREF="style.css" TYPE="text/css" REL="stylesheet">
 <link href="css/Scoreboard.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/Popup.js"></script>
 </head>
@@ -97,21 +98,21 @@ if (isset($_POST['changePassword'])) {
                   </td>
                   <td><table width="198" border="0" cellspacing="0" cellpadding="0" >
                     <tr align="left" valign="top">
-                      <td width="41"><a href="#"><img src="images/main_2.jpg" width="39" height="182" border="0"></a></td>
-                      <td width="40"><a href="#"><img src="images/about_2.jpg" width="38" height="182" border="0"></a></td>
-                      <td width="39"><a href="#"><img src="images/portfolio_2.jpg" width="37" height="182" border="0"></a></td>
-                      <td width="40"><a href="#"><img src="images/services_2.jpg" width="38" height="182" border="0"></a></td>
-                      <td><a href="#"><img src="images/contacts_2.jpg" width="38" height="182" border="0"></a></td>
+                      <td width="41"><img src="images/main_2.jpg" width="39" height="182" border="0"></td>
+                      <td width="40"><img src="images/about_2.jpg" width="38" height="182" border="0"></td>
+                      <td width="39"><img src="images/portfolio_2.jpg" width="37" height="182" border="0"></td>
+                      <td width="40"><img src="images/services_2.jpg" width="38" height="182" border="0"></td>
+                      <td><img src="images/contacts_2.jpg" width="38" height="182" border="0"></td>
                     </tr>
                   </table></td>
                 </tr>
               </table>
-              <hr style="margin-top:16px;" />
+              <hr style="margin-top:12px;" />
               </td>
             </tr>
             <tr>
-              <td height="556" align="left" valign="top" background="images/back_4.jpg" style="border-top:12px solid #ffffff;background-repeat:no-repeat; background-position:bottom right ; background-repeat:no-repeat">
-              <table width="700" height="556"border="0" cellspacing="0" cellpadding="0">
+              <td align="left" valign="top" background="images/back_4.jpg" style="border-top:12px solid #ffffff;background-repeat:no-repeat; background-position:bottom right ; background-repeat:no-repeat">
+              <table width="700" height="564" border="0" cellspacing="0" cellpadding="0">
                 <tr align="left" valign="top">
                   <td width="438" height="100%" background="images/rep_2.jpg" style="background-position:top right; background-repeat:repeat-y ">
                   <div style="font-size:36px; margin-left:5px; color: #F30;">History Scores</div>
@@ -148,8 +149,8 @@ if (isset($_POST['changePassword'])) {
 			}
 ?>	
 
-<td width="146" height="166" style="overflow:hidden">
-<div style="height:130px; width:146px;margin-bottom:5px;"><img height="130" width="140" src="<?php echo $result[1]?>" alt="thumbnail"/></div>
+<td width="146" height="166" align="center" style="overflow:hidden">
+<div style="height:130px; width:140px;margin:0 auto 5px auto;"><img height="130" width="146" src="<?php echo $result[1]?>" alt="thumbnail"/></div>
 <?php echo $result[2] ?></td>	
 
 <?php				
@@ -241,18 +242,18 @@ Log In to Find More !<br />
 <table width="100%" height="200px">
 	<tr>
 		<td align="center">
-			<a href="GeneralPuzzles.php"><img src="images/SystemPuzzles.png" alt="general" title="General Puzzles" align="top" ></a>			
+			<a href="GeneralPuzzles.php" class="buttonEffect"><img src="images/SystemPuzzles.png" alt="general" title="General Puzzles" align="top" ></a>			
 		</td>
         <td align="center">
-        	<a href="PrivatePuzzles.php"><img src="images/MyOwnPuzzle.png" alt="MyOwnPuzzle"  title="Private Puzzles" align="top" ></a>
+        	<a href="PrivatePuzzles.php" class="buttonEffect"><img src="images/MyOwnPuzzle.png" alt="MyOwnPuzzle"  title="Private Puzzles" align="top" ></a>
         </td>
 	</tr>
     <tr>
     	<td align="center">
-        	<a href="UserUploadedPuzzles.php"><img src="images/UserUploadedPuzzles.png" alt="UserUploadedPuzzles" title="Uploaded Puzzles"  align="top" ></a>
+        	<a href="UserUploadedPuzzles.php" class="buttonEffect"><img src="images/UserUploadedPuzzles.png" alt="UserUploadedPuzzles" title="Uploaded Puzzles"  align="top" ></a>
         </td>
         <td align="center">
-        	<a href="#" onClick="topDiv();return false"><img src="images/lock.png" alt="password" title="Change Password" align="top" ></a>    
+        	<a href="#" onClick="topDiv();return false" class="buttonEffect"><img src="images/lock.png" alt="password" title="Change Password" align="top" ></a>    
         </td>
     </tr>
     <tr>
@@ -272,13 +273,14 @@ Log In to Find More !<br />
           </table></td>
         </tr>
       </table>
-    </div>      </td>
+    </div>
+    <div style="border: 1px solid #C5C5C5; margin-top:3px; padding-left:40%">
+    	<img src="images/footer.png" alt="Link A Pix" style="margin-top:2px;margin-left:30px" />
+    	<br />
+   		<a href="About.html">Find out more about us</a>
+    </div>     
+  </td>
     <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td height="100%">&nbsp;</td>
-    <td width="558" height="100%" align="center" valign="top"><div style="padding-left:153px; padding-top:20px"></div></td>
-    <td height="100%">&nbsp;</td>
   </tr>
 </table>
 </body>

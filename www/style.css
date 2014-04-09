@@ -9,6 +9,13 @@ a img {
 	border:0;
 	outline:none;	
 	}
+.buttonEffect img {
+	cursor:pointer;
+	filter:alpha(opacity=75);-moz-opacity:0.75;opacity:0.75;
+	}
+.buttonEffect:hover img {
+	filter:alpha(opacity=100);-moz-opacity:1;opacity:1;
+	}
 .style1 {
 	color: #3cad96;
 	font-size: 12px;

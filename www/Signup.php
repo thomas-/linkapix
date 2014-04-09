@@ -3,6 +3,7 @@
 <title>LINK-A-PIX</title>
 <meta http-equiv="Content-Style-Type" content="text/css">
 <link rel="shortcut icon" type="image/x-icon" href="images/puzzle.ico" media="screen" />
+<LINK HREF="style.css" TYPE="text/css" REL="stylesheet">
 <link href="css/Signup.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/Signup.js"></script>
 </head>
@@ -25,12 +26,12 @@
                   <a href="index.html"><img src="images/top_1.png" width="462" height="105"></a>
                   </div></td>
                   <td><table width="198" border="0" cellspacing="0" cellpadding="0" >
-                    <tr align="left" valign="top">
-                      <td width="41"><a href="#"><img src="images/main_2.jpg" width="39" height="182" border="0"></a></td>
-                      <td width="40"><a href="#"><img src="images/about_2.jpg" width="38" height="182" border="0"></a></td>
-                      <td width="39"><a href="#"><img src="images/portfolio_2.jpg" width="37" height="182" border="0"></a></td>
-                      <td width="40"><a href="#"><img src="images/services_2.jpg" width="38" height="182" border="0"></a></td>
-                      <td><a href="#"><img src="images/contacts_2.jpg" width="38" height="182" border="0"></a></td>
+                   <tr align="left" valign="top">
+                      <td width="41"><img src="images/main_2.jpg" width="39" height="182" border="0"></td>
+                      <td width="40"><img src="images/about_2.jpg" width="38" height="182" border="0"></td>
+                      <td width="39"><img src="images/portfolio_2.jpg" width="37" height="182" border="0"></td>
+                      <td width="40"><img src="images/services_2.jpg" width="38" height="182" border="0"></td>
+                      <td><img src="images/contacts_2.jpg" width="38" height="182" border="0"></td>
                     </tr>
                   </table></td>
                 </tr>

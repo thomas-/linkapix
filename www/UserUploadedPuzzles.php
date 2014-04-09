@@ -12,14 +12,29 @@ session_start();
 			window.location.href ='MyOwnPix.php'
 			</script>";	
 	}
+	if (isset($_POST['voteId'])) {
+		$votePuzzle = $_POST['voteId'];
+		include("conn.php");
+		$vote = mysql_query(" insert into Votes(puzzleId,username) values('{$votePuzzle}','{$_SESSION['username']}') ");
+		mysql_close();
+		unset($_POST['voteId']);
+	}
+	if (isset($_POST['Order'])) {
+		$select_value = $_POST['Order'];
+	}
+	else {
+		$select_value = '';
+	}
 ?>
 <html>
 <head>
 <title>LINK-A-PIX</title>
 <meta http-equiv="Content-Style-Type" content="text/css">
 <link rel="shortcut icon" type="image/x-icon" href="images/puzzle.ico" media="screen" />
+<LINK HREF="style.css" TYPE="text/css" REL="stylesheet">
 <link href="css/UserUploadedPuzzles.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/Popup.js"></script>
+<script src="js/jquery.js" ></script>
 </head>
 <body>
 <!-- deal with changing password -->
@@ -103,7 +118,7 @@ if (isset($_POST['changePassword'])) {
 <input type="text" name="q" title="Search" class="searchinput" id="searchinput" onKeyDown="if (event.keyCode==13) {}" onBlur="if(this.value=='')value='- Search -';" onFocus="if(this.value=='- Search -')value='';" value="- Search -" size="10" style="width:250px;height:30px"/>
 </td>
 <td>
-<input type="image" class="searchaction" onClick="if(document.forms['search'].searchinput.value=='- Search -')document.forms['search'].searchinput.value='';" src="images/submit.jpg"  hspace="2" border="0"/>
+<input type="image" class="searchaction buttonEffect" onClick="if(document.forms['search'].searchinput.value=='- Search -')document.forms['search'].searchinput.value='';" src="images/submit.jpg"  hspace="2" border="0"/>
 
 </td>
 </tr>
@@ -113,11 +128,11 @@ if (isset($_POST['changePassword'])) {
                   </td>
                   <td><table width="198" border="0" cellspacing="0" cellpadding="0" >
                     <tr align="left" valign="top">
-                      <td width="41"><a href="#"><img src="images/main_2.jpg" width="39" height="182" border="0"></a></td>
-                      <td width="40"><a href="#"><img src="images/about_2.jpg" width="38" height="182" border="0"></a></td>
-                      <td width="39"><a href="#"><img src="images/portfolio_2.jpg" width="37" height="182" border="0"></a></td>
-                      <td width="40"><a href="#"><img src="images/services_2.jpg" width="38" height="182" border="0"></a></td>
-                      <td><a href="#"><img src="images/contacts_2.jpg" width="38" height="182" border="0"></a></td>
+                      <td width="41"><img src="images/main_2.jpg" width="39" height="182" border="0"></td>
+                      <td width="40"><img src="images/about_2.jpg" width="38" height="182" border="0"></td>
+                      <td width="39"><img src="images/portfolio_2.jpg" width="37" height="182" border="0"></td>
+                      <td width="40"><img src="images/services_2.jpg" width="38" height="182" border="0"></td>
+                      <td><img src="images/contacts_2.jpg" width="38" height="182" border="0"></td>
                     </tr>
                   </table></td>
                 </tr>
@@ -130,8 +145,15 @@ if (isset($_POST['changePassword'])) {
               <table width="700" height="556"border="0" cellspacing="0" cellpadding="0">
                 <tr align="left" valign="top">
                   <td width="438" height="100%" background="images/rep_2.jpg" style="background-position:top right; background-repeat:repeat-y ">
-                  <div style="font-size:36px; margin-left:5px; color: #099;">User Uploaded Puzzles</div>
-                  <div>
+                  <div style="font-size:36px; margin-left:5px; color: #099;"><span style="margin-right:52px;">Shared Puzzles</span>
+					<form method="post" id="selectBox" style="display:inline;">
+						<select name="Order" onChange="submitForm()">
+						<option value="Time">Uploaded Time</option>
+						<option value="Popularity" <?php echo $select_value == 'Popularity' ? 'selected' : '' ?> >Popularity</option>
+						</select>
+					</form>
+				 </div>
+   <div>
 	<table border="0" cellspacing="0" cellpadding="0">
     <tr align="center">
 	
@@ -139,11 +161,11 @@ if (isset($_POST['changePassword'])) {
 <?php
    	include("conn.php");
 	if(empty($_GET["q"])){
-		$sql = mysql_query("select * from Puzzle where username ='admin'");
+		$sql = mysql_query("select * from Share");
 	}
 	else {
 		$search = trim($_GET["q"]);
-		$sql = mysql_query("select * from Puzzle where name like '%$search%' AND username !='admin'");
+		$sql = mysql_query("select * from Share where name like '%$search%'");
 	}
     $pagesize = 9; 
     $sum = mysql_num_rows($sql); 
@@ -160,10 +182,32 @@ if (isset($_POST['changePassword'])) {
     $off = ($page-1)*$pagesize; 
 	
 	if(empty($_GET["q"])){
-		$content = mysql_query("select name,position from Puzzle where username !='admin' limit $off,$pagesize");
+		if (isset($_POST['Order'])) {
+			$order = $_POST['Order'];
+			if (strcmp($order,"Time")==0) {
+				$content = mysql_query("select name,position,username,puzzleId from Share order by id limit $off,$pagesize");
+			}
+			else {
+				$content = mysql_query("select Share.name,Share.position,Share.username,Share.puzzleId,count(*) AS Total from Share,Votes where Share.puzzleId = Votes.puzzleId Group by Share.puzzleId Order by Total DESC limit $off,$pagesize");
+			}
+		}
+		else {
+			$content = mysql_query("select name,position,username,puzzleId from Share order by id limit $off,$pagesize");	
+		}
 	}
 	else {
-		$content = mysql_query("select name,position from Puzzle where name like '%$search%' AND username !='admin' limit $off,$pagesize");
+		if (isset($_POST['Order'])) {
+			$order = $_POST['Order'];
+			if (strcmp($order,"Time")==0) {
+				$content = mysql_query("select name,position,username,puzzleId from Share where name like '%$search%' order by id limit $off,$pagesize");
+			}
+			else {
+				$content = mysql_query("select Share.name,Share.position,Share.username,Share.puzzleId,count(*) AS Total from Share,Votes where Share.puzzleId = Votes.puzzleId AND Share.name like '%$search%' Group by Share.puzzleId Order by Total DESC limit $off,$pagesize"); 
+			}
+		}
+		else {
+			$content = mysql_query("select name,position,username,puzzleId from Share where name like '%$search%' order by id limit $off,$pagesize");	
+		}
 	}
     
 	for ($i=0;$i<9;$i++) {
@@ -173,9 +217,48 @@ if (isset($_POST['changePassword'])) {
 			}
 ?>	
 
-<td width="146" height="166" style="overflow:hidden">
-<div style="height:130px; width:146px;margin-bottom:5px;"><a href="GamePlay.php?puzzle=<?php echo $result[0] ?>"><img height="130" width="140" src="<?php echo $result[1]?>" alt="thumbnail"/></a></div>
-<?php echo $result[0] ?></td>	
+<td width="146" height="166" align="center" style="overflow:hidden">
+<div style='position:relative ; margin:0 auto 5px auto;height:130px;width:146px; overflow:hidden' onMouseOver="appear('#up<?php echo $result[3] ?>')" onMouseOut="disappear('#up<?php echo $result[3] ?>')" >
+
+<div style="position:absolute;top:0px;height:130px; width:146px;"><a href="GamePlay.php?puzzleId=<?php echo $result[3] ?>" class="buttonEffect"><img height="130" width="140" src="<?php echo $result[1]?>" alt="thumbnail" title="<?php echo "Shared By: ".$result[2]; ?>"/></a>
+</div>
+
+<?php 
+	$user = mysql_query("select * from Share where puzzleId = '{$result[3]}' And username != '{$_SESSION['username']}'");
+	$countForUser = mysql_num_rows($user);
+	if ($countForUser > 0 ) { 
+?>
+<div class="vote" align="left" style="position:absolute; top:-30px; left:67px; width:70px;height:30px;background: #969696; -moz-border-radius: 5px; -webkit-border-radius: 5px;" id="up<?php echo $result[3] ?>" >
+<?php 
+$rs = mysql_query("select * from Votes where puzzleId = '{$result[3]}' AND username = '{$_SESSION['username']}'");
+$sum = mysql_num_rows($rs);
+$voteCount = mysql_query("select * from Votes where puzzleId = '{$result[3]}'");
+$totalVote = mysql_num_rows($voteCount);
+$totalVote = $totalVote -1;
+if ($sum <= 0) {
+?>
+<form method="post" id="voteUp<?php echo $result[3]; ?>" style=" color:#FFF; position:absolute; top:2px ; right:40px">
+<input type="hidden" value="<?php echo $result[3]; ?>" name="voteId" />
+<a href="###" onClick="voteUp('voteUp<?php echo $result[3]; ?>')"><img src="images/vote_no.png" alt="vote" title="vote up"/></a>
+</form>
+<div style=" color:#FFF; position:absolute; top:5px; right:3px"><?php if ($totalVote < 100) echo "(".$totalVote.")"; else echo "(99+)"; ?></div>
+<?php
+}
+else {
+?>
+<form style=" color:#FFF; position:absolute; top:2px ; right:40px">
+<a><img src="images/vote_yes.png" alt="vote"/></a>
+</form>
+<div style=" color:#FFF; position:absolute; top:5px; right:3px"><?php if ($totalVote < 100) echo "(".$totalVote.")"; else echo "(99+)"; ?></div>
+<?php 
+}
+	}
+?>
+
+</div>
+</div>
+<?php echo $result[0] ?>
+</td>	
 
 <?php				
 		}
@@ -265,18 +348,18 @@ Log In to Find More !<br />
 <table width="100%" height="200px">
 	<tr>
 		<td align="center">
-			<a href="GeneralPuzzles.php"><img src="images/SystemPuzzles.png" alt="general" title="General Puzzles" align="top" ></a>			
+			<a href="GeneralPuzzles.php" class="buttonEffect"><img src="images/SystemPuzzles.png" alt="general" title="General Puzzles" align="top" ></a>			
 		</td>
         <td align="center">
-        	<a href="PrivatePuzzles.php"><img src="images/MyOwnPuzzle.png" alt="MyOwnPuzzle"  title="Private Puzzles" align="top" ></a>
+        	<a href="PrivatePuzzles.php" class="buttonEffect"><img src="images/MyOwnPuzzle.png" alt="MyOwnPuzzle"  title="Private Puzzles" align="top" ></a>
         </td>
 	</tr>
     <tr>
     	<td align="center">
-        	<a href="Scoreboard.php"><img src="images/scoreboard.png" alt="scores" title="Scores" align="top" ></a>
+        	<a href="Scoreboard.php" class="buttonEffect"><img src="images/scoreboard.png" alt="scores" title="Scores" align="top" ></a>
         </td>
         <td align="center">
-        	<a href="#" onClick="topDiv();return false"><img src="images/lock.png" alt="password" title="Change Password" align="top" ></a>    
+        	<a href="#" onClick="topDiv();return false" class="buttonEffect"><img src="images/lock.png" alt="password" title="Change Password" align="top" ></a>    
         </td>
     </tr>
     <tr>
@@ -296,14 +379,33 @@ Log In to Find More !<br />
           </table></td>
         </tr>
       </table>
-    </div>      </td>
+    </div>
+    <div style="border: 1px solid #C5C5C5; margin-top:3px; padding-left:40%">
+    	<img src="images/footer.png" alt="Link A Pix" style="margin-top:2px;margin-left:30px" />
+    	<br />
+   		<a href="About.html">Find out more about us</a>
+    </div>      
+   </td>
     <td>&nbsp;</td>
   </tr>
-  <tr>
-    <td height="100%">&nbsp;</td>
-    <td width="558" height="100%" align="center" valign="top"><div style="padding-left:153px; padding-top:20px"></div></td>
-    <td height="100%">&nbsp;</td>
-  </tr>
 </table>
+
+<script>
+function submitForm() {
+	document.getElementById('selectBox').submit();
+}
+function voteUp(id) {
+	var flag = confirm("Vote up this puzzle ?");
+ 	if(flag){
+		document.getElementById(id).submit();
+	}
+}
+function appear(id) {
+	$(id).animate({top:5},{queue: false, duration: 250});
+}
+function disappear(id) {
+	$(id).animate({top:-30},{queue: false, duration: 250});
+}
+</script>
 </body>
 </html>

@@ -1,16 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 body {
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	margin-bottom: 0px;
-	background-color: #FFFFFF;
 	font-family: Arial, Helvetica, sans-serif;
-	}
-a img {
-	border:0;
-	outline:none;	
 	}
 .searchinput{
 	border-right-width: 0px;

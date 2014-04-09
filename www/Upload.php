@@ -1,23 +1,12 @@
 <?php 
 session_start();
-include("conn.php");
-	if (empty($_GET['puzzle'])) {
-		$hasPuzzle = 0;	
-    }
-	else {
-        $hasPuzzle = 1;
-        $puzzle = mysql_real_escape_string($_GET['puzzle']);
-		$rs = mysql_query("SELECT * FROM Puzzle WHERE name = '$puzzle'");
-		$result = mysql_fetch_assoc($rs);
-		$puzzledata = $result['data']; 
-		mysql_close();
-	}
 ?>
 <html>
 <head>
 <title>LINK-A-PIX</title>
 <meta http-equiv="Content-Style-Type" content="text/css">
 <link rel="shortcut icon" type="image/x-icon" href="images/puzzle.ico" media="screen" />
+<LINK HREF="style.css" TYPE="text/css" REL="stylesheet">
 <link href="css/GamePlay.css" rel="stylesheet" type="text/css" />
 <link href="css/linkapix-colour.css" rel="stylesheet" type="text/css" />
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -41,11 +30,11 @@ include("conn.php");
                   </div></td>
                   <td width="231"><table width="198" border="0" cellspacing="0" cellpadding="0" >
                     <tr align="left" valign="top">
-                      <td width="49"><a href="#"><img src="images/main_2.jpg" width="47" height="182" border="0"></a></td>
-                      <td width="48"><a href="#"><img src="images/about_2.jpg" width="46" height="182" border="0"></a></td>
-                      <td width="46"><a href="#"><img src="images/portfolio_2.jpg" width="44" height="182" border="0"></a></td>
-                      <td width="46"><a href="#"><img src="images/services_2.jpg" width="44" height="182" border="0"></a></td>
-                      <td><a href="#"><img src="images/contacts_2.jpg" width="44" height="182" border="0"></a></td>
+                      <td width="49"><img src="images/main_2.jpg" width="47" height="182" border="0"></td>
+                      <td width="48"><img src="images/about_2.jpg" width="46" height="182" border="0"></td>
+                      <td width="46"><img src="images/portfolio_2.jpg" width="44" height="182" border="0"></td>
+                      <td width="46"><img src="images/services_2.jpg" width="44" height="182" border="0"></td>
+                      <td><img src="images/contacts_2.jpg" width="44" height="182" border="0"></td>
                     </tr>
                   </table></td>
                 </tr>
@@ -57,21 +46,14 @@ include("conn.php");
 <table width="100%" cellspacing="0" cellpadding="0">
   <tr>
     <td align="center">
-    	<div align="left" style="margin-left:10px"><a href="    <?php
-		if ($hasPuzzle == 1) {
-			echo "GeneralPuzzles.php";
-		} 
-		else {
-			echo "PICK-A-PIX.html";
-		}
-	?>
-"><img src="images/back.png" alt="back"></a></div>
+    	<div align="left" style="margin-left:10px"><a href="PICK-A-PIX.html" class="buttonEffect"><img src="images/back.png" alt="back"></a></div>
         <div id="sizetoolbar">
-            <p class="uploader">		
+            <p>		
     		<label for="width">Width:</label> 
             <input type="number" name="width" id="width" value="5">
     		<label for="height" style="margin-left:30px">Height:</label> 
             <input type="number" name="height" id="height" value="5">
+            <br />
             <label for="difficulty">Difficulty:</label>
             <select name="difficulty" id="difficulty">
             <option value="5">Easy</option>
@@ -79,31 +61,38 @@ include("conn.php");
             <option value="10">Difficult</option>
             </select>
             </p>
+            <p class="uploader"></p>
         </div>
     	<div id="gameDisplayb">
       <div class="progress progress-striped active" style="display: none;">
   <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 10%; transition:none;">
   </div>
 </div>
-            <div class="centered linkapix"></div>
+                <div class="centered linkapix"></div>
         </div>
         <div>
-        
-        
-        
-        
+   
         <table id="gameButtons" width="301" border="0" cellspacing="20" cellpadding="0" align="center">
   <tr>
-    <td>
-    <a href="#"><img src="images/restart.png" width="32" height="32" alt="Restart" title="Restart"></a>
+    <td align="center">
+    <a class="buttonEffect"><img src="images/restart.png" width="32" height="32" alt="Restart" title="Restart"></a>
     </td>
-    <td>
-    <a href="#" class="show_upload_solution"><img src="images/solution.png" width="32" height="32" alt="Show Solution" title="Show Solution"></a>
+    <td align="center">
+    <a class="show_upload_solution buttonEffect"><img src="images/solution.png" width="32" height="32" alt="Show Solution" title="Show Solution"></a>
     </td>
-    <td>
-    <a href="<?php if ($hasPuzzle==1) echo "Score_rank.php?puzzle={$_GET['puzzle']}" ?>"><img src="images/highscore.png" width="32" height="32" alt="High Scores" title="View High Scores"></a>
-    </td>
-    <td><a href="#" onClick="newWindow()"><img src="images/new-window.png" width="32" height="32" alt="New Window" title="Open New Window"></a>
+    <td align="center">
+<?php 
+	if (isset($_SESSION['username'])) {
+?>
+    <a href="PrivatePuzzles.php" class="buttonEffect"><img src="images/highscore.png" width="32" height="32" alt="My Own Puzzles" title="View 'My Own Puzzles'"></a>
+<?php 
+	}
+	else {
+?>
+	<img src="images/highscore-disabled.png" width="32" height="32" alt="My Own Puzzles" title="Log in to view private puzzles">
+<?php 
+	}
+?>
     </td>
   </tr>
 		</table>
@@ -112,11 +101,28 @@ include("conn.php");
   </tr>
   <tr>
     <td align="center">
-    <div class="functionButtons">
+    <div class="functionButtons"> 
+    <form action="uploadImg.php" method="post" target="uploadImg" enctype="multipart/form-data" id="userFile">
     	<div class="btn-load" style="width:160px; height:45px;">
-    		<a class="btn-file"><input class="joint upld" type="file" id="imgInp" /></a>
+    		<a class="btn-file buttonEffect">
+           
+            <input class="joint upld" type="file" name="uploadedFile" id="imgInp" /><img src="images/load-btn.jpg" alt="load" title="Load" />
+            
+            </a>
         </div>
-        <a href="#" class="btn-save"><img src="images/save-btn.jpg" alt="save" title="Save" /></a>
+<?php 
+if (isset($_SESSION['username'])) {
+?>
+        <a class="btn-save buttonEffect" id="savebutton"><img src="images/save-btn.jpg" alt="save" title="Save"/></a>
+<?php 
+}
+else {
+?>
+	<img src="images/save-disabled.jpg" alt="save" title="Log in to save" style="float:left;margin-left:160px;"/>
+<?php	
+}
+?>
+	</form>
     </div>
     </td>
   </tr>
@@ -141,8 +147,6 @@ include("conn.php");
 <script src="js/linkapix-colour.js"></script>
 <script src="js/upload.js"></script>
 
-  <script>
-  </script>
-
+<iframe name="uploadImg" src="" style="display:none"></iframe>
 </body>
 </html>

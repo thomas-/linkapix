@@ -300,21 +300,28 @@ $(".show_upload_solution").on('click', function (event) {
 $(".btn-save").on('click', function() {
     // function to save generated puzzle to users library
     var puzzlename = prompt("Enter a name for the puzzle:");
-    if (puzzlename != null) {
-        postdata = new Object;
-        postdata.puzzlename = puzzlename;
-        postdata.puzzledata = JSON.stringify(puzzle);
-        $.ajax({
-            // we send the data to our save script
-            type: "POST",
-            url: '/save.php',
-            data: postdata,
-            success: function(result) {
-                console.log(result);
-                if (result == "OK") {
-                    console.log("saved");
-                }
-            }
-        });
-    }
+	if (puzzlename != null && puzzlename != '' && puzzlename.length < 13 ) {
+		postdata = new Object;
+		postdata.puzzlename = puzzlename;
+		postdata.puzzledata = JSON.stringify(puzzle);
+        postdata.solution = JSON.stringify(solution)
+		
+		$.ajax({
+			// we send the data to our save script
+			type: "POST",
+			url: '/save.php',
+			data: postdata,
+			success: function(result) {
+				console.log(result);
+				if (result == "OK") {
+					document.getElementById('userFile').submit();
+					console.log("saved");
+					alert("Saved ! Go to 'Private Puzzles' to check it !");
+				}
+			}
+		});
+	}
+	else {
+		alert("Save failed! Name should be less than 13 characters!");
+	}
 });

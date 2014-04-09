@@ -19,6 +19,7 @@ session_start();
 <title>LINK-A-PIX</title>
 <meta http-equiv="Content-Style-Type" content="text/css">
 <link rel="shortcut icon" type="image/x-icon" href="images/puzzle.ico" media="screen" />
+<LINK HREF="style.css" TYPE="text/css" REL="stylesheet">
 <link href="css/GeneralPuzzles.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/Popup.js"></script>
 </head>
@@ -113,11 +114,11 @@ if (isset($_POST['changePassword'])) {
                   </td>
                   <td><table width="198" border="0" cellspacing="0" cellpadding="0" >
                     <tr align="left" valign="top">
-                      <td width="41"><a href="#"><img src="images/main_2.jpg" width="39" height="182" border="0"></a></td>
-                      <td width="40"><a href="#"><img src="images/about_2.jpg" width="38" height="182" border="0"></a></td>
-                      <td width="39"><a href="#"><img src="images/portfolio_2.jpg" width="37" height="182" border="0"></a></td>
-                      <td width="40"><a href="#"><img src="images/services_2.jpg" width="38" height="182" border="0"></a></td>
-                      <td><a href="#"><img src="images/contacts_2.jpg" width="38" height="182" border="0"></a></td>
+                      <td width="41"><img src="images/main_2.jpg" width="39" height="182" border="0"></td>
+                      <td width="40"><img src="images/about_2.jpg" width="38" height="182" border="0"></td>
+                      <td width="39"><img src="images/portfolio_2.jpg" width="37" height="182" border="0"></td>
+                      <td width="40"><img src="images/services_2.jpg" width="38" height="182" border="0"></td>
+                      <td><img src="images/contacts_2.jpg" width="38" height="182" border="0"></td>
                     </tr>
                   </table></td>
                 </tr>
@@ -159,10 +160,10 @@ if (isset($_POST['changePassword'])) {
     $off = ($page-1)*$pagesize; 
 	
 	if(empty($_GET["q"])){
-		$content = mysql_query("select name,position from Puzzle where username ='admin' limit $off,$pagesize");
+		$content = mysql_query("select name,position,id from Puzzle where username ='admin' limit $off,$pagesize");
 	}
 	else {
-		$content = mysql_query("select name,position from Puzzle where name like '%$search%' AND username ='admin' limit $off,$pagesize");
+		$content = mysql_query("select name,position,id from Puzzle where name like '%$search%' AND username ='admin' limit $off,$pagesize");
 	}
     
 	for ($i=0;$i<9;$i++) {
@@ -172,8 +173,8 @@ if (isset($_POST['changePassword'])) {
 			}
 ?>	
 
-<td width="146" height="166" style="overflow:hidden">
-<div style="height:130px; width:146px;margin-bottom:5px;"><a href="GamePlay.php?puzzle=<?php echo $result[0] ?>"><img height="130" width="140" src="<?php echo $result[1]?>" alt="thumbnail"/></a></div>
+<td width="146" height="166" align="center" style="overflow:hidden">
+<div style="height:130px; width:146px;margin:0 auto 5px auto;"><a href="GamePlay.php?puzzleId=<?php echo $result[2] ?>" class="buttonEffect"><img height="130" width="140" src="<?php echo $result[1]?>" alt="thumbnail"/></a></div>
 <?php echo $result[0] ?></td>	
 
 <?php				
@@ -263,18 +264,18 @@ Log In to Find More !<br />
 <table width="100%" height="200px">
 	<tr>
 		<td align="center">
-			<a href="PrivatePuzzles.php"><img src="images/MyOwnPuzzle.png" alt="MyOwnPuzzle" title="Private Puzzles" align="top" ></a>			
+			<a href="PrivatePuzzles.php" class="buttonEffect"><img src="images/MyOwnPuzzle.png" alt="MyOwnPuzzle" title="Private Puzzles" align="top" ></a>			
 		</td>
         <td align="center">
-			<a href="UserUploadedPuzzles.php"><img src="images/UserUploadedPuzzles.png" alt="UserUploadedPuzzles" title="Uploaded Puzzles" align="top" ></a>
+			<a href="UserUploadedPuzzles.php" class="buttonEffect"><img src="images/UserUploadedPuzzles.png" alt="UserUploadedPuzzles" title="Uploaded Puzzles" align="top" ></a>
         </td>
 	</tr>
     <tr>
     	<td align="center">
-        	<a href="Scoreboard.php"><img src="images/scoreboard.png" alt="scores" title="Socres" align="top" ></a>
+        	<a href="Scoreboard.php" class="buttonEffect"><img src="images/scoreboard.png" alt="scores" title="Socres" align="top" ></a>
         </td>
         <td align="center">
-        	<a href="#" onClick="topDiv();return false"><img src="images/lock.png" alt="password" title="Change Password" align="top" ></a>    
+        	<a href="#" onClick="topDiv();return false" class="buttonEffect"><img src="images/lock.png" alt="password" title="Change Password" align="top" ></a>    
         </td>
     </tr>
     <tr>
@@ -294,13 +295,14 @@ Log In to Find More !<br />
           </table></td>
         </tr>
       </table>
-    </div>      </td>
+    </div>
+    <div style="border: 1px solid #C5C5C5; margin-top:3px; padding-left:40%">
+    	<img src="images/footer.png" alt="Link A Pix" style="margin-top:2px;margin-left:30px" />
+    	<br />
+   		<a href="About.html">Find out more about us</a>
+    </div>      
+  </td>
     <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td height="100%">&nbsp;</td>
-    <td width="558" height="100%" align="center" valign="top"><div style="padding-left:153px; padding-top:20px"></div></td>
-    <td height="100%">&nbsp;</td>
   </tr>
 </table>
 </body>

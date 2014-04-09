@@ -27,12 +27,21 @@ function validate_form(thisform) {
   	return false;
   }
   else {
-  	if (thisform.form_password.value.length < 7) {
-    	document.getElementById("password_suggestion").innerHTML="* Password  length must be more than 6!";
+  	if (thisform.form_password.value.length < 7 || thisform.form_password.value.length > 15) {
+    	document.getElementById("password_suggestion").innerHTML="* Password  length must be in the range of [7 , 15]!";
   		thisform.form_password.focus();
         thisform.form_password.value="";
   		return false;
     }
+	else {
+		var pwdReg = /^[_A-Za-z0-9]+$/;
+		if (!pwdReg.test(thisform.form_password.value)) {
+			document.getElementById("password_suggestion").innerHTML="* Only digit, letter and underline are allowed!";
+  			thisform.form_password.focus();
+        	thisform.form_password.value="";
+  			return false;	
+		}	
+	}
   }
   
   if (thisform.form_name.value==null || thisform.form_name.value==""){ 
